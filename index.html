@@ -42,13 +42,41 @@ html,body{touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-t
 
 #wait[aria-pressed=true]{background:#765b32;border-color:#efc77c;color:#fff0cf}#facing-label{color:#edcd8f}
 
+/* Align the three actions with the three direction rows. */
+.controller-panel{position:static;flex-direction:row;align-items:center}
+.quick-actions{display:grid;grid-template-rows:repeat(3,44px);gap:5px}
+.quick-actions button{height:44px;min-height:44px;padding:3px 9px;line-height:1.15}
+.quick-actions button small{font-size:9px;line-height:1.1;margin-top:2px}
+.canvas-wrap{min-height:0;padding-right:13px}
+.game-viewport{position:relative;width:100%;max-width:608px;line-height:0}
+.game-viewport #game{display:block;width:100%;max-width:none}
+.game-viewport #minimap-panel{position:absolute;right:6px;bottom:6px;width:38%;max-width:224px;display:block;margin:0;padding:0;border:0;background:transparent;pointer-events:none;z-index:2}
+.game-viewport #minimap-panel.expanded{width:70%;max-width:none}
+.game-viewport #minimap{width:100%;max-width:none;height:auto;background:transparent;border:0;border-radius:3px;opacity:.68}
+.game-viewport .overlay{z-index:3;line-height:1.6}
+@media(max-width:800px){.canvas-wrap{padding:0}.game-viewport{width:min(100%,calc(100svh - 300px))}}
+@media(max-width:800px) and (orientation:landscape){.game-viewport{width:min(100%,calc(100svh - 110px))}}
+
+#latest-log{position:absolute;left:6px;bottom:6px;max-width:56%;margin:0;padding:5px 7px;border-radius:4px;background:#101815a6;color:#f0dfb5;font-size:11px;line-height:1.5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;pointer-events:none;z-index:2}
+#survival-alert{position:fixed;inset:0;z-index:9999;pointer-events:none;background:#d82016;animation:survival-warning 1.5s ease-in-out infinite}
+#survival-alert[hidden]{display:none}
+@keyframes survival-warning{0%,100%{opacity:0}50%{opacity:.17}}
+@media(prefers-reduced-motion:reduce){#survival-alert{animation:none;opacity:.12}}
+.supply-button:before{content:'';display:inline-block;width:12px;height:22px;margin-right:7px;vertical-align:middle;background:#83d5ed;clip-path:polygon(30% 0,70% 0,70% 20%,90% 35%,100% 95%,0 95%,10% 35%,30% 20%)}
+.supply-button.water:before{background:#a57646}
+.supply-button.canned_food:before{clip-path:none;border-radius:3px;background:linear-gradient(#c6d0c7 0 20%,#c58c51 20% 80%,#c6d0c7 80%)}
+
+/* Apply the double-tap policy to dialog contents and newly added controls too. */
+html body *{touch-action:manipulation}
+.controller-panel button{touch-action:none}
+
 </style><link rel="manifest" href="./manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAADD0lEQVR4nO3TsXFVQRREQcWAq2QwSAGywyYdkiAOkcKWqK35vNPG8bf2Tr99eX//kKq9rR8gLQNA6QBQOgCUDgClA0DpAFA6AJQOAKUDQOkAUDoAlA4ApQNA6QBQOgCUDgClA0DpAFA6AJQOAKUDQOkAUDoAlA4ApQNA6QBQOgCUDgClA0DpAFA6AJQOAKUDQOkAUDoAlA4ApQNA6QBQOgCUDgClA0DpAFA6AJQOgIN+//rx37b+u1cPgIPWIwbgXgActB4xAPcC4KD1iAG4FwAHrUcMwL0AOGg9YgDuBcBB6xEDcC8ADlqPGIB7AXDQesQA3AuAg9YjBuBeABy0HjEA9wLgoPWIAbgXAAetRwzAvR4PYD3AJ7S+IQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHwGwLfvXx8fAAAAAAAAAAAAAAAAPDkAAAAAAAAAAAAAACYAPv78/HQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwfgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADrBwAAAAAAAADAcwG8WgAAAAAAAAAAAAAAAPDkAAAAAAAAAAAAAAAAAAAABAAAAgAAAfACjwDgtVvfEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAmA+k3Pr2AAAAAAD7IVRb3x4AAAAAYD+EauvbAwAAAADsh1BtfXsAAAAAgP0Qqq1vDwAAAACwH0K19e0BkP4hAJQOAKUDQOkAUDoAlA4ApQNA6QBQOgCUDgClA0DpAFA6AJQOAKUDQOkAUDoAlA4ApQNA6QBQOgCUDgClA0DpAFA6AJQOAKUDQOkAUDoAlA4ApQNA6QBQOgCUDgClA0DpAFA6AJTuL/kG+VVkI/hmAAAAAElFTkSuQmCC"><link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAADD0lEQVR4nO3TsXFVQRREQcWAq2QwSAGywyYdkiAOkcKWqK35vNPG8bf2Tr99eX//kKq9rR8gLQNA6QBQOgCUDgClA0DpAFA6AJQOAKUDQOkAUDoAlA4ApQNA6QBQOgCUDgClA0DpAFA6AJQOAKUDQOkAUDoAlA4ApQNA6QBQOgCUDgClA0DpAFA6AJQOAKUDQOkAUDoAlA4ApQNA6QBQOgCUDgClA0DpAFA6AJQOgIN+//rx37b+u1cPgIPWIwbgXgActB4xAPcC4KD1iAG4FwAHrUcMwL0AOGg9YgDuBcBB6xEDcC8ADlqPGIB7AXDQesQA3AuAg9YjBuBeABy0HjEA9wLgoPWIAbgXAAetRwzAvR4PYD3AJ7S+IQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHwGwLfvXx8fAAAAAAAAAAAAAAAAPDkAAAAAAAAAAAAAACYAPv78/HQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwfgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADrBwAAAAAAAADAcwG8WgAAAAAAAAAAAAAAAPDkAAAAAAAAAAAAAAAAAAAABAAAAgAAAfACjwDgtVvfEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAmA+k3Pr2AAAAAAD7IVRb3x4AAAAAYD+EauvbAwAAAADsh1BtfXsAAAAAgP0Qqq1vDwAAAACwH0K19e0BkP4hAJQOAKUDQOkAUDoAlA4ApQNA6QBQOgCUDgClA0DpAFA6AJQOAKUDQOkAUDoAlA4ApQNA6QBQOgCUDgClA0DpAFA6AJQOAKUDQOkAUDoAlA4ApQNA6QBQOgCUDgClA0DpAFA6AJTuL/kG+VVkI/hmAAAAAElFTkSuQmCC"></head>
 <body><main class="shell">
 <header><a class="brand" href="./"><span class="brand-icon">◈</span><span>灯りの迷宮<small>LANTERN DUNGEON</small></span></a><div class="edition"><span></span> 70フロア体験版</div><button class="subtle" id="sound-toggle" aria-pressed="true">音 ON</button><button class="subtle" id="help">遊び方 <span>?</span></button></header>
 <section class="intro"><div><p class="eyebrow">A LITTLE LIGHT, A NEW ADVENTURE</p><h1>小さな灯りと、地下への一歩。</h1><p>部屋を巡り、道具を拾い、迷宮の奥の階段へ。</p></div><div class="floor-label"><small>苔むす遺跡</small><strong><span id="floor-number">B1</span><span>F</span></strong></div></section>
 <div class="layout"><section class="game-panel"><div class="game-toolbar"><div><span class="live-dot"></span> <b id="floor-label">地下1階</b></div><button id="map-toggle" class="subtle" aria-pressed="false">マップを拡大 <kbd>M</kbd></button></div>
-<div class="quick-status"><span>Lv.<b id="quick-level">1</b></span><span class="quick-health">HP <b id="quick-hp">30 / 30</b><span class="quick-meter"><i id="quick-hp-bar"></i></span></span><span>薬草 <b id="quick-potions">1</b></span><span>装備 <b id="equipment-name">石の斧</b></span><span>鎧 <b id="armor-name">なし</b></span><span>ゴーグル <b id="goggles-name">なし</b></span><span>防御 <b id="defense">0</b></span><span id="facing-label">向き ↓</span><span id="spawn-bonus">次の追加敵 +1%</span><span id="save-error" role="status" hidden></span></div><div class="canvas-wrap"><canvas id="game" width="608" height="608" tabindex="0" aria-label="ダンジョン。矢印キーかWASDで移動、敵に向かって移動すると攻撃。"></canvas><div id="result" class="overlay" hidden><div><p class="eyebrow" id="result-tag"></p><h2 id="result-title"></h2><p id="result-description"></p><button id="play-again" class="primary">もう一度探索する</button></div></div></div>
-<section class="controller-panel" aria-label="探索コントローラー"><div id="direction-pad" class="touch-controls" style="display:grid;grid-template-columns:repeat(3,var(--direction-size,48px));grid-template-rows:repeat(3,44px);gap:5px" aria-label="8方向の移動操作"><button data-move="-1,-1" aria-label="左上に移動">↖</button><button data-move="0,-1" aria-label="上に移動">↑</button><button data-move="1,-1" aria-label="右上に移動">↗</button><button data-move="-1,0" aria-label="左に移動">←</button><button id="wait" aria-label="方向モードをONにする" aria-pressed="false">方向</button><button data-move="1,0" aria-label="右に移動">→</button><button data-move="-1,1" aria-label="左下に移動">↙</button><button data-move="0,1" aria-label="下に移動">↓</button><button data-move="1,1" aria-label="右下に移動">↘</button></div><div class="quick-actions"><button id="quick-potion">▣ 持ち物<small>アイテムを選んで使う</small></button><button id="quick-stairs"><span id="action-label">足踏みする</span><small id="action-detail">アクション</small></button><span>1秒長押しで連続移動</span></div></section><section class="card journal controller-journal"><div class="section-label">ADVENTURE LOG<span>冒険の記録</span></div><div id="log" role="log" aria-live="polite" aria-relevant="additions"></div></section><section id="minimap-panel" class="minimap-panel" aria-label="ミニマップ"><div class="minimap-copy"><span class="section-label">MINI MAP</span><b>探索の足あと</b><span id="explored">探索 0%</span><small>金色：現在地 / 水色：発見した階段<br>透視のゴーグル装備中は未探索の地形も表示</small><small>112 × 74 マス · 視界 半径8マス</small></div><canvas id="minimap" width="224" height="148" aria-label="探索済みの地図"></canvas></section><div class="map-footer"><span><i class="legend hero"></i>あなた</span><span><i class="legend monster"></i>敵</span><span><i class="legend herb"></i>薬草</span><span><i class="legend exit"></i>階段</span><span class="turn">TURN <b id="turn">0</b></span></div>
+<div class="quick-status"><span>Lv.<b id="quick-level">1</b></span><span class="quick-health">HP <b id="quick-hp">30 / 30</b><span class="quick-meter"><i id="quick-hp-bar"></i></span></span><span>満腹度 <b id="fullness">100%</b></span><span>水分 <b id="hydration">100%</b></span><span>薬草 <b id="quick-potions">1</b></span><span>装備 <b id="equipment-name">石の斧</b></span><span>鎧 <b id="armor-name">なし</b></span><span>ゴーグル <b id="goggles-name">なし</b></span><span>防御 <b id="defense">0</b></span><span id="facing-label">向き ↓</span><span id="spawn-bonus">次の追加敵 +1%</span><span id="save-error" role="status" hidden></span></div><div class="canvas-wrap"><div class="game-viewport"><canvas id="game" width="608" height="608" tabindex="0" aria-label="ダンジョン。矢印キーかWASDで移動、敵に向かって移動すると攻撃。"></canvas><p id="latest-log" aria-label="最新のログ"></p><section id="minimap-panel" class="minimap-panel" aria-label="ミニマップ"><canvas id="minimap" width="224" height="148" aria-label="探索済みの地図"></canvas></section><div id="result" class="overlay" hidden><div><p class="eyebrow" id="result-tag"></p><h2 id="result-title"></h2><p id="result-description"></p><button id="play-again" class="primary">もう一度探索する</button></div></div></div></div>
+<section class="controller-panel" aria-label="探索コントローラー"><div id="direction-pad" class="touch-controls" style="display:grid;grid-template-columns:repeat(3,var(--direction-size,48px));grid-template-rows:repeat(3,44px);gap:5px" aria-label="8方向の移動操作"><button data-move="-1,-1" aria-label="左上に移動">↖</button><button data-move="0,-1" aria-label="上に移動">↑</button><button data-move="1,-1" aria-label="右上に移動">↗</button><button data-move="-1,0" aria-label="左に移動">←</button><button id="wait" aria-label="方向モードをONにする" aria-pressed="false">方向</button><button data-move="1,0" aria-label="右に移動">→</button><button data-move="-1,1" aria-label="左下に移動">↙</button><button data-move="0,1" aria-label="下に移動">↓</button><button data-move="1,1" aria-label="右下に移動">↘</button></div><div class="quick-actions"><button id="quick-potion">▣ 持ち物<small>アイテムを選んで使う</small></button><button id="quick-stairs"><span id="action-label">足踏みする</span><small id="action-detail">アクション</small></button><button id="quick-throw"><span id="throw-label">石を投げる ↓</span><small id="throw-count">小石 0個</small></button></div></section><section class="card journal controller-journal"><div class="section-label">ADVENTURE LOG<span>冒険の記録</span></div><div id="log" role="log" aria-live="polite" aria-relevant="additions"></div></section><div class="map-footer"><span><i class="legend hero"></i>あなた</span><span><i class="legend monster"></i>敵</span><span><i class="legend herb"></i>薬草</span><span><i class="legend exit"></i>階段</span><span class="turn">TURN <b id="turn">0</b></span></div>
 <div class="under-map"><span>移動 <kbd>↑</kbd><kbd>←</kbd><kbd>↓</kbd><kbd>→</kbd> / <kbd>W A S D</kbd></span><span>敵に向かって移動で攻撃</span><span>足踏み <kbd>Space</kbd></span></div>
 </section>
 <aside><section class="card adventurer"><div class="section-label">ADVENTURER<span>冒険者</span></div><div class="player-title"><div class="portrait">♜</div><div><h2>灯りの旅人</h2><p>見習いの探索者</p></div><div class="level">Lv.<strong id="level">1</strong></div></div><div class="meter-label"><span>HP</span><strong id="hp"></strong></div><div class="meter hp"><div id="hp-bar"></div></div><div class="meter-label exp-label"><span>次のレベルまで</span><span id="xp"></span></div><div class="meter xp"><div id="xp-bar"></div></div><div class="stats"><div><small>攻撃力</small><strong id="attack"></strong></div><div><small>金貨</small><strong id="gold"></strong></div><div><small>倒した敵</small><strong id="kills"></strong></div></div></section>
@@ -57,8 +85,10 @@ html,body{touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-t
 </aside></div>
 <section class="bottom"><div><span class="small-lantern">✧</span><p><b>一歩ずつ、考えて進もう。</b><br>あなたが行動すると、敵も1回行動します。止まっている間は時間も止まります。</p></div><button id="restart" class="subtle">↻ はじめから</button></section>
 <footer>灯りの迷宮 <span>探索・発見・小さな冒険。</span><span>PROTOTYPE / 01</span></footer>
-</main><dialog id="help-dialog"><button id="close-help" class="close" aria-label="閉じる">×</button><p class="eyebrow">HOW TO PLAY</p><h2>灯りを頼りに、階段へ。</h2><p>矢印キー / WASD / 方向ボタンで、上下左右・斜めに1マス移動します。斜めは方向ボタンまたは Q / E / Z / C キーで操作できます。壁の角を斜めにすり抜けることはできません。敵のいる方向へ移動すると攻撃します。</p><p>移動・攻撃・薬草・足踏みで1ターン進み、近くの敵が行動します。壁への移動ではターンが進みません。方向ボタンは押した時に1回移動し、1秒長押しすると追加の待ち時間なしで、描画フレームごとに移動します。離すと停止します。また、斜めを含む周囲1マスに敵が来ると連続入力が停止します。押し直すと1回操作できます。中央の「方向」をONにすると次の方向入力は移動せず向きだけ変更し、その次の入力でOFFになって移動します。方向変更ではターンは進みません。持ち物から装備やアイテムを足元に置けます。小石を選ぶと向いている方向へ最大10マス投げられます。初期装備は石の斧。武器を拾ったら持ち物から装備を変更でき、攻撃力と姿が変わります。透視のゴーグルは持ち物から1個まで装備できます。装備中は未探索の地形と階段もミニマップに表示します。耐久10000で被攻撃時に1減り、能力値補正はありません。初期持ち物にのみ追加しています。鎧は防御力と見た目が変わり、ダメージを軽減します（最低1ダメージ）。武器は攻撃時、鎧は被攻撃時に耐久が1減ります。耐久0で壊れて自動的に外れます。壊れた武器は持ち物から消えます。地面や番兵から手に入る装備は消耗しています。素手のダメージは半分（端数切り捨て・最低1）です。木の周囲では枝や葉っぱを拾えます。約半数の木には果実があり、近くでアクション「木を調べる」で採取できます。果実の効果は未実装です。草むらは歩けます。水辺は歩けませんが視界を遮らず、水辺の角を挟んだ斜め移動は可能です。BGMと効果音は音ボタンでまとめて切り替えられます。最初の操作から音が始まります。</p><p>薬草と金貨は上に乗ると拾えます。「持ち物」でアイテムを選んで使用できます。アクションは階段の上なら降りる、隣接する敵がいれば攻撃、それ以外は足踏みになります。<b>H</b>で薬草を使い、<b>Space</b>で足踏み。敵を倒すと経験値を獲得し、レベルアップで強くなります。</p><p>見える範囲は周囲8マスまでで、壁の向こうは見えません。画面は移動に合わせて追従します。探索済みの道はミニマップに残ります。<b>M</b>でミニマップを拡大・縮小できます。</p><p>地下70階まで探索できます。5階ごとにBGMと地形の色味が変わります。鋼・白銀・ミスリル・アダマンタイトの武器と鎧は深い階ほど出やすくなります。遺跡の番兵は全階にやや低確率で出現し、その階に応じた能力と装備を持ちます。下り階段で次の階へ、青い上り階段で前の階へ戻れます。70階の最奥の宝珠でアクションを使うとクリア。各階の地形・敵・アイテム・探索状況は保持されます。未訪問の階は到着時に生成します。20ターンごとにHPが1回復します。50〜100ターンごとに、視界外で敵が1体出現することがあります。各階の敵が初期配置数の2倍以上の間は追加出現しません。追加敵は出口を目指して徘徊し、出現のたびに階別の強化率が1％増加します。初期配置は基礎能力のまま、時間経過で出現する1体目は基礎値×1.01、2体目は×1.02…（切り捨て）になります。すでに出現済みの敵と経験値は変わりません。カウントは各階に残り、往復でもリセットされません。行動後に同じブラウザへ自動保存され、ページを開き直すと再開します。HPが0になるとレベルが1下がり（最低1）、10階戻ってHP全回復で再開します。戻り先の最低階は1階です。3・6・9階…には行商人がおり、近くでアクションから会話できます。薬草は50枚、石の斧は500枚、石の鎧は250枚で購入できます。金貨の量は深い階ほど増え、大きくばらつきます。敵は装備とは別に薬草と金貨をそれぞれ5%で落とします。</p><button id="start" class="primary">探索に戻る</button></dialog><dialog id="reset-dialog"><h2>最初から探索しますか？</h2><p>自動保存を含む今回の冒険をリセットし、新しいダンジョンで始めます。</p><div class="dialog-actions"><button id="cancel-reset" class="subtle">戻る</button><button id="confirm-reset" class="primary">最初から</button></div></dialog>
-<dialog id="inventory-dialog"><button id="close-inventory" class="close" aria-label="持ち物を閉じる">×</button><p class="eyebrow">BACKPACK</p><h2>持ち物</h2><p>アイテムを選んで使用します。開く・選ぶ操作ではターンは進みません。</p><div class="inventory-choices"><button id="select-herb" aria-pressed="true">✦ 薬草 <span id="bag-herbs"></span></button><button id="select-pebble" aria-pressed="false">小石 <span id="bag-pebbles"></span></button><button id="select-gold" aria-pressed="false">◈ 金貨 <span id="bag-gold"></span></button></div><div class="inventory-choices"><button id="select-branch" aria-pressed="false">木の枝 <span id="bag-branches"></span></button><button id="select-leaf" aria-pressed="false">葉っぱ <span id="bag-leaves"></span></button></div><div id="fruit-choices" class="inventory-choices"></div><div id="weapon-choices" class="inventory-choices weapon-choices"></div><h3 id="item-name">薬草</h3><p id="item-description"></p><p id="bag-health"></p><div class="dialog-actions"><button id="use-item" class="primary">使う</button><button id="drop-item" class="subtle">足元に置く</button></div></dialog>
+</main><div id="survival-alert" aria-hidden="true" hidden></div><dialog id="help-dialog"><button id="close-help" class="close" aria-label="閉じる">×</button><p class="eyebrow">HOW TO PLAY</p><h2>灯りを頼りに、階段へ。</h2><p>矢印キー / WASD / 方向ボタンで、上下左右・斜めに1マス移動します。斜めは方向ボタンまたは Q / E / Z / C キーで操作できます。壁の角を斜めにすり抜けることはできません。敵のいる方向へ移動すると攻撃します。</p><p>移動・攻撃・薬草・足踏みで1ターン進み、近くの敵が行動します。壁への移動ではターンが進みません。方向ボタンは押した時に1回移動し、1秒長押しすると追加の待ち時間なしで、描画フレームごとに移動します。離すと停止します。また、斜めを含む周囲1マスに敵が来ると連続入力が停止します。押し直すと1回操作できます。中央の「方向」をONにすると次の方向入力は移動せず向きだけ変更し、その次の入力でOFFになって移動します。方向変更ではターンは進みません。持ち物から装備やアイテムを足元に置けます。小石を選ぶと向いている方向へ最大10マス投げられます。初期装備は石の斧。武器を拾ったら持ち物から装備を変更でき、攻撃力と姿が変わります。透視のゴーグルは持ち物から1個まで装備できます。装備中は未探索の地形と階段もミニマップに表示します。耐久10000で被攻撃時に1減り、能力値補正はありません。初期持ち物にのみ追加しています。鎧は防御力と見た目が変わり、ダメージを軽減します（最低1ダメージ）。武器は攻撃時、鎧は被攻撃時に耐久が1減ります。耐久0で壊れて自動的に外れます。壊れた武器は持ち物から消えます。地面や番兵から手に入る装備は消耗しています。素手のダメージは半分（端数切り捨て・最低1）です。木の周囲では枝や葉っぱを拾えます。約半数の木には果実があり、近くでアクション「木を調べる」で採取できます。りんご・みかん・ぶどうは持ち物から食べると満腹度・水分がそれぞれ10%回復します。どんぐりの効果は未実装です。草むらは歩けます。水辺は歩けませんが視界を遮らず、水辺の角を挟んだ斜め移動は可能です。BGMと効果音は音ボタンでまとめて切り替えられます。最初の操作から音が始まります。</p><p>薬草と金貨は上に乗ると拾えます。「持ち物」でアイテムを選んで使用できます。アクションは階段の上なら降りる、隣接する敵がいれば攻撃、それ以外は足踏みになります。<b>H</b>で薬草を使い、<b>Space</b>で足踏み。敵を倒すと経験値を獲得し、レベルアップで強くなります。</p><p>見える範囲は周囲8マスまでで、壁の向こうは見えません。画面は移動に合わせて追従します。探索済みの道はミニマップに残ります。<b>M</b>でミニマップを拡大・縮小できます。</p><p>地下70階まで探索できます。5階ごとにBGMと地形の色味が変わります。鋼・白銀・ミスリル・アダマンタイトの武器と鎧は深い階ほど出やすくなります。遺跡の番兵は全階にやや低確率で出現し、その階に応じた能力と装備を持ちます。下り階段で次の階へ、青い上り階段で前の階へ戻れます。70階の最奥の宝珠でアクションを使うとクリア。各階の地形・敵・アイテム・探索状況は保持されます。未訪問の階は到着時に生成します。満腹度と水分は最大100%で、50ターンごとに1%減ります。どちらかが0%だと赤い点滅で知らせ、毎ターンHPが1減ります。通常は20ターンごとにHPが1回復します。缶詰は満腹度30%、飲料水は水分50%・満腹度5%回復。茶色い水も同量を回復しますが、感染症の危険があるかもしれません。50〜100ターンごとに、視界外で敵が1体出現することがあります。各階の敵が初期配置数の2倍以上の間は追加出現しません。追加敵は出口を目指して徘徊し、出現のたびに階別の強化率が1％増加します。初期配置は基礎能力のまま、時間経過で出現する1体目は基礎値×1.01、2体目は×1.02…（切り捨て）になります。すでに出現済みの敵と経験値は変わりません。カウントは各階に残り、往復でもリセットされません。行動後に同じブラウザへ自動保存され、ページを開き直すと再開します。HPが0になるとレベルが1下がり（最低1）、10階戻ってHP全回復で再開します。戻り先の最低階は1階です。3・6・9階…には行商人がおり、近くでアクションから会話できます。薬草は50枚、石の斧は500枚、石の鎧は250枚で購入できます。金貨の量は深い階ほど増え、大きくばらつきます。敵は装備とは別に薬草と金貨をそれぞれ5%で落とします。</p><button id="start" class="primary">探索に戻る</button></dialog><dialog id="reset-dialog"><h2>最初から探索しますか？</h2><p>自動保存を含む今回の冒険をリセットし、新しいダンジョンで始めます。</p><div class="dialog-actions"><button id="cancel-reset" class="subtle">戻る</button><button id="confirm-reset" class="primary">最初から</button></div></dialog>
+<dialog id="inventory-dialog"><button id="close-inventory" class="close" aria-label="持ち物を閉じる">×</button><p class="eyebrow">BACKPACK</p><h2>持ち物</h2><p>アイテムを選んで使用します。開く・選ぶ操作ではターンは進みません。</p><div class="inventory-choices"><button id="select-herb" aria-pressed="true">✦ 薬草 <span id="bag-herbs"></span></button><button id="select-pebble" aria-pressed="false">小石 <span id="bag-pebbles"></span></button><button id="select-gold" aria-pressed="false">◈ 金貨 <span id="bag-gold"></span></button></div><div class="inventory-choices"><button id="select-branch" aria-pressed="false">木の枝 <span id="bag-branches"></span></button><button id="select-leaf" aria-pressed="false">葉っぱ <span id="bag-leaves"></span></button></div><div id="supply-choices" class="inventory-choices"></div><div id="fruit-choices" class="inventory-choices"></div><div id="weapon-choices" class="inventory-choices weapon-choices"></div><h3 id="item-name">薬草</h3><p id="item-description"></p><p id="bag-health"></p><div class="dialog-actions"><button id="use-item" class="primary">使う</button><button id="drop-item" class="subtle">足元に置く</button></div></dialog>
+<dialog id="actions-dialog" aria-labelledby="actions-title"><button id="close-actions" class="close" aria-label="アクションを閉じる">×</button><h2 id="actions-title">アクション</h2><div class="inventory-choices"><button id="menu-context"></button><button id="menu-wait">足踏みする</button><button id="menu-fire">焚き火</button><button id="menu-cook">調理</button></div><p id="fire-detail"></p><p>焚き火の上では毎ターン最大HPの10%（切り捨て）のダメージを受けます。</p></dialog>
+<dialog id="cooking-dialog" aria-labelledby="cooking-title"><button id="close-cooking" class="close" aria-label="調理を閉じる">×</button><h2 id="cooking-title">調理</h2><p id="cooking-detail"></p><button id="boil-water" class="primary">水を煮沸する</button></dialog>
 <dialog id="shop-dialog" aria-labelledby="shop-title"><button id="close-shop" class="close" aria-label="お店を閉じる">×</button><p class="eyebrow">TRAVELING MERCHANT</p><h2 id="shop-title">行商人のお店</h2><p id="shop-gold"></p><p>装備は耐久満タン。会話・購入ではターンは進みません。</p><div id="shop-products" class="inventory-choices"></div><p id="shop-message" role="status"></p></dialog>
 <script>
 (function(root){
@@ -84,26 +114,26 @@ html,body{touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-t
      musicTimer=null;if(!active||muted||!context||context.state!=='running')return;
      if(nextBeat<context.currentTime)nextBeat=context.currentTime+.04;
      while(nextBeat<context.currentTime+.3){
-       const track=tracks[trackIndex],midi=track.melody[beat%track.melody.length];if(midi!==null)note(midi,nextBeat,track.step*1.4,.022,track.wave,true);
-       if(beat%4===0){const bass=track.root-12+[0,-2,-4,-5][Math.floor(beat/8)%4];note(bass,nextBeat,1.5,.025,'triangle',true);note(bass+19,nextBeat,1.2,.009,'sine',true);}
+       const track=tracks[trackIndex],midi=track.melody[beat%track.melody.length];if(midi!==null)note(midi,nextBeat,track.step*1.4,.042,track.wave,true);
+       if(beat%4===0){const bass=track.root-12+[0,-2,-4,-5][Math.floor(beat/8)%4];note(bass,nextBeat,1.5,.035,'triangle',true);note(bass+19,nextBeat,1.2,.009,'sine',true);}
        beat++;nextBeat+=track.step;
      }
      musicTimer=root.setTimeout(scheduleMusic,120);
    }
    function beginMusic(){if(musicTimer===null&&active&&!muted&&context?.state==='running')scheduleMusic();}
-   function unlock(){if(muted||!active)return;try{const C=root.AudioContext||root.webkitAudioContext;if(!context&&C)context=new C();if(context?.state==='suspended')context.resume().then(beginMusic).catch(()=>{});else beginMusic();}catch{}}
+   function unlock(){if(muted||!active)return;try{const C=root.AudioContext||root.webkitAudioContext;if(!context&&C){context=new C();context.onstatechange=()=>{if(context.state==='running')beginMusic();};}if(context&&context.state!=='running'&&context.state!=='closed')context.resume().then(beginMusic).catch(()=>{});else beginMusic();}catch{}}
    function setFloor(floor){const index=Math.max(0,Math.min(tracks.length-1,Math.floor((floor-1)/5)));if(index===trackIndex)return;stopMusic();trackIndex=index;beat=0;beginMusic();}
    function setActive(value){active=value;if(!active){stopMusic();try{context?.suspend().catch(()=>{});}catch{}}else if(context)unlock();}
    function setMuted(value){muted=value;try{root.localStorage?.setItem('lantern-sound-muted',muted?'1':'0');}catch{}if(muted){stopMusic();try{context?.suspend().catch(()=>{});}catch{}}else unlock();}
    function cue(type,direction){
      if(muted||!active)return;unlock();if(!context)return;
-     if(context.state==='suspended'){context.resume().then(()=>{if(context.state==='running')cue(type,direction);}).catch(()=>{});return;}
+     if(context.state!=='running'&&context.state!=='closed'){context.resume().then(()=>{if(context.state==='running')cue(type,direction);}).catch(()=>{});return;}
      if(context.state!=='running')return;
-     const notes=type==='pickup'?[76,83,88]:direction==='up'?[50,55,62,67]:[67,62,55,50];
-     notes.forEach((m,i)=>note(m,context.currentTime+i*.07,.23,type==='pickup'?.055:.045,'sine'));
+     const notes=type==='levelup'?[60,64,67,72,76,79]:type==='pickup'?[76,83,88]:direction==='up'?[50,55,62,67]:[67,62,55,50];
+     notes.forEach((m,i)=>note(m,context.currentTime+i*(type==='levelup'?.1:.07),type==='levelup'?.42:.23,type==='levelup'?.075:type==='pickup'?.055:.045,'sine'));
    }
    function play(weapon,hurt=false,delay=0){
-     if(muted||!active)return;unlock();if(!context)return;if(context.state==='suspended'){context.resume().then(()=>{if(context.state==='running')play(weapon,hurt,delay);}).catch(()=>{});return;}if(context.state!=='running')return;
+     if(muted||!active)return;unlock();if(!context)return;if(context.state!=='running'&&context.state!=='closed'){context.resume().then(()=>{if(context.state==='running')play(weapon,hurt,delay);}).catch(()=>{});return;}if(context.state!=='running')return;
      try{const p=profiles[weapon]||profiles.unarmed,start=context.currentTime+delay;
        const gain=context.createGain(),tone=context.createOscillator();tone.type=p.wave;
        tone.frequency.setValueAtTime(p.from*(hurt?.8:1),start);tone.frequency.exponentialRampToValueAtTime(p.to,start+p.length);
@@ -143,8 +173,9 @@ html,body{touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-t
   Object.assign(MONSTERS,{rat:{kind:'rat',name:'大ネズミ',hp:36,attack:10,defense:2,xp:16},snake:{kind:'snake',name:'岩ヘビ',hp:40,attack:11,defense:2,xp:18},crab:{kind:'crab',name:'石甲ガニ',hp:44,attack:11,defense:4,xp:20},lizard:{kind:'lizard',name:'洞窟トカゲ',hp:48,attack:13,defense:3,xp:22},mantis:{kind:'mantis',name:'大カマキリ',hp:50,attack:15,defense:3,xp:24},bear:{kind:'bear',name:'穴ぐらグマ',hp:58,attack:16,defense:4,xp:26},scorpion:{kind:'scorpion',name:'鎧サソリ',hp:62,attack:17,defense:5,xp:28}});
   Object.assign(MONSTERS,{horn_rabbit:{kind:'horn_rabbit',name:'角ウサギ',hp:66,attack:18,defense:5,xp:30},fungus:{kind:'fungus',name:'歩きキノコ',hp:70,attack:19,defense:5,xp:32},mud_crab:{kind:'mud_crab',name:'泥甲ガニ',hp:76,attack:20,defense:7,xp:36},cave_hound:{kind:'cave_hound',name:'岩穴ハウンド',hp:80,attack:22,defense:6,xp:38},red_ant:{kind:'red_ant',name:'赤牙アリ',hp:84,attack:23,defense:6,xp:40},stone_turtle:{kind:'stone_turtle',name:'岩背ガメ',hp:92,attack:23,defense:9,xp:44},fang_lizard:{kind:'fang_lizard',name:'牙トカゲ',hp:96,attack:25,defense:7,xp:46},cave_moth:{kind:'cave_moth',name:'洞窟オオガ',hp:100,attack:26,defense:7,xp:48},iron_boar:{kind:'iron_boar',name:'鉄牙イノシシ',hp:108,attack:28,defense:8,xp:52},crystal_spider:{kind:'crystal_spider',name:'水晶グモ',hp:112,attack:29,defense:8,xp:54},black_mantis:{kind:'black_mantis',name:'黒刃カマキリ',hp:116,attack:31,defense:8,xp:56},rock_bear:{kind:'rock_bear',name:'岩窟グマ',hp:126,attack:32,defense:9,xp:60},silver_wolf:{kind:'silver_wolf',name:'銀牙オオカミ',hp:130,attack:34,defense:9,xp:64},golem:{kind:'golem',name:'深層ゴーレム',hp:142,attack:34,defense:12,xp:68},night_serpent:{kind:'night_serpent',name:'夜色ヘビ',hp:144,attack:36,defense:10,xp:70},obsidian_beetle:{kind:'obsidian_beetle',name:'黒曜コガネ',hp:152,attack:37,defense:13,xp:74},ember_lizard:{kind:'ember_lizard',name:'熾火トカゲ',hp:156,attack:39,defense:11,xp:78},wraith:{kind:'wraith',name:'深淵の亡霊',hp:160,attack:40,defense:10,xp:80},abyss_crab:{kind:'abyss_crab',name:'深穴ガニ',hp:172,attack:41,defense:14,xp:84},moon_mantis:{kind:'moon_mantis',name:'月影カマキリ',hp:176,attack:43,defense:12,xp:88},dread_bear:{kind:'dread_bear',name:'巨躯グマ',hp:190,attack:44,defense:13,xp:92},crystal_scorpion:{kind:'crystal_scorpion',name:'結晶サソリ',hp:194,attack:46,defense:14,xp:96},ancient_beast:{kind:'ancient_beast',name:'古代の巨獣',hp:210,attack:48,defense:15,xp:100}});
   function enemyPool(floor){const pool=['slime','ant','bat'];if(floor>=2)pool.push('guard');for(const [level,kind]of [[4,'beetle'],[6,'wolf'],[8,'boar'],[10,'spider'],[12,'rat'],[14,'snake'],[16,'crab'],[18,'lizard'],[20,'mantis'],[22,'bear'],[24,'scorpion'],[26,'horn_rabbit'],[28,'fungus'],[30,'mud_crab'],[32,'cave_hound'],[34,'red_ant'],[36,'stone_turtle'],[38,'fang_lizard'],[40,'cave_moth'],[42,'iron_boar'],[44,'crystal_spider'],[46,'black_mantis'],[48,'rock_bear'],[50,'silver_wolf'],[52,'golem'],[54,'night_serpent'],[56,'obsidian_beetle'],[58,'ember_lizard'],[60,'wraith'],[62,'abyss_crab'],[64,'moon_mantis'],[66,'dread_bear'],[68,'crystal_scorpion'],[70,'ancient_beast']])if(floor>=level){pool.shift();pool.push(kind);}return [...pool.filter(k=>k!=='guard'),'guard'];}
-  function guardBase(floor){const peers=enemyPool(floor).filter(k=>k!=='guard').map(k=>MONSTERS[k]);return {...MONSTERS.guard,hp:Math.ceil(Math.max(...peers.map(m=>m.hp))*1.15),attack:Math.ceil(Math.max(...peers.map(m=>m.attack))*1.1),defense:Math.max(...peers.map(m=>m.defense))+1,xp:Math.ceil(Math.max(...peers.map(m=>m.xp))*1.1)};}
-  function rollEnemy(floor,random){const pool=enemyPool(floor),weight=pool.length-1+.65;const index=random()*weight;return index>=pool.length-1?'guard':pool[Math.floor(index)];}
+  function guardBase(floor){const peers=enemyPool(floor).filter(k=>k!=='guard').map(k=>MONSTERS[k]);return {...MONSTERS.guard,hp:Math.ceil(Math.max(...peers.map(m=>m.hp))*1.35),attack:Math.ceil(Math.max(...peers.map(m=>m.attack))*1.25),defense:Math.max(...peers.map(m=>m.defense))+2,xp:Math.ceil(Math.max(...peers.map(m=>m.xp))*1.1)};}
+  function guardChance(floor){const n=enemyPool(floor).length-1;return (.65/(n+.65))/4;}
+  function rollEnemy(floor,random){const pool=enemyPool(floor).filter(k=>k!=='guard'),r=random(),chance=guardChance(floor);return r<chance?'guard':pool[Math.min(pool.length-1,Math.floor((r-chance)/(1-chance)*pool.length))];}
   function makeEnemy(kind,at,percent=0,floor=1){const base=kind==='guard'?guardBase(floor):MONSTERS[kind],scale=n=>Math.floor(n*(100+percent)/100);return {...base,...at,hp:scale(base.hp),maxHp:scale(base.hp),attack:scale(base.attack),defense:scale(base.defense),spawnBonus:percent};}
   const WEAPONS={stone_axe:{name:'石の斧',bonus:2,description:'石の刃をつけた斧。攻撃力 +2。'},iron_sword:{name:'鉄の剣',bonus:4,description:'鋭い鉄の剣。攻撃力 +4。'},oak_staff:{name:'木の杖',bonus:1,description:'丈夫な木の杖。攻撃力 +1。'}};
   Object.assign(WEAPONS.stone_axe,{slot:'weapon',maxDurability:50});Object.assign(WEAPONS.iron_sword,{slot:'weapon',maxDurability:140});Object.assign(WEAPONS.oak_staff,{slot:'weapon',maxDurability:22});
@@ -170,7 +201,7 @@ html,body{touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-t
   }
   const MATERIALS={branch:{name:'木の枝',description:'木の周りに落ちていた枝。素材として保管します（使い道は今後追加予定）。'},leaf:{name:'葉っぱ',description:'木から落ちた葉。素材として保管します（使い道は今後追加予定）。'}};
   const FRUITS={apple:{name:'りんご',color:'#e86f61'},orange:{name:'みかん',color:'#ffa443'},grapes:{name:'ぶどう',color:'#b188dc'},acorn:{name:'どんぐり',color:'#ba8750'}};
-  for(const f of Object.values(FRUITS))f.description='木から採った実。効果は未実装です。';Object.assign(MATERIALS,FRUITS);
+  for(const [key,f] of Object.entries(FRUITS)){f.description=key==='acorn'?'木から採った実。効果は未実装です。':'食べると満腹度・水分をそれぞれ10%回復します。';if(key!=='acorn'){f.fullness=10;f.hydration=10;}}Object.assign(MATERIALS,FRUITS);
   function nearbyTree(s){const p=s.player;return s.trees.filter(t=>(t.x===p.x&&t.y===p.y)||canStep(s,p.x,p.y,t.x-p.x,t.y-p.y)).sort((a,b)=>Number(!!b.fruit)-Number(!!a.fruit))[0];}
   function addNature(s,seed,protectedPlayer){
     if(Array.isArray(s.grassPatches))return;
@@ -181,6 +212,11 @@ html,body{touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-t
     s.grassPatches=[];const blocked=new Set(protectedCells);for(let i=0;i<s.rooms.length;i+=4){const patch=grow(s.rooms[i],4+Math.floor(random()*9),blocked);if(patch.length){s.grassPatches.push(patch);for(const p of patch)blocked.add(`${p.x},${p.y}`);}}
     if(random()<.5){for(let attempt=0;attempt<40;attempt++){const room=s.rooms[1+Math.floor(random()*(s.rooms.length-1))],patch=grow(room,4+Math.floor(random()*9),blocked);if(!patch.length)continue;for(const p of patch)s.tiles[p.y][p.x]=3;const queue=[{x:5,y:5}],seen=new Set(['5,5']);for(let i=0;i<queue.length;i++)for(const [dx,dy]of[[1,0],[-1,0],[0,1],[0,-1]]){const x=queue[i].x+dx,y=queue[i].y+dy,k=`${x},${y}`;if(walk(s,x,y)&&!seen.has(k)){seen.add(k);queue.push({x,y});}}let total=0;for(let y=0;y<H;y++)for(let x=0;x<W;x++)if(walk(s,x,y))total++;if(seen.size===total)break;for(const p of patch)s.tiles[p.y][p.x]=1;}}
   }
+  const CONSUMABLES={canned_food:{name:'缶詰',fullness:30,hydration:0,description:'満腹度を30%回復します。'},drinking_water:{name:'飲料水',fullness:5,hydration:50,color:'#83d5ed',description:'水分50%・満腹度5%回復。'},water:{name:'水',fullness:5,hydration:50,color:'#a57646',description:'水分50%・満腹度5%回復。感染症の危険があるかもしれない。'}};
+  Object.assign(MATERIALS,CONSUMABLES);
+  function consumable(key){if(Object.hasOwn(CONSUMABLES,key))return CONSUMABLES[key];return Object.hasOwn(FRUITS,key)&&FRUITS[key].fullness?FRUITS[key]:null;}
+  function scatterSupplies(s,seed){let n=(seed^0x459cab31)>>>0;const random=()=>{n=(Math.imul(n,1664525)+1013904223)>>>0;return n/4294967296;};for(const r of s.rooms){if(random()>=.1)continue;const free=[];for(let y=r.y;y<r.y+r.h;y++)for(let x=r.x;x<r.x+r.w;x++)if(walk(s,x,y)&&!(x===5&&y===5)&&!isStair(s,x,y)&&!merchantAt(s,x,y)&&!s.items.some(i=>i.x===x&&i.y===y)&&!s.enemies.some(e=>e.x===x&&e.y===y)&&!s.trees.some(t=>t.x===x&&t.y===y))free.push({x,y});if(free.length)s.items.push({...free[Math.floor(random()*free.length)],type:Object.keys(CONSUMABLES)[Math.floor(random()*3)]});}}
+  function survivalTurn(s){const p=s.player;if((s.campfires||[]).some(f=>f.expires>=s.turn&&f.x===p.x&&f.y===p.y)){const damage=Math.floor(p.maxHp*.1);p.hp=Math.max(0,p.hp-damage);say(s,`焚き火で${damage}ダメージ！`);if(p.hp===0){recoverDefeat(s);return true;}}s.campfires=(s.campfires||[]).filter(f=>f.expires>s.turn);if(s.turn%50===0){p.fullness=Math.max(0,p.fullness-1);p.hydration=Math.max(0,p.hydration-1);}if(p.fullness===0||p.hydration===0){p.hp=Math.max(0,p.hp-1);say(s,'空腹・水分不足でHPが1減った。');if(p.hp===0){recoverDefeat(s);return true;}}else recoverHP(s);return false;}
   function plantTrees(f,seed){
     if(f.trees)return;f.trees=[];let n=(seed^0x372f65a1)>>>0;
     const rand=()=>{n=(Math.imul(n,1664525)+1013904223)>>>0;return n/4294967296;};
@@ -199,17 +235,17 @@ html,body{touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-t
   function setupEconomy(s,floor,seed,legacy=false){
     s.economySeed=(seed^0x57d983a1)>>>0;s.shopPurchases=0;s.merchant=null;
     for(const i of s.items)if(i.type==='gold'&&!Number.isInteger(i.amount))i.amount=legacy?25:goldAmount(floor,()=>economyRandom(s));
-    if(floor%3===0){const r=s.rooms[0],spots=[];for(let y=r.y;y<r.y+r.h;y++)for(let x=r.x;x<r.x+r.w;x++)if(walk(s,x,y)&&!(x===5&&y===5)&&!isStair(s,x,y)&&!s.enemies.some(e=>e.x===x&&e.y===y)&&!s.items.some(i=>i.x===x&&i.y===y)&&!s.trees.some(t=>t.x===x&&t.y===y))spots.push({x,y});spots.sort((a,b)=>(Math.abs(a.x-5)+Math.abs(a.y-5))-(Math.abs(b.x-5)+Math.abs(b.y-5)));s.merchant=spots[0]||null;}
+    if(floor%3===0){const r=s.rooms[0],spots=[];for(let y=r.y;y<r.y+r.h;y++)for(let x=r.x;x<r.x+r.w;x++)if(walk(s,x,y)&&!(x===5&&y===5)&&!isStair(s,x,y)&&!s.enemies.some(e=>e.x===x&&e.y===y)&&!s.items.some(i=>i.x===x&&i.y===y)&&!s.trees.some(t=>t.x===x&&t.y===y))spots.push({x,y});const entrance=s.entrance||{x:5,y:5};spots.sort((a,b)=>(Math.abs(a.x-entrance.x)+Math.abs(a.y-entrance.y))-(Math.abs(b.x-entrance.x)+Math.abs(b.y-entrance.y)));s.merchant=spots[0]||null;}
   }
-  function dropLoot(s,enemy){const herb=economyRandom(s)<.05,coins=economyRandom(s)<.05;if(herb){s.items.push({x:enemy.x,y:enemy.y,type:'potion'});say(s,`${enemy.name}が薬草を落とした。`);}if(coins){const amount=goldAmount(s.floor,()=>economyRandom(s))*2;s.items.push({x:enemy.x,y:enemy.y,type:'gold',amount});say(s,`${enemy.name}が金貨${amount}枚を落とした。`);}}
+  function dropLoot(s,enemy){const herb=economyRandom(s)<.05,coins=economyRandom(s)<.05;if(herb){s.items.push({x:enemy.x,y:enemy.y,type:'potion'});say(s,`${enemy.name}が薬草を落とした。`);}if(coins){const amount=goldAmount(s.floor,()=>economyRandom(s))*2;s.items.push({x:enemy.x,y:enemy.y,type:'gold',amount});say(s,`${enemy.name}が金貨${amount}枚を落とした。`);}for(const key of Object.keys(CONSUMABLES))if(economyRandom(s)<.02){s.items.push({x:enemy.x,y:enemy.y,type:key});say(s,`${enemy.name}が${CONSUMABLES[key].name}を落とした。`);}}
   function recoverDefeat(s){
     const p=s.player,from=s.floor,target=Math.max(1,from-10),oldLevel=p.level;
     if(p.level>1){p.level--;p.maxHp=Math.max(30,p.maxHp-6);p.attack=Math.max(1,p.attack-2);p.xp=Math.min(p.xp,p.level*6-1);}
     s.floors[from]=snapshotFloor(s);Object.assign(s,s.floors[target]||snapshotFloor(prepareFloor(createFloor(floorSeed(s.seed,target),target),target)));s.floor=target;s.status='playing';p.hp=p.maxHp;
     const spots=[];for(let y=1;y<H-1;y++)for(let x=1;x<W-1;x++)if(walk(s,x,y)&&!enemyAt(s,x,y)&&!merchantAt(s,x,y))spots.push({x,y});
-    spots.sort((a,b)=>(Math.abs(a.x-5)+Math.abs(a.y-5))-(Math.abs(b.x-5)+Math.abs(b.y-5)));
+    const entrance=s.entrance||{x:5,y:5};spots.sort((a,b)=>(Math.abs(a.x-entrance.x)+Math.abs(a.y-entrance.y))-(Math.abs(b.x-entrance.x)+Math.abs(b.y-entrance.y)));
     Object.assign(p,spots.find(at=>!s.enemies.some(e=>Math.max(Math.abs(e.x-at.x),Math.abs(e.y-at.y))<=1))||spots[0]||{x:5,y:5});
-    p.directionMode=false;p.directionPending=false;s.events=[{type:'revive'}];reveal(s);say(s,`倒れて地下${target}階へ戻された。${oldLevel>1?`Lv.${oldLevel} → ${p.level}。`:'Lv.1を維持。'}HPが全回復した。`);
+    p.directionMode=false;p.directionPending=false;p.fullness=100;p.hydration=100;s.events=[{type:'revive'}];reveal(s);say(s,`倒れて地下${target}階へ戻された。${oldLevel>1?`Lv.${oldLevel} → ${p.level}。`:'Lv.1を維持。'}HPが全回復した。`);
   }
   function scatterPebbles(s,seed){let n=(seed^0x5a31b937)>>>0;const random=()=>{n=(Math.imul(n,1664525)+1013904223)>>>0;return n/4294967296;};for(let i=0;i<s.rooms.length;i+=2){const r=s.rooms[i],spots=[];for(let y=r.y;y<r.y+r.h;y++)for(let x=r.x;x<r.x+r.w;x++)if(walk(s,x,y)&&!(x===5&&y===5)&&!isStair(s,x,y)&&!merchantAt(s,x,y)&&!s.enemies.some(e=>e.x===x&&e.y===y)&&!s.items.some(t=>t.x===x&&t.y===y)&&!s.trees.some(t=>t.x===x&&t.y===y))spots.push({x,y});if(spots.length)s.items.push({...spots[Math.floor(random()*spots.length)],type:'pebble'});}}
   function putDown(s,item){const p=s.player,at={x:p.x,y:p.y};const gear=p.gear.find(g=>g.id===item);if(gear){const slot=EQUIPMENT[gear.key].slot;if(p[slot+'Id']===gear.id){p[slot+'Id']=null;if(slot==='weapon'){p.attack-=EQUIPMENT[gear.key].bonus;p.equipped=null;}else if(slot==='armor')p.defense=0;}p.gear=p.gear.filter(g=>g!==gear);p.weapons=[...new Set(p.gear.filter(g=>WEAPONS[g.key]).map(g=>g.key))];s.items.push({...at,type:'gear',gear:{...gear}});say(s,`${EQUIPMENT[gear.key].name}を足元に置いた。`);return true;}const field={potion:'potions',pebble:'pebbles',gold:'gold'}[item];if(field){if(p[field]<1)return false;p[field]--;s.items.push({...at,type:item,...(item==='gold'?{amount:1}:{})});}else if(Object.hasOwn(MATERIALS,item)){if(p.materials[item]<1)return false;p.materials[item]--;s.items.push({...at,type:item});}else return false;say(s,'アイテムを1つ足元に置いた。');return true;}
@@ -236,7 +272,7 @@ html,body{touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-t
       carve(c,center(nearest));
     }
     for(let row=0;row<4;row++)for(let col=0;col<6;col++)if(random()<.35)carve(center(cells[row][col]),center(cells[row+1][col]));
-    const s={seed,rooms,tiles,player:{x:5,y:5,hp:30,maxHp:30,level:1,xp:0,attack:6,potions:1,gold:0,weapons:['stone_axe'],equipped:'stone_axe',gear:[makeGear('stone_axe','starter-axe'),makeGear('seer_goggles','starter-goggles')],gogglesId:null,weaponId:'starter-axe',armorId:null,defense:0,materials:{branch:0,leaf:0,apple:0,orange:0,grapes:0,acorn:0},pebbles:0,facing:{dx:0,dy:1},directionMode:false,directionPending:false},turn:0,kills:0,status:'playing',stairs:center(rooms[rooms.length-1]),seen:[],visible:[],log:[],enemies:[],items:[{x:8,y:4,type:'potion'}]};
+    const s={seed,rooms,tiles,player:{x:5,y:5,hp:30,maxHp:30,level:1,xp:0,attack:6,potions:1,gold:0,weapons:['stone_axe'],equipped:'stone_axe',gear:[makeGear('stone_axe','starter-axe'),makeGear('seer_goggles','starter-goggles')],gogglesId:null,weaponId:'starter-axe',armorId:null,defense:0,materials:{branch:0,leaf:0,apple:0,orange:0,grapes:0,acorn:0,canned_food:0,drinking_water:0,water:0},fullness:100,hydration:100,pebbles:0,facing:{dx:0,dy:1},directionMode:false,directionPending:false},turn:0,kills:0,status:'playing',stairs:center(rooms[rooms.length-1]),seen:[],visible:[],log:[],enemies:[],items:[{x:8,y:4,type:'potion'}]};
     const kinds=[{kind:'slime',name:'こけスライム',hp:9,maxHp:9,attack:3,xp:4},{kind:'bat',name:'洞窟コウモリ',hp:12,maxHp:12,attack:4,xp:5},{kind:'guard',name:'石の番人',hp:20,maxHp:20,attack:5,xp:8}];
     const occupied=new Set([s.player,s.stairs,...s.items].map(p=>`${p.x},${p.y}`));
     const place=r=>{const free=[];for(let y=r.y;y<r.y+r.h;y++)for(let x=r.x;x<r.x+r.w;x++)if(!occupied.has(`${x},${y}`))free.push({x,y});const p=free[int(0,free.length-1)];occupied.add(`${p.x},${p.y}`);return p;};
@@ -253,13 +289,28 @@ html,body{touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-t
     outfitFloor(s,seed,true,floor);plantTrees(s,seed);
     say(s,'新しい迷宮が姿を現した。地下1階の階段を探そう。');reveal(s);return s;
   }
-  const FLOOR_KEYS=['rooms','tiles','stairs','upStairs','enemies','items','seen','spawnClock','spawnSeed','initialEnemyCount','trees','grassPatches','spawnCount','economySeed','merchant','shopPurchases'];
+  const FLOOR_KEYS=['rooms','tiles','stairs','upStairs','enemies','items','seen','spawnClock','spawnSeed','initialEnemyCount','trees','grassPatches','spawnCount','economySeed','merchant','shopPurchases','campfires','entrance'];
   function snapshotFloor(s){return Object.fromEntries(FLOOR_KEYS.map(k=>[k,s[k]]));}
   function prepareFloor(s,number){
     s.upStairs=number>1?{x:5,y:5}:null;s.spawnSeed=(s.seed^0x9e3779b9)>>>0;s.spawnClock=nextSpawnDelay(s);s.initialEnemyCount=s.enemies.length;
-    s.spawnCount=0;
+    s.spawnCount=0;s.campfires=[];
     const random=()=>randomSpawn(s);s.enemies=s.enemies.map(e=>{const enemy=makeEnemy(rollEnemy(number,random),{x:e.x,y:e.y},0,number);if(enemy.kind==='guard')outfitGuard(enemy,number,random,`${s.seed}:guard:${e.x}:${e.y}`);return enemy;});
-    setupEconomy(s,number,s.seed);scatterPebbles(s,s.seed);addNature(s,s.seed);return s;
+    setupEconomy(s,number,s.seed);scatterPebbles(s,s.seed);addNature(s,s.seed);scatterSupplies(s,s.seed);placeStairs(s,number);reveal(s);return s;
+  }
+  function placeStairs(s,number){
+    let seed=(s.seed^0x71bd2e35)>>>0;const random=()=>{seed=(seed+0x6D2B79F5)>>>0;let t=seed;t=Math.imul(t^(t>>>15),t|1);t^=t+Math.imul(t^(t>>>7),t|61);return ((t^(t>>>14))>>>0)/4294967296;};
+    const occupied=new Set([...s.items,...s.enemies,...s.trees].map(p=>`${p.x},${p.y}`));
+    const candidates=[];for(const r of s.rooms)for(let y=r.y;y<r.y+r.h;y++)for(let x=r.x;x<r.x+r.w;x++)if(walk(s,x,y)&&!occupied.has(`${x},${y}`))candidates.push({x,y});
+    const safe=candidates.filter(p=>!s.enemies.some(e=>Math.max(Math.abs(e.x-p.x),Math.abs(e.y-p.y))<=2));
+    const entries=safe.length?safe:candidates;s.entrance={...entries[Math.floor(random()*entries.length)]};
+    // Use walking distance so winding corridors count toward the journey.
+    const distances=new Map([[`${s.entrance.x},${s.entrance.y}`,0]]),queue=[s.entrance];
+    for(let i=0;i<queue.length;i++){const p=queue[i],d=distances.get(`${p.x},${p.y}`);for(const [dx,dy]of[[1,0],[-1,0],[0,1],[0,-1]]){const x=p.x+dx,y=p.y+dy,key=`${x},${y}`;if(walk(s,x,y)&&!distances.has(key)){distances.set(key,d+1);queue.push({x,y});}}}
+    const distance=p=>distances.get(`${p.x},${p.y}`)??-1,maxDistance=Math.max(...candidates.map(distance));
+    const exits=candidates.filter(p=>distance(p)>=Math.min(40,maxDistance)&&distance(p)>=maxDistance*.45);
+    s.stairs={...exits[Math.floor(random()*exits.length)]};s.upStairs=number>1?{...s.entrance}:null;
+    Object.assign(s.player,s.entrance);s.seen=[];
+    if(s.merchant){const room=s.rooms.find(r=>s.entrance.x>=r.x&&s.entrance.x<r.x+r.w&&s.entrance.y>=r.y&&s.entrance.y<r.y+r.h);const spots=candidates.filter(p=>p.x>=room.x&&p.x<room.x+room.w&&p.y>=room.y&&p.y<room.y+room.h&&!isStair(s,p.x,p.y)&&!(p.x===s.entrance.x&&p.y===s.entrance.y));spots.sort((a,b)=>distance(a)-distance(b));s.merchant=spots[0]||s.merchant;}
   }
   function create(seed=Math.floor(Math.random()*4294967296)){
     const s=prepareFloor(createFloor(seed),1);s.floor=1;s.floors={};return s;
@@ -271,7 +322,7 @@ html,body{touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-t
     Object.assign(s,next);s.floor=target;
     Object.assign(s.player,descending?s.upStairs:s.stairs);
     s.events.push({type:'stairs',direction:descending?'down':'up'});
-    s.turn++;recoverHP(s);reveal(s);say(s,`地下${target}階へ${descending?'降りた':'戻った'}。`);
+    s.turn++;if(survivalTurn(s))return;reveal(s);say(s,`地下${target}階へ${descending?'降りた':'戻った'}。`);
   }
   function randomSpawn(s){s.spawnSeed=(Math.imul(s.spawnSeed,1664525)+1013904223)>>>0;return s.spawnSeed/4294967296;}
   function nextSpawnDelay(s){return 50+Math.floor(randomSpawn(s)*51);}
@@ -302,11 +353,11 @@ html,body{touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-t
   function isStair(s,x,y){return (s.stairs.x===x&&s.stairs.y===y)||(s.upStairs?.x===x&&s.upStairs?.y===y);}
   function serialize(s){
     const {visible,events,...data}=s;
-    return JSON.stringify({version:15,state:{...data,floors:{...s.floors,[s.floor]:snapshotFloor(s)}}},(key,value)=>key==='tiles'?value.map(row=>row.join('')):key==='seen'?value.map(row=>row?Array.from(row,v=>v===true?'1':v===false?'0':'.').join(''):null):value);
+    return JSON.stringify({version:19,state:{...data,floors:{...s.floors,[s.floor]:snapshotFloor(s)}}},(key,value)=>key==='tiles'?value.map(row=>row.join('')):key==='seen'?value.map(row=>row?Array.from(row,v=>v===true?'1':v===false?'0':'.').join(''):null):value);
   }
   function deserialize(raw){
     try{
-      const data=JSON.parse(raw);if(![1,2,3,4,5,6,7,8,9,10,11,12,13,14,15].includes(data.version))throw Error('version');const s=data.state;
+      const data=JSON.parse(raw);if(![1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19].includes(data.version))throw Error('version');const s=data.state;
       const integer=(n,min,max)=>Number.isInteger(n)&&n>=min&&n<=max;
       const point=p=>p&&integer(p.x,0,W-1)&&integer(p.y,0,H-1);
       if(!s||!integer(s.floor,1,MAX_FLOORS)||!integer(s.seed,0,4294967295)||!integer(s.turn,0,1e9)||!integer(s.kills,0,1e9)||!['playing','won','lost'].includes(s.status)||!Array.isArray(s.log)||!s.log.every(t=>typeof t==='string')||!s.floors)throw Error('state');
@@ -320,6 +371,8 @@ html,body{touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-t
       }
       if(data.version<5)p.materials={branch:0,leaf:0};
       if(data.version<15&&p.materials)for(const key of Object.keys(FRUITS))p.materials[key]??=0;
+      if(data.version<17){p.fullness=100;p.hydration=100;if(p.materials)for(const key of Object.keys(CONSUMABLES))p.materials[key]??=0;}
+      if(!integer(p.fullness,0,100)||!integer(p.hydration,0,100)||!p.materials||!Object.keys(CONSUMABLES).every(key=>integer(p.materials[key],0,1e9)))throw Error('survival');
       if(!p.materials||!Object.keys(FRUITS).every(key=>integer(p.materials[key],0,1e9))||!integer(p.materials.branch,0,1e9)||!integer(p.materials.leaf,0,1e9))throw Error('materials');
       const gearValid=g=>g&&typeof g.id==='string'&&Object.hasOwn(EQUIPMENT,g.key)&&integer(g.durability,0,EQUIPMENT[g.key].maxDurability);
       if(!Array.isArray(p.gear)||!p.gear.every(gearValid)||new Set(p.gear.map(g=>g.id)).size!==p.gear.length||!Array.isArray(p.weapons))throw Error('gear');
@@ -344,7 +397,12 @@ html,body{touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-t
         if(data.version<7){f.spawnCount=0;for(const e of f.enemies){e.defense=0;if(number==='1'&&e.kind==='guard'){const ratio=e.hp/e.maxHp;Object.assign(e,makeEnemy('ant',{x:e.x,y:e.y}));e.hp=Math.max(1,Math.floor(e.maxHp*ratio));delete e.weapon;delete e.armor;}}}
         if(data.version<8){for(const e of f.enemies){const kind=e.kind==='golem'?'boar':e.kind==='wraith'?'spider':null;if(kind){const ratio=e.hp/e.maxHp;Object.assign(e,makeEnemy(kind,{x:e.x,y:e.y},e.spawnBonus||0));e.hp=Math.max(1,Math.floor(e.maxHp*ratio));}}}
         if(data.version<12){let seed=floorSeed(s.seed,Number(number));const random=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296;};for(const e of f.enemies)if(e.kind==='guard'){const ratio=e.hp/e.maxHp;delete e.weapon;delete e.armor;Object.assign(e,makeEnemy('guard',{x:e.x,y:e.y},e.spawnBonus||0,Number(number)));outfitGuard(e,Number(number),random,`migrated:${number}:${e.x}:${e.y}`);e.hp=Math.max(1,Math.floor(e.maxHp*ratio));}}
+        if(data.version>=12&&data.version<16)for(const e of f.enemies)if(e.kind==='guard'){const ratio=e.hp/e.maxHp,base=makeEnemy('guard',{x:e.x,y:e.y},e.spawnBonus||0,Number(number));Object.assign(e,base);e.attack=Math.max(1,e.attack-(e.weapon?.durability>0?EQUIPMENT[e.weapon.key].bonus:0));e.defense=Math.max(0,e.defense-(e.armor?.durability>0?EQUIPMENT[e.armor.key].bonus:0));e.hp=Math.max(1,Math.floor(e.maxHp*ratio));}
         if(!integer(f.spawnCount,0,1e9))throw Error('spawn count');
+        if(data.version<19)f.entrance={...(f.upStairs||{x:5,y:5})};
+        if(!floorPoint(f.entrance))throw Error('entrance');
+        if(data.version<18)f.campfires=[];
+        if(!Array.isArray(f.campfires)||!f.campfires.every(fire=>floorPoint(fire)&&integer(fire.expires,0,1e9+25)))throw Error('campfires');
         if(!Array.isArray(f.trees)||!f.trees.every(floorPoint))throw Error('trees');
         if(!Array.isArray(f.items)||!f.items.every(i=>floorPoint(i)&&((['potion','gold','pebble'].includes(i.type)||Object.hasOwn(MATERIALS,i.type))||(i.type==='gear'&&gearValid(i.gear))))||!Array.isArray(f.enemies)||!f.enemies.every(e=>floorPoint(e)&&Object.hasOwn(MONSTERS,e.kind)&&typeof e.name==='string'&&integer(e.maxHp,1,1e8)&&integer(e.hp,1,e.maxHp)&&integer(e.attack,0,1e8)&&integer(e.xp,0,1e8)&&(!e.weapon||(gearValid(e.weapon)&&EQUIPMENT[e.weapon.key].slot==='weapon'))&&(!e.armor||(gearValid(e.armor)&&EQUIPMENT[e.armor.key].slot==='armor'))))throw Error('entities');
         if(data.version<13)setupEconomy(f,Number(number),floorSeed(s.seed,Number(number)),true);
@@ -352,6 +410,7 @@ html,body{touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-t
         if(data.version<14)scatterPebbles(f,floorSeed(s.seed,Number(number)));
         if(data.version<15)addNature(f,floorSeed(s.seed,Number(number)),Number(number)===s.floor?p:null);
         if(!Array.isArray(f.grassPatches)||!f.grassPatches.every(patch=>Array.isArray(patch)&&patch.length>=4&&patch.length<=12&&patch.every(floorPoint))||!f.trees.every(t=>t.fruit===null||Object.hasOwn(FRUITS,t.fruit)))throw Error('nature');
+        if(data.version<17)scatterSupplies(f,floorSeed(s.seed,Number(number)));
         f.items=f.items.filter(i=>!(i.type==='gear'&&WEAPONS[i.gear.key]&&i.gear.durability===0));for(const e of f.enemies)if(e.weapon?.durability===0)delete e.weapon;
       }
       if(s.status==='won'&&((data.version<6&&s.floor===2)||(data.version<9&&s.floor===10)||(data.version<11&&s.floor===25))){s.status='playing';say(s,'地下70階までの道が開いた。探索を続けよう。');}
@@ -443,10 +502,19 @@ html,body{touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-t
     }
   }
   function defeatEnemy(s,enemy){const p=s.player;for(const g of [enemy.weapon,enemy.armor])if(g&&!(WEAPONS[g.key]&&g.durability===0)){s.items.push({x:enemy.x,y:enemy.y,type:'gear',gear:{...g}});say(s,`${enemy.name}が${EQUIPMENT[g.key].name}を落とした。`);}dropLoot(s,enemy);s.enemies=s.enemies.filter(e=>e!==enemy);const earnedXP=Math.ceil(enemy.xp/2);p.xp+=earnedXP;s.kills++;say(s,`${enemy.name}を倒した！ 経験値 +${earnedXP}`);
-          while(p.xp>=p.level*6){p.xp-=p.level*6;p.level++;p.maxHp+=6;p.hp=Math.min(p.maxHp,p.hp+6);p.attack+=2;say(s,`レベル${p.level}！ 最大HP +6・攻撃力 +2・HP +6。`);}
+          while(p.xp>=p.level*6){p.xp-=p.level*6;p.level++;p.maxHp+=6;p.hp=Math.min(p.maxHp,p.hp+6);p.attack+=2;s.events.push({type:'levelup',level:p.level});say(s,`レベル${p.level}！ 最大HP +6・攻撃力 +2・HP +6。`);}
         }
+  function canCampfire(s){const p=s.player,x=p.x+p.facing.dx,y=p.y+p.facing.dy;return s.status==='playing'&&p.pebbles>=2&&p.materials.branch>=5&&p.materials.leaf>=5&&canStep(s,p.x,p.y,p.facing.dx,p.facing.dy)&&!isStair(s,x,y)&&!merchantAt(s,x,y)&&!enemyAt(s,x,y)&&!s.trees.some(t=>t.x===x&&t.y===y)&&!s.campfires.some(f=>f.expires>s.turn&&f.x===x&&f.y===y);}
+  function canBoil(s){const p=s.player;return s.status==='playing'&&p.materials.water>0&&s.campfires.some(f=>f.expires>s.turn&&((f.x===p.x&&f.y===p.y)||canStep(s,p.x,p.y,f.x-p.x,f.y-p.y)));}
   function act(s,action){
     s.events=[];if(s.status!=='playing')return false;const p=s.player;
+    if(action.type==='campfire'){
+      if(!canCampfire(s))return false;const at={x:p.x+p.facing.dx,y:p.y+p.facing.dy};p.pebbles-=2;p.materials.branch-=5;p.materials.leaf-=5;
+      const events=[];say(s,'焚き火を準備する。5ターンの間、行動できない。');
+      for(let i=0;i<5;i++){act(s,{type:'wait'});events.push(...s.events);if(s.events.some(e=>e.type==='revive')){s.events=events;return true;}}
+      s.events=events;s.campfires.push({...at,expires:s.turn+25});say(s,'焚き火が燃え始めた。25ターン燃え続ける。');return true;
+    }
+    if(action.type==='boil'){if(!canBoil(s))return false;p.materials.water--;p.materials.drinking_water++;say(s,'水を1本煮沸し、飲料水にした。');action={type:'wait'};}
     if(action.type==='direction'){p.directionMode=!p.directionMode;p.directionPending=p.directionMode;return true;}
     if(action.type==='buy'){const product=Object.hasOwn(SHOP,action.item)?SHOP[action.item]:null;if(!product||!canTrade(s)||p.gold<product.price)return false;p.gold-=product.price;if(action.item==='potion')p.potions++;else addGear(p,makeGear(action.item,`shop:${s.floor}:${++s.shopPurchases}`));s.events.push({type:'pickup'});say(s,`${product.name}を金貨${product.price}枚で購入した。`);return true;}
     if(action.type==='move'){
@@ -472,19 +540,21 @@ html,body{touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-t
       if(p[slot+'Id']===g.id)return false;
       if(slot==='weapon'){const previous=equippedGear(p,'weapon');p.attack+=definition.bonus-(previous?EQUIPMENT[previous.key].bonus:0);p.equipped=g.key;}else if(slot==='armor')p.defense=definition.bonus;
       p[slot+'Id']=g.id;say(s,`${definition.name}を装備した（耐久 ${g.durability}/${definition.maxDurability}）。`);
+    }else if(action.type==='consume'){
+      const item=consumable(action.item);if(!item||p.materials[action.item]<1||(p.fullness===100&&(item.hydration===0||p.hydration===100)))return false;p.materials[action.item]--;p.fullness=Math.min(100,p.fullness+item.fullness);p.hydration=Math.min(100,p.hydration+item.hydration);say(s,`${item.name}を使った。満腹度 +${item.fullness}%・水分 +${item.hydration}%。`);if(action.item==='water'&&economyRandom(s)<.2){p.hydration=Math.max(0,p.hydration-70);p.fullness=Math.max(0,p.fullness-25);p.hp=Math.floor(p.hp/2);say(s,'お腹を壊した！ 水分−70%・満腹度−25%・現在HPが半分に。');}
     }else if(action.type==='potion'){
-      if(p.potions===0){say(s,'薬草を持っていない。');return false;}if(p.hp===p.maxHp){say(s,'HPは満タン。薬草はまだ取っておこう。');return false;}
-      const healed=Math.min(20,p.maxHp-p.hp);p.potions--;p.hp+=healed;say(s,`薬草を使った。HPが${healed}回復。`);
+      if(p.potions===0){say(s,'薬草を持っていない。');return false;}if(p.hp===p.maxHp&&p.fullness===100){say(s,'HPと満腹度は満タン。薬草はまだ取っておこう。');return false;}
+      const healed=Math.min(20,p.maxHp-p.hp);p.potions--;p.hp+=healed;p.fullness=Math.min(100,p.fullness+5);p.hydration=Math.max(0,p.hydration-3);say(s,`薬草でHP +${healed}・満腹度 +5%・水分 −3%。`);
     }else if(action.type==='stairs'){
       if(p.x===s.upStairs?.x&&p.y===s.upStairs?.y){changeFloor(s,s.floor-1);return true;}
       if(p.x!==s.stairs.x||p.y!==s.stairs.y){say(s,'階段や最奥の宝珠の上でアクションを使おう。');return false;}
       if(s.floor<MAX_FLOORS){changeFloor(s,s.floor+1);return true;}
-      s.turn++;recoverHP(s);s.status='won';say(s,'最奥の宝珠を見つけた！ 地下70階までの探索をクリア。');return true;
+      s.turn++;if(survivalTurn(s))return true;s.status='won';say(s,'最奥の宝珠を見つけた！ 地下70階までの探索をクリア。');return true;
     }else if(action.type!=='wait')return false;
-    s.turn++;if(enemiesTurn(s))return true;recoverHP(s);reveal(s);spawnEnemy(s);
+    s.turn++;if(p.hp===0){recoverDefeat(s);return true;}if(enemiesTurn(s))return true;if(survivalTurn(s))return true;reveal(s);spawnEnemy(s);
     if(s.status==='playing'&&isStair(s,p.x,p.y))say(s,`「${contextAction(s).label}」を選べます。`);return true;
   }
-  root.DungeonEngine={W,H,VISION,MAX_FLOORS,MONSTERS,FRUITS,nearbyTree,SHOP,canTrade,goldAmount,dropLoot,STAGE_THEMES,stageTheme,GOGGLES,guardBase,equipmentWeights,rollEquipment,rollEnemy,hasMapSight,enemyPool,makeEnemy,wander,MATERIALS,WEAPONS,ARMORS,EQUIPMENT,makeGear,equippedGear,create,act,walk,reveal,canStep,contextAction,serialize,deserialize};
+  root.DungeonEngine={W,H,VISION,MAX_FLOORS,canCampfire,canBoil,MONSTERS,CONSUMABLES,consumable,FRUITS,nearbyTree,SHOP,canTrade,goldAmount,dropLoot,STAGE_THEMES,stageTheme,GOGGLES,guardBase,guardChance,equipmentWeights,rollEquipment,rollEnemy,hasMapSight,enemyPool,makeEnemy,wander,MATERIALS,WEAPONS,ARMORS,EQUIPMENT,makeGear,equippedGear,create,act,walk,reveal,canStep,contextAction,serialize,deserialize};
 })(globalThis);
 
 </script><script>
@@ -508,9 +578,12 @@ let camera={x:0,y:0};
 let movementFrame=null, movementTimer=null;
 const MIDPOINT_MS=25;
 const sound=globalThis.CombatAudio.create();
+// Unlock from any deliberate interaction, including opening inventory/help.
+for(const type of ['pointerdown','keydown'])document.addEventListener(type,()=>sound.unlock(),{capture:true,passive:true});
 let combatEffects=[],effectFrame=null;
 function startCombatEffects(events){
  if(!events?.length)return;
+ if(events.some(e=>e.type==='levelup'))sound.cue('levelup');
  for(const event of events){if(event.type==='pickup'||event.type==='stairs')sound.cue(event.type,event.direction);}
  events=events.filter(e=>e.type==='attack'||e.type==='hurt'||e.type==='throw');if(!events.length)return;
  const now=performance.now();combatEffects=combatEffects.filter(e=>now-e.start<240);
@@ -584,6 +657,7 @@ function draw(){
 
  }
  for(const patch of view.grassPatches||[])for(const g of patch)if(view.visible[g.y]?.[g.x]){const x=g.x*T,y=g.y*T;for(let i=0;i<4;i++){rect(x+5+i*6,y+10+(i%2)*5,2,13,'#799a58');rect(x+3+i*6,y+12+(i%2)*5,3,2,'#a1b96a');}}
+ for(const fire of view.campfires||[]){if(fire.expires<=view.turn||!view.visible[fire.y]?.[fire.x])continue;const x=fire.x*T,y=fire.y*T;rect(x+7,y+24,21,4,'#665447');rect(x+10,y+17,15,9,'#e86528');rect(x+13,y+10,9,14,'#ffb942');rect(x+16,y+6,4,15,'#ffe48c');}
  for(const tree of view.trees||[]){if(!view.visible[tree.y]?.[tree.x])continue;const x=tree.x*T,y=tree.y*T;rect(x+14,y+13,5,16,'#926a43');rect(x+7,y+5,20,12,'#446d41');rect(x+11,y+1,12,18,'#6b9753');rect(x+10,y+5,5,4,'#a6bb68');if(tree.fruit){const color=E.FRUITS[tree.fruit].color;for(const [dx,dy]of[[9,10],[20,7],[17,15]]){rect(x+dx,y+dy,5,5,color);if(tree.fruit==='acorn')rect(x+dx,y+dy,5,2,'#69503a');if(tree.fruit==='grapes')rect(x+dx+1,y+dy+4,3,3,color);}}}
  if(view.merchant&&view.visible[view.merchant.y]?.[view.merchant.x]){const m=view.merchant;pixelSprite(sprites.guard,{g:'#aa8551',l:'#f1d6a0',k:'#332e29'},m.x,m.y);rect(m.x*T+5,m.y*T+4,22,4,'#e9bf69');ctx.fillStyle='#fff0bd';ctx.font='bold 12px sans-serif';ctx.fillText('商',m.x*T+10,m.y*T-1);}
  const stairs=view.stairs;
@@ -600,6 +674,7 @@ function draw(){
    else if(i.type==='branch'){ctx.save();ctx.strokeStyle='#be9464';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(i.x*T+9,i.y*T+24);ctx.lineTo(i.x*T+24,i.y*T+9);ctx.stroke();ctx.restore();}
    else if(i.type==='leaf'){rect(i.x*T+10,i.y*T+11,12,7,'#99bd66');rect(i.x*T+14,i.y*T+9,6,13,'#6c964a');}
    else if(i.type==='pebble'){rect(i.x*T+13,i.y*T+14,8,6,'#aeb3ad');rect(i.x*T+14,i.y*T+13,5,2,'#e1e0d1');}
+   else if(E.CONSUMABLES[i.type]){const x=i.x*T,y=i.y*T;if(i.type==='canned_food'){rect(x+10,y+10,13,15,'#a7b6b0');rect(x+10,y+14,13,7,'#cf925b');rect(x+11,y+9,11,3,'#dde2d0');}else{const color=E.CONSUMABLES[i.type].color;rect(x+14,y+6,6,4,'#dae4df');rect(x+13,y+10,8,3,color);rect(x+10,y+13,14,14,color);rect(x+12,y+15,2,9,'#e3e7d6');}}
    else if(E.FRUITS[i.type]){rect(i.x*T+12,i.y*T+12,9,9,E.FRUITS[i.type].color);rect(i.x*T+16,i.y*T+9,2,4,'#7a9263');}
    else if(i.type==='gear'){if(E.EQUIPMENT[i.gear.key].slot==='goggles'){rect(i.x*T+8,i.y*T+13,16,5,'#a2e5e8');rect(i.x*T+15,i.y*T+13,2,5,'#596970');}else if(E.EQUIPMENT[i.gear.key].slot==='weapon')drawWeapon(i.gear.key,i.x-.25,i.y);else drawArmor(i.gear.key,i.x,i.y);}
    else{rect(i.x*T+10,i.y*T+13,13,11,'#90743f');rect(i.x*T+9,i.y*T+10,13,10,'#dbbd69');rect(i.x*T+12,i.y*T+10,3,7,'#ffe6a0');rect(i.x*T+15,i.y*T+19,10,3,'#d7a755');}
@@ -620,7 +695,7 @@ function drawMinimap(){
  const view=movementFrame||state;
  const hue=E.stageTheme(view.floor).hue;
  const map=$('minimap'),m=map.getContext('2d'),scale=2,clairvoyant=E.hasMapSight(view);
- m.fillStyle='#0c1413';m.fillRect(0,0,map.width,map.height);
+ m.clearRect(0,0,map.width,map.height);
  let explored=0,total=0;
  for(let y=0;y<E.H;y++)for(let x=0;x<E.W;x++){
    if(view.tiles[y][x])total++;
@@ -636,11 +711,11 @@ function drawMinimap(){
  for(const e of view.enemies)if(view.visible[Math.round(e.y)]?.[Math.round(e.x)]){m.fillStyle='#dc907b';m.fillRect(e.x*scale,e.y*scale,2,2);}
  m.strokeStyle='#dcc98b55';m.strokeRect(camera.x*scale,camera.y*scale,VIEW_W*scale,VIEW_H*scale);
  m.fillStyle='#ffe1a1';m.fillRect(view.player.x*scale-1,view.player.y*scale-1,4,4);
- $('explored').textContent=`探索 ${Math.floor(explored/total*100)}%${clairvoyant?' · 透視中':''}`;
  map.setAttribute('aria-label',`探索済みの地図。現在地 ${view.player.x}, ${view.player.y}。探索率 ${Math.floor(explored/total*100)}パーセント`);
 }
 function facingArrow(p){return {'-1,-1':'↖','0,-1':'↑','1,-1':'↗','-1,0':'←','1,0':'→','-1,1':'↙','0,1':'↓','1,1':'↘'}[`${p.facing.dx},${p.facing.dy}`];}
 function render(){const p=state.player;sound.setFloor(state.floor);sound.setActive(state.status==='playing'&&document.visibilityState!=='hidden');
+ $('fullness').textContent=`${p.fullness}%`;$('hydration').textContent=`${p.hydration}%`;$('survival-alert').hidden=state.status!=='playing'||(p.fullness>0&&p.hydration>0);$('latest-log').textContent=state.log[0]||'';$('latest-log').title=state.log[0]||'';
  $('wait').textContent=p.directionMode?'方向 ON':'方向';$('wait').setAttribute('aria-pressed',String(p.directionMode));$('wait').setAttribute('aria-label',p.directionMode?(p.directionPending?'方向モードON。次の入力は向きだけ変更':'方向モードON。次の入力でOFFになり移動'):'方向モードをONにする');$('facing-label').textContent=`向き ${facingArrow(p)}${p.directionMode?(p.directionPending?' · 次は向きだけ':' · 次は移動'):''}`;
  $('equipment-name').textContent=gearLabel(E.equippedGear(p,'weapon'));$('armor-name').textContent=gearLabel(E.equippedGear(p,'armor'));$('goggles-name').textContent=gearLabel(E.equippedGear(p,'goggles'));$('defense').textContent=p.defense;$('spawn-bonus').textContent=`次の追加敵 +${state.spawnCount+1}%`;
  $('floor-label').textContent=`地下${state.floor}階 · ${E.stageTheme(state.floor).name}`;$('floor-number').textContent=`B${state.floor}`;document.title=`灯りの迷宮 — 地下${state.floor}階`;$('save-error').textContent=saveMessage;$('save-error').hidden=!saveMessage;
@@ -648,9 +723,10 @@ function render(){const p=state.player;sound.setFloor(state.floor);sound.setActi
  $('xp').textContent=`${p.xp} / ${p.level*6}`;$('xp-bar').style.width=`${100*p.xp/(p.level*6)}%`;
  for(const [id,value] of Object.entries({level:p.level,attack:p.attack,gold:p.gold,kills:state.kills,potions:p.potions,turn:state.turn}))$(id).textContent=value;
  $('potion').disabled=state.status!=='playing';
- $('stairs').disabled=state.status!=='playing';$('stairs').textContent=E.contextAction(state).label+'（アクション）';
+ $('stairs').disabled=state.status!=='playing';$('stairs').textContent='アクション';
  $('quick-level').textContent=p.level;$('quick-hp').textContent=`${p.hp} / ${p.maxHp}`;$('quick-potions').textContent=p.potions;
  $('quick-hp-bar').style.width=`${100*p.hp/p.maxHp}%`;$('quick-hp-bar').style.background=p.hp<p.maxHp*.3?'#cd826e':'#8aba90';
+ $('quick-throw').disabled=state.status!=='playing'||p.pebbles===0;$('throw-label').textContent=`石を投げる ${facingArrow(p)}`;$('throw-count').textContent=`小石 ${p.pebbles}個`;
  $('quick-potion').disabled=state.status!=='playing';const contextual=E.contextAction(state);$('quick-stairs').disabled=contextual.type==='none';$('action-label').textContent=contextual.label;$('action-detail').textContent=contextual.detail;
  for(const button of document.querySelectorAll('[data-move], #wait'))button.disabled=state.status!=='playing';
 
@@ -693,10 +769,16 @@ function action(a){
    movementTimer=setTimeout(()=>{finishMovement();render();},MIDPOINT_MS);
  }else render();
 }
+function openActions(){moveRepeater.stop();finishMovement();render();const context=E.contextAction(state);$('menu-context').textContent=context.label;$('menu-context').hidden=context.type==='wait';$('menu-fire').disabled=!E.canCampfire(state);$('fire-detail').textContent=`小石 ${state.player.pebbles}/2・木の枝 ${state.player.materials.branch}/5・葉っぱ ${state.player.materials.leaf}/5。向いている空きマスに設置。準備5ターン、燃焼25ターン。`;$('actions-dialog').showModal();}
+$('close-actions').onclick=()=>$('actions-dialog').close();
+for(const [id,type] of [['menu-context','context'],['menu-wait','wait'],['menu-fire','campfire']])$(id).onclick=()=>{$('actions-dialog').close();action({type});};
+$('menu-cook').onclick=()=>{$('actions-dialog').close();$('boil-water').disabled=!E.canBoil(state);$('cooking-detail').textContent=`水 ${state.player.materials.water}本。燃焼中の焚き火の上か隣で、水1本を飲料水に変えます（1ターン）。`;$('cooking-dialog').showModal();};
+$('close-cooking').onclick=()=>$('cooking-dialog').close();
+$('boil-water').onclick=()=>{$('cooking-dialog').close();action({type:'boil'});};
 function reset(){clearCombatEffects();moveRepeater.stop();finishMovement();state=E.create();largeMap=false;saveAdventure();render();canvas.focus({preventScroll:true});}
 function toggleMap(){largeMap=!largeMap;render();}
 document.addEventListener('keydown',e=>{
- if($('help-dialog').open||$('reset-dialog').open||$('inventory-dialog').open||$('shop-dialog').open||e.ctrlKey||e.metaKey||e.altKey)return;
+ if($('actions-dialog').open||$('cooking-dialog').open||$('help-dialog').open||$('reset-dialog').open||$('inventory-dialog').open||$('shop-dialog').open||e.ctrlKey||e.metaKey||e.altKey)return;
  // Keep Enter and Space available for focused buttons.
  if(e.target instanceof HTMLButtonElement&&(e.key==='Enter'||e.key===' '))return;
  const key=e.key.toLowerCase(),moves={arrowup:[0,-1],w:[0,-1],arrowdown:[0,1],s:[0,1],arrowleft:[-1,0],a:[-1,0],arrowright:[1,0],d:[1,0],q:[-1,-1],e:[1,-1],z:[-1,1],c:[1,1]};
@@ -713,24 +795,26 @@ for(const button of document.querySelectorAll('[data-move]')){
 document.addEventListener('pointerup',()=>moveRepeater.stop());
 document.addEventListener('pointercancel',()=>moveRepeater.stop());
 window.addEventListener('blur',()=>moveRepeater.stop());
+$('quick-throw').onclick=()=>{moveRepeater.stop();action({type:'throw'});};
 $('quick-potion').onclick=openInventory;$('quick-stairs').onclick=()=>action({type:'context'});
-$('potion').onclick=openInventory;$('stairs').onclick=()=>action({type:'context'});$('wait').onclick=()=>{moveRepeater.stop();action({type:'direction'});};$('map-toggle').onclick=toggleMap;
+$('potion').onclick=openInventory;$('stairs').onclick=openActions;$('wait').onclick=()=>{moveRepeater.stop();action({type:'direction'});};$('map-toggle').onclick=toggleMap;
 $('restart').onclick=()=>{moveRepeater.stop();$('reset-dialog').showModal();};$('cancel-reset').onclick=()=>$('reset-dialog').close();$('confirm-reset').onclick=()=>{$('reset-dialog').close();reset();};$('play-again').onclick=reset;
 $('help').onclick=()=>{moveRepeater.stop();$('help-dialog').showModal();};for(const id of ['close-help','start'])$(id).onclick=()=>{$('help-dialog').close();canvas.focus({preventScroll:true});};
 canvas.addEventListener('click',e=>{canvas.focus({preventScroll:true});if(movementFrame){finishMovement();render();}const b=canvas.getBoundingClientRect(),x=Math.floor((e.clientX-b.left)/b.width*VIEW_W)+camera.x,y=Math.floor((e.clientY-b.top)/b.height*VIEW_H)+camera.y,dx=x-state.player.x,dy=y-state.player.y;if(Math.max(Math.abs(dx),Math.abs(dy))===1)action({type:'move',dx,dy});});
 let selectedItem='potion';
 function refreshInventory(){
- const p=state.player,material=E.MATERIALS[selectedItem],gear=p.gear.find(g=>g.id===selectedItem),definition=gear?E.EQUIPMENT[gear.key]:null,herb=selectedItem==='potion',pebble=selectedItem==='pebble';
+ const p=state.player,material=E.MATERIALS[selectedItem],gear=p.gear.find(g=>g.id===selectedItem),definition=gear?E.EQUIPMENT[gear.key]:null,herb=selectedItem==='potion',pebble=selectedItem==='pebble',supply=E.consumable(selectedItem);
  const equipped=gear&&gear.id===p[definition.slot+'Id'],count=gear?1:herb?p.potions:pebble?p.pebbles:material?p.materials[selectedItem]:p.gold;
  for(const [key,id,value] of [['potion','herb',p.potions],['pebble','pebble',p.pebbles],['branch','branch',p.materials.branch],['leaf','leaf',p.materials.leaf],['gold','gold',p.gold]])$('select-'+id).setAttribute('aria-pressed',String(selectedItem===key));
  $('bag-herbs').textContent=`× ${p.potions}`;$('bag-pebbles').textContent=`× ${p.pebbles}`;$('bag-branches').textContent=`× ${p.materials.branch}`;$('bag-leaves').textContent=`× ${p.materials.leaf}`;$('bag-gold').textContent=`× ${p.gold}`;
+ $('supply-choices').replaceChildren(...Object.entries(E.CONSUMABLES).map(([key,item])=>{const button=document.createElement('button');button.className='supply-button '+key;button.textContent=`${item.name} × ${p.materials[key]}`;button.setAttribute('aria-pressed',String(selectedItem===key));button.onclick=()=>{selectedItem=key;refreshInventory();};return button;}));
  $('fruit-choices').replaceChildren(...Object.entries(E.FRUITS).map(([key,f])=>{const button=document.createElement('button');button.textContent=`${f.name} × ${p.materials[key]}`;button.style.color=f.color;button.setAttribute('aria-pressed',String(selectedItem===key));button.onclick=()=>{selectedItem=key;refreshInventory();};return button;}));
  $('weapon-choices').replaceChildren(...p.gear.map(g=>{const button=document.createElement('button');button.textContent=gearLabel(g)+(g.id===p[E.EQUIPMENT[g.key].slot+'Id']?'（装備中）':g.durability===0?'（破損）':'');button.setAttribute('aria-pressed',String(selectedItem===g.id));button.onclick=()=>{selectedItem=g.id;refreshInventory();};return button;}));
  $('item-name').textContent=herb?'薬草':pebble?'小石':definition?definition.name:material?material.name:'金貨';
- $('item-description').textContent=herb?'HPを最大20回復します。使用・置く操作は1ターン。':pebble?`現在の向き ${facingArrow(p)} へ最大10マス投げます。武器補正を除いた攻撃力で攻撃し、素手の半減はありません。行商人は通過し、壁と最初の敵で止まります。`:definition?`${definition.description} 耐久 ${gear.durability}/${definition.maxDurability}。${definition.slot==='weapon'?'攻撃':'被攻撃'}1回につき耐久−1。装備中でも足元に置けます。`:material?material.description:'行商人での購入に使えます。置くときは1枚ずつです。';
- $('bag-health').textContent=`HP ${p.hp} / ${p.maxHp} · 攻撃力 ${p.attack} · 防御力 ${p.defense} · 向き ${facingArrow(p)}`;
- $('use-item').disabled=state.status!=='playing'||(gear?(equipped&&definition.slot!=='goggles')||gear.durability===0:pebble?p.pebbles===0:!herb||p.potions===0||p.hp===p.maxHp);
- $('use-item').textContent=pebble?`投げる ${facingArrow(p)}`:gear?(gear.durability===0?'壊れています':equipped?(definition.slot==='goggles'?'外す':'装備中'):'装備する'):!herb?'使用できません':p.potions===0?'薬草を持っていません':p.hp===p.maxHp?'HPは満タンです':'薬草を使う';
+ $('item-description').textContent=herb?'HPを最大20・満腹度を5%回復、水分が3%減ります。使用・置く操作は1ターン。':pebble?`現在の向き ${facingArrow(p)} へ最大10マス投げます。武器補正を除いた攻撃力で攻撃し、素手の半減はありません。行商人は通過し、壁と最初の敵で止まります。`:definition?`${definition.description} 耐久 ${gear.durability}/${definition.maxDurability}。${definition.slot==='weapon'?'攻撃':'被攻撃'}1回につき耐久−1。装備中でも足元に置けます。`:material?material.description:'行商人での購入に使えます。置くときは1枚ずつです。';
+ $('bag-health').textContent=`HP ${p.hp} / ${p.maxHp} · 攻撃力 ${p.attack} · 防御力 ${p.defense} · 満腹度 ${p.fullness}% · 水分 ${p.hydration}% · 向き ${facingArrow(p)}`;
+ $('use-item').disabled=state.status!=='playing'||(gear?(equipped&&definition.slot!=='goggles')||gear.durability===0:supply?count===0||(p.fullness===100&&(supply.hydration===0||p.hydration===100)):pebble?p.pebbles===0:!herb||p.potions===0||(p.hp===p.maxHp&&p.fullness===100));
+ $('use-item').textContent=supply?(selectedItem==='canned_food'||E.FRUITS[selectedItem]?'食べる':'飲む'):pebble?`投げる ${facingArrow(p)}`:gear?(gear.durability===0?'壊れています':equipped?(definition.slot==='goggles'?'外す':'装備中'):'装備する'):!herb?'使用できません':p.potions===0?'薬草を持っていません':p.hp===p.maxHp&&p.fullness===100?'HP・満腹度は満タンです':'薬草を使う';
  $('drop-item').disabled=state.status!=='playing'||count<1;$('drop-item').textContent=gear?'足元に置く':selectedItem==='gold'?'1枚置く':'1個置く';
 }
 function openInventory(){moveRepeater.stop();finishMovement();render();selectedItem='potion';refreshInventory();$('inventory-dialog').showModal();}
@@ -740,7 +824,7 @@ $('drop-item').onclick=()=>{if($('drop-item').disabled)return;$('inventory-dialo
 $('select-herb').onclick=()=>{selectedItem='potion';refreshInventory();};
 $('select-branch').onclick=()=>{selectedItem='branch';refreshInventory();};$('select-leaf').onclick=()=>{selectedItem='leaf';refreshInventory();};
 $('select-gold').onclick=()=>{selectedItem='gold';refreshInventory();};
-$('use-item').onclick=()=>{if($('use-item').disabled)return;$('inventory-dialog').close();action(selectedItem==='pebble'?{type:'throw'}:selectedItem==='potion'?{type:'potion'}:selectedItem===state.player.gogglesId?{type:'unequip',slot:'goggles'}:{type:'equip',gearId:selectedItem});};
+$('use-item').onclick=()=>{if($('use-item').disabled)return;$('inventory-dialog').close();action(E.consumable(selectedItem)?{type:'consume',item:selectedItem}:selectedItem==='pebble'?{type:'throw'}:selectedItem==='potion'?{type:'potion'}:selectedItem===state.player.gogglesId?{type:'unequip',slot:'goggles'}:{type:'equip',gearId:selectedItem});};
 function refreshShop(){
  $('shop-gold').textContent=`所持金：${state.player.gold}枚`;
  $('shop-products').replaceChildren(...Object.entries(E.SHOP).map(([key,product])=>{const button=document.createElement('button');button.textContent=`${product.name} — 金貨${product.price}枚${E.EQUIPMENT[key]?'（耐久満タン）':''}`;button.disabled=!E.canTrade(state)||state.player.gold<product.price;button.onclick=()=>{action({type:'buy',item:key});refreshShop();$('shop-message').textContent=state.log[0];};return button;}));
@@ -750,12 +834,35 @@ $('close-shop').onclick=()=>$('shop-dialog').close();
 render();
 
 // Keep taps as game input; allow one-finger page scrolling outside the controls.
-const gameShell=document.querySelector('.shell');
 for(const eventName of ['contextmenu','selectstart','dragstart','dblclick'])
-  gameShell.addEventListener(eventName,e=>e.preventDefault());
+  document.addEventListener(eventName,e=>e.preventDefault(),{passive:false});
 for(const eventName of ['gesturestart','gesturechange'])
   document.addEventListener(eventName,e=>e.preventDefault(),{passive:false});
 document.addEventListener('touchstart',e=>{if(e.touches.length>1)e.preventDefault();},{passive:false});
+// Safari fallback: cancel only the second nearby tap, then preserve its game click.
+let lastTouchTap=null,touchStartPoint=null;
+document.addEventListener('touchstart',e=>{
+  const t=e.touches[0];touchStartPoint=e.touches.length===1?{x:t.clientX,y:t.clientY}:null;
+  if(!touchStartPoint)lastTouchTap=null;
+},{passive:true});
+document.addEventListener('touchmove',e=>{
+  const t=e.touches[0];
+  if(!t||!touchStartPoint||Math.hypot(t.clientX-touchStartPoint.x,t.clientY-touchStartPoint.y)>10){touchStartPoint=null;lastTouchTap=null;}
+},{passive:true});
+document.addEventListener('touchcancel',()=>{touchStartPoint=null;lastTouchTap=null;},{passive:true});
+document.addEventListener('touchend',e=>{
+  if(!touchStartPoint||e.touches.length||e.changedTouches.length!==1)return;
+  touchStartPoint=null;const t=e.changedTouches[0],now=performance.now();
+  const repeated=lastTouchTap&&now-lastTouchTap.time<350&&Math.hypot(t.clientX-lastTouchTap.x,t.clientY-lastTouchTap.y)<30;
+  lastTouchTap={time:now,x:t.clientX,y:t.clientY};
+  if(!repeated||!e.cancelable)return;
+  e.preventDefault();
+  const target=e.target.closest?.('button,a,canvas');
+  // Direction keys already act on pointerdown, so never synthesize another move.
+  if(target&&target.isConnected&&!target.disabled&&!target.hasAttribute('data-move'))
+    target.dispatchEvent(new MouseEvent('click',{bubbles:true,cancelable:true,view:window,clientX:t.clientX,clientY:t.clientY}));
+},{passive:false});
+
 
 window.addEventListener('pagehide',()=>{sound.setActive(false);saveAdventure();});
 window.addEventListener('pageshow',()=>sound.setActive(state.status==='playing'));
