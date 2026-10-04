@@ -1,0 +1,780 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1,user-scalable=no"><meta name="theme-color" content="#121b1b"><title>灯りの迷宮 — 地下1階</title><style>
+:root{color-scheme:dark;--bg:#101919;--panel:#182322;--line:#2e3b36;--text:#e4e6d9;--muted:#8b9c91;--gold:#d7bb79;--green:#8aba90}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 40% 10%,#23302a55,transparent 65%),var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-serif;font-size:13px}button,a{-webkit-tap-highlight-color:transparent}button{font:inherit;color:inherit;cursor:pointer}button:focus-visible,a:focus-visible,canvas:focus-visible{outline:2px solid var(--gold);outline-offset:4px}button{transition:background .15s,transform .15s}button:active{transform:translateY(1px)}button:disabled{cursor:default;opacity:.4}a{color:inherit;text-decoration:none}.shell{max-width:1392px;margin:auto;padding:0 42px}header{height:98px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:30px}.brand{display:flex;align-items:center;gap:12px;font-family:'Zen Old Mincho',serif;font-size:24px;letter-spacing:3px;font-weight:700}.brand small{display:block;font:9px sans-serif;letter-spacing:2.6px;color:var(--muted);margin-top:4px}.brand-icon{color:var(--gold);font-size:39px}.edition{font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:20px;padding:7px 12px}.edition span,.live-dot{display:inline-block;width:6px;height:6px;background:var(--green);border-radius:50%;margin-right:7px}header>button{margin-left:auto}.subtle{background:transparent;border:0;color:var(--muted);font-size:12px;padding:8px}.subtle:hover{color:var(--text);background:#ffffff08}.subtle span{border:1px solid var(--line);border-radius:50%;padding:0 5px;margin-left:7px}.intro{display:flex;justify-content:space-between;align-items:center;padding:34px 0 30px}.eyebrow{font-size:9px;letter-spacing:2.6px;color:var(--gold);font-weight:600;margin:0 0 12px}h1{font-family:'Zen Old Mincho',serif;font-size:29px;letter-spacing:2px;margin:0 0 10px;font-weight:500}.intro p:not(.eyebrow){color:var(--muted);margin:0;font-size:12px}.floor-label{display:flex;gap:25px;align-items:center}.floor-label small{color:var(--muted);writing-mode:vertical-rl;letter-spacing:3px;font-size:10px}.floor-label strong{font-family:Georgia,serif;font-weight:400;font-size:49px;color:var(--gold)}.floor-label strong span{font-size:22px;margin-left:4px}.layout{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:22px;align-items:start}.game-panel{min-width:0;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#111a19}.game-toolbar{height:52px;padding:0 20px;display:flex;justify-content:space-between;align-items:center;background:#1c2825;font-size:11px;color:var(--muted)}.game-toolbar b{font-weight:500;color:var(--text)}.divider{margin:0 12px;color:#566155}kbd{font-family:inherit;font-size:10px;border:1px solid #4a554745;background:#ffffff05;border-radius:3px;padding:2px 5px;margin-left:4px;color:var(--muted)}.canvas-wrap{position:relative;background:#0c1313;padding:13px}canvas{display:block;width:100%;height:auto;image-rendering:pixelated;touch-action:manipulation}.map-footer{display:flex;gap:18px;padding:14px 20px;border-top:1px solid var(--line);color:var(--muted);font-size:10px}.map-footer>span{display:flex;align-items:center;gap:6px}.legend{width:7px;height:7px;border-radius:2px;display:inline-block}.hero{background:#dfbd7c}.monster{background:#c68d77}.herb{background:#8abb90}.exit{background:#91b6c7}.map-footer .turn{margin-left:auto;font-family:monospace;letter-spacing:1px}.turn b{font-size:13px;color:var(--text);margin-left:6px}.under-map{display:flex;justify-content:space-between;gap:8px;padding:15px 18px;background:#1b2521;color:var(--muted);font-size:10px}.card{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:19px;margin-bottom:15px}.section-label{font-size:9px;letter-spacing:1.8px;color:var(--gold);display:flex;justify-content:space-between}.section-label span{font-size:10px;letter-spacing:0;color:var(--muted)}.player-title{display:flex;gap:11px;align-items:center;margin:23px 0}.portrait{font-size:30px;color:var(--gold);background:#2a342b;border:1px solid #4a5037;width:45px;height:49px;display:grid;place-items:center;border-radius:7px}.player-title h2{font-size:14px;margin:0 0 5px}.player-title p{font-size:10px;margin:0;color:var(--muted)}.level{margin-left:auto;color:var(--gold);font-size:11px}.level strong{font:30px Georgia;margin-left:3px}.meter-label{display:flex;justify-content:space-between;font-size:10px;color:var(--muted);margin-bottom:7px}.meter-label strong{font-size:12px;color:var(--text)}.meter{height:7px;background:#0e1716;border-radius:3px;overflow:hidden}.meter>div{height:100%;transition:width .18s;background:var(--green)}.exp-label{margin-top:14px;font-size:9px}.xp{height:3px}.xp>div{background:var(--gold)}.stats{display:flex;justify-content:space-between;margin-top:22px;padding-top:17px;border-top:1px solid var(--line);text-align:center}.stats small{display:block;color:var(--muted);font-size:9px}.stats strong{display:block;font-size:18px;margin-top:5px;font-weight:500}.inventory{padding-bottom:13px}.item{display:flex;width:100%;align-items:center;text-align:left;gap:11px;background:#25312a;border:1px solid #3e4d39;border-radius:6px;padding:12px 9px;margin-top:17px}.item:hover{background:#303f30}.item-icon{font-size:28px;color:var(--green)}.item b{display:block;font-size:12px}.item small{display:block;font-size:9px;color:var(--muted);margin-top:4px}.item b small{display:inline;font-size:11px;color:var(--gold);margin-left:7px}.item kbd{margin-left:auto}.stairs-button{border:1px solid var(--line);border-radius:5px;background:transparent;width:100%;padding:11px;margin-top:9px;font-size:11px}.stairs-button:not(:disabled):hover{background:#34443b}.hint{font-size:9px;color:var(--muted);text-align:center;margin:12px 0 0}.journal{margin-bottom:0}#log{height:145px;overflow:auto;margin-top:14px;scrollbar-width:thin}#log p{font-size:10px;line-height:1.9;padding:8px 0;margin:0;border-bottom:1px solid #ffffff06;color:var(--muted)}#log p:first-child{color:var(--text)}#log p:first-child:before{content:'› ';color:var(--gold)}.bottom{display:flex;align-items:center;justify-content:space-between;padding:20px 0;gap:20px}.bottom>div:first-child{display:flex;align-items:center;gap:15px}.bottom p{font-size:11px;line-height:1.9;color:var(--muted);margin:0}.bottom p b{font-weight:500;color:var(--text)}.small-lantern{font-size:31px;color:var(--gold)}.touch-controls{display:grid;grid-template-columns:repeat(3,48px);grid-template-rows:repeat(3,44px);align-items:center;gap:5px}.touch-controls>div{display:flex;gap:5px}.touch-controls button{width:34px;height:34px;border:1px solid var(--line);background:#1f2b26;border-radius:5px}footer{border-top:1px solid var(--line);padding:20px 0 26px;display:flex;gap:20px;color:#63776b;font-size:10px}footer span:last-child{margin-left:auto;letter-spacing:2px;font-size:9px}dialog{background:#1b2925;color:var(--text);border:1px solid #5c6550;border-radius:12px;max-width:470px;padding:32px;line-height:2;font-size:13px}dialog::backdrop{background:#050d0bba;backdrop-filter:blur(5px)}dialog h2{font-family:'Zen Old Mincho',serif;font-size:23px}dialog p{color:#b3bdb1}.close{position:absolute;right:12px;top:8px;background:none;border:0;font-size:24px;color:var(--muted)}.primary{background:var(--gold);color:#202a20;border:0;border-radius:5px;font-weight:600;padding:12px 22px}.primary:hover{background:#e8ce91}.overlay{position:absolute;inset:0;background:#071410d9;display:grid;place-items:center;text-align:center;padding:25px;backdrop-filter:blur(3px)}.overlay[hidden]{display:none}.overlay h2{font-family:'Zen Old Mincho',serif;font-size:32px}.overlay p:not(.eyebrow){line-height:2;color:#b5c2b1;white-space:pre-line}.dialog-actions{display:flex;justify-content:flex-end;gap:15px}@media(min-width:1500px){.shell{padding:0 25px}}@media(max-width:1100px){.shell{padding:0 22px}.layout{grid-template-columns:minmax(0,1fr) 250px;gap:15px}.card{padding:15px}.under-map{flex-wrap:wrap}.map-footer{gap:10px;padding:12px}.game-toolbar{padding:0 12px}.bottom p{font-size:10px}.intro{padding:26px 0}h1{font-size:25px}}@media(max-width:800px){.shell{padding:0 16px}header{height:80px;gap:15px}.brand{font-size:20px}.brand-icon{font-size:30px}.edition{display:none}.layout{display:flex;flex-direction:column}.game-panel{width:100%}aside{display:grid;grid-template-columns:1fr 1fr;width:100%;gap:12px}.card{margin:0}.journal{grid-column:1/-1}#log{height:100px}.intro{padding:24px 0}h1{font-size:22px}.floor-label{display:none}.bottom{flex-wrap:wrap}.bottom>div:first-child{width:100%}.touch-controls{margin-left:0}.touch-controls button{width:40px;height:37px}.canvas-wrap{padding:5px}.under-map{display:none}.bottom>button{margin-left:auto}.eyebrow{font-size:8px;letter-spacing:1.8px}}@media(max-width:420px){.shell{padding:0 10px}h1{font-size:20px}.card{padding:12px}.player-title{gap:6px}.portrait{display:none}.player-title h2{font-size:12px}.section-label{font-size:8px;letter-spacing:1px}.section-label span{font-size:9px}.item{gap:5px}.item-icon{font-size:22px}.item kbd{display:none}.hint{font-size:8px}.map-footer{gap:12px}.map-footer>span{gap:4px}footer>span:not(:last-child){display:none}}
+
+.minimap-panel{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:14px 20px;border-top:1px solid var(--line);background:#14201b}.minimap-copy{display:flex;flex-direction:column;gap:8px}.minimap-copy b{font-size:12px;font-weight:500}.minimap-copy>span:not(.section-label){font-size:11px;color:var(--gold)}.minimap-copy small{font-size:9px;line-height:1.8;color:var(--muted)}#minimap{width:224px;height:auto;max-width:48%;border:1px solid var(--line);border-radius:4px;background:#0c1413}.minimap-panel.expanded{flex-direction:column;align-items:stretch}.minimap-panel.expanded #minimap{width:100%;max-width:100%}.minimap-panel.expanded .minimap-copy small{display:none}@media(max-width:420px){.minimap-panel{padding:12px;gap:8px}.minimap-copy small{font-size:8px}.minimap-copy .section-label{font-size:8px}}
+
+/* Controls stay next to the playfield on every screen size. */
+.quick-status{display:flex;align-items:center;gap:20px;padding:9px 16px;background:#1b2822;font-size:11px;color:var(--muted);border-top:1px solid var(--line)}.quick-status b{color:var(--text);margin-left:5px}.quick-health{display:flex;align-items:center;gap:6px;flex:1}.quick-meter{display:block;flex:1;max-width:180px;height:5px;background:#0e1716;border-radius:4px;overflow:hidden;margin-left:6px}.quick-meter i{display:block;height:100%;width:100%;background:var(--green)}
+.canvas-wrap{display:flex;justify-content:center}#game{max-width:608px}
+.controller-panel{display:flex;justify-content:center;align-items:center;gap:48px;padding:12px 16px;background:#1b2822;border-top:1px solid var(--line)}
+.controller-panel .touch-controls{margin:0;flex-shrink:0}.controller-panel .touch-controls>div{gap:5px}.controller-panel .touch-controls button{width:48px;height:44px;border-radius:9px;background:#304335;border-color:#53654b;font-size:22px;touch-action:manipulation;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;box-shadow:0 3px 0 #101c16}.controller-panel #wait{font-size:11px;background:#233329}.controller-panel button:active{background:#526c4b;transform:translateY(2px)}
+.quick-actions{display:flex;flex-direction:column;gap:8px;min-width:132px}.quick-actions button{min-height:48px;padding:8px 12px;border:1px solid #566448;border-radius:8px;background:#304132;font-size:12px;touch-action:manipulation}.quick-actions button small{display:block;color:var(--muted);font-size:9px;margin-top:3px}.quick-actions>span{color:var(--muted);font-size:9px;text-align:center}.quick-log{font-size:11px;line-height:1.6;min-height:36px;margin:0;padding:8px 16px;background:#15211b;color:var(--gold);border-top:1px solid var(--line)}
+@media(max-width:800px){
+ .shell{padding:0 max(8px,env(safe-area-inset-left)) env(safe-area-inset-bottom)}header{height:54px}.brand{font-size:18px;letter-spacing:2px}.brand small{display:none}.brand-icon{font-size:27px}header>button{min-height:44px;min-width:70px}.intro{display:none}.layout{margin-top:6px}.game-toolbar{height:42px}.game-toolbar>button{min-height:42px}.canvas-wrap{padding:0}#game{width:min(100%,calc(100svh - 300px));max-width:608px}.quick-status{padding:7px 10px;gap:12px;font-size:10px}.controller-panel{gap:clamp(16px,6vw,48px);padding:10px 12px}.controller-panel .touch-controls button{width:48px;height:44px}.quick-log{font-size:10px;padding:7px 10px;min-height:32px}.minimap-panel{padding:8px 12px}#minimap{width:132px}.minimap-copy{gap:3px}.minimap-copy b,.minimap-copy small{display:none}.minimap-panel.expanded #minimap{width:100%}.map-footer{padding:9px 12px}aside{margin-top:0}.bottom{padding:14px 0}.bottom>button{min-height:44px}.overlay h2{font-size:24px}.overlay p:not(.eyebrow){font-size:11px}.overlay{padding:14px}
+}
+@media(max-width:360px){.controller-panel{gap:15px}.quick-actions{min-width:116px}.controller-panel .touch-controls button{width:44px}.game-toolbar{font-size:10px}.game-toolbar .divider{margin:0 6px}}
+@media(max-width:800px) and (orientation:landscape){#game{width:min(100%,calc(100svh - 110px))}.controller-panel{position:absolute;right:12px;top:110px;flex-direction:column;gap:12px;border:1px solid var(--line);border-radius:9px}.game-panel{position:relative}.canvas-wrap{padding-right:180px;min-height:290px}}
+
+/* Game interaction: no text selection, callout, or double-tap zoom. */
+html,body{touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}button,canvas,a{touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.controller-panel .touch-controls{display:grid;grid-template-columns:repeat(3,48px);grid-template-rows:repeat(3,44px);gap:5px}.controller-panel button{touch-action:none}
+.controller-journal{border:0;border-top:1px solid var(--line);border-radius:0;margin:0;padding:10px 16px;background:#15211b}.controller-journal #log{height:94px;margin-top:5px;overflow:auto;overscroll-behavior:contain}.controller-journal #log p{padding:4px 0;font-size:11px;line-height:1.6}.controller-journal #log p:first-child{color:var(--gold)}
+@media(max-width:800px){.controller-journal{padding:8px 10px}.controller-journal #log{height:82px}.controller-journal #log p{font-size:10px}.controller-journal .section-label{font-size:8px}}
+@media(max-width:360px){.controller-panel .touch-controls{grid-template-columns:repeat(3,44px)}}
+
+#direction-pad{display:grid;grid-template-columns:repeat(3,var(--direction-size,48px));grid-template-rows:repeat(3,44px);grid-auto-flow:row;gap:5px;width:max-content;flex:none;margin:0}#direction-pad>button{width:100%;height:44px;min-width:0;display:grid;place-items:center;padding:0}@media(max-width:360px){#direction-pad{--direction-size:44px}}
+
+.inventory-choices{display:flex;gap:10px}.inventory-choices button{flex:1;min-height:54px;background:#25382c;border:1px solid var(--line);border-radius:8px}.inventory-choices button[aria-pressed="true"]{border-color:var(--gold);background:#3d4731}#inventory-dialog{width:min(94vw,470px)}#inventory-dialog .close{min-width:44px;min-height:44px}#use-item{width:100%;min-height:48px}
+
+.quick-status{flex-wrap:wrap}#save-error{font-size:9px;color:var(--muted);flex-basis:100%;text-align:right}.floor-label strong #floor-number{font-size:49px;margin-left:0}
+
+.weapon-choices{margin-top:10px;flex-wrap:wrap}.weapon-choices button{flex:1 1 120px;min-height:48px;padding:8px;font-size:12px}
+
+#weapon-choices{max-height:220px;overflow-y:auto;align-content:start}#weapon-choices button{font-size:11px}#equipment-name,#armor-name{font-size:10px}
+
+#sound-toggle{margin-left:auto;min-width:60px;min-height:44px}header>#help{margin-left:0}#inventory-dialog .inventory-choices{margin-bottom:8px}
+
+#save-error[hidden]{display:none}
+
+
+#shop-products{display:flex;flex-direction:column;gap:10px}#shop-products button{min-height:52px;text-align:left;padding:12px}#shop-message{min-height:2em}
+
+#wait[aria-pressed=true]{background:#765b32;border-color:#efc77c;color:#fff0cf}#facing-label{color:#edcd8f}
+
+</style><link rel="manifest" href="./manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAADD0lEQVR4nO3TsXFVQRREQcWAq2QwSAGywyYdkiAOkcKWqK35vNPG8bf2Tr99eX//kKq9rR8gLQNA6QBQOgCUDgClA0DpAFA6AJQOAKUDQOkAUDoAlA4ApQNA6QBQOgCUDgClA0DpAFA6AJQOAKUDQOkAUDoAlA4ApQNA6QBQOgCUDgClA0DpAFA6AJQOAKUDQOkAUDoAlA4ApQNA6QBQOgCUDgClA0DpAFA6AJQOgIN+//rx37b+u1cPgIPWIwbgXgActB4xAPcC4KD1iAG4FwAHrUcMwL0AOGg9YgDuBcBB6xEDcC8ADlqPGIB7AXDQesQA3AuAg9YjBuBeABy0HjEA9wLgoPWIAbgXAAetRwzAvR4PYD3AJ7S+IQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHwGwLfvXx8fAAAAAAAAAAAAAAAAPDkAAAAAAAAAAAAAACYAPv78/HQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwfgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADrBwAAAAAAAADAcwG8WgAAAAAAAAAAAAAAAPDkAAAAAAAAAAAAAAAAAAAABAAAAgAAAfACjwDgtVvfEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAmA+k3Pr2AAAAAAD7IVRb3x4AAAAAYD+EauvbAwAAAADsh1BtfXsAAAAAgP0Qqq1vDwAAAACwH0K19e0BkP4hAJQOAKUDQOkAUDoAlA4ApQNA6QBQOgCUDgClA0DpAFA6AJQOAKUDQOkAUDoAlA4ApQNA6QBQOgCUDgClA0DpAFA6AJQOAKUDQOkAUDoAlA4ApQNA6QBQOgCUDgClA0DpAFA6AJTuL/kG+VVkI/hmAAAAAElFTkSuQmCC"><link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAADD0lEQVR4nO3TsXFVQRREQcWAq2QwSAGywyYdkiAOkcKWqK35vNPG8bf2Tr99eX//kKq9rR8gLQNA6QBQOgCUDgClA0DpAFA6AJQOAKUDQOkAUDoAlA4ApQNA6QBQOgCUDgClA0DpAFA6AJQOAKUDQOkAUDoAlA4ApQNA6QBQOgCUDgClA0DpAFA6AJQOAKUDQOkAUDoAlA4ApQNA6QBQOgCUDgClA0DpAFA6AJQOgIN+//rx37b+u1cPgIPWIwbgXgActB4xAPcC4KD1iAG4FwAHrUcMwL0AOGg9YgDuBcBB6xEDcC8ADlqPGIB7AXDQesQA3AuAg9YjBuBeABy0HjEA9wLgoPWIAbgXAAetRwzAvR4PYD3AJ7S+IQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHwGwLfvXx8fAAAAAAAAAAAAAAAAPDkAAAAAAAAAAAAAACYAPv78/HQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwfgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADrBwAAAAAAAADAcwG8WgAAAAAAAAAAAAAAAPDkAAAAAAAAAAAAAAAAAAAABAAAAgAAAfACjwDgtVvfEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAmA+k3Pr2AAAAAAD7IVRb3x4AAAAAYD+EauvbAwAAAADsh1BtfXsAAAAAgP0Qqq1vDwAAAACwH0K19e0BkP4hAJQOAKUDQOkAUDoAlA4ApQNA6QBQOgCUDgClA0DpAFA6AJQOAKUDQOkAUDoAlA4ApQNA6QBQOgCUDgClA0DpAFA6AJQOAKUDQOkAUDoAlA4ApQNA6QBQOgCUDgClA0DpAFA6AJTuL/kG+VVkI/hmAAAAAElFTkSuQmCC"></head>
+<body><main class="shell">
+<header><a class="brand" href="./"><span class="brand-icon">◈</span><span>灯りの迷宮<small>LANTERN DUNGEON</small></span></a><div class="edition"><span></span> 70フロア体験版</div><button class="subtle" id="sound-toggle" aria-pressed="true">音 ON</button><button class="subtle" id="help">遊び方 <span>?</span></button></header>
+<section class="intro"><div><p class="eyebrow">A LITTLE LIGHT, A NEW ADVENTURE</p><h1>小さな灯りと、地下への一歩。</h1><p>部屋を巡り、道具を拾い、迷宮の奥の階段へ。</p></div><div class="floor-label"><small>苔むす遺跡</small><strong><span id="floor-number">B1</span><span>F</span></strong></div></section>
+<div class="layout"><section class="game-panel"><div class="game-toolbar"><div><span class="live-dot"></span> <b id="floor-label">地下1階</b></div><button id="map-toggle" class="subtle" aria-pressed="false">マップを拡大 <kbd>M</kbd></button></div>
+<div class="quick-status"><span>Lv.<b id="quick-level">1</b></span><span class="quick-health">HP <b id="quick-hp">30 / 30</b><span class="quick-meter"><i id="quick-hp-bar"></i></span></span><span>薬草 <b id="quick-potions">1</b></span><span>装備 <b id="equipment-name">石の斧</b></span><span>鎧 <b id="armor-name">なし</b></span><span>ゴーグル <b id="goggles-name">なし</b></span><span>防御 <b id="defense">0</b></span><span id="facing-label">向き ↓</span><span id="spawn-bonus">次の追加敵 +1%</span><span id="save-error" role="status" hidden></span></div><div class="canvas-wrap"><canvas id="game" width="608" height="608" tabindex="0" aria-label="ダンジョン。矢印キーかWASDで移動、敵に向かって移動すると攻撃。"></canvas><div id="result" class="overlay" hidden><div><p class="eyebrow" id="result-tag"></p><h2 id="result-title"></h2><p id="result-description"></p><button id="play-again" class="primary">もう一度探索する</button></div></div></div>
+<section class="controller-panel" aria-label="探索コントローラー"><div id="direction-pad" class="touch-controls" style="display:grid;grid-template-columns:repeat(3,var(--direction-size,48px));grid-template-rows:repeat(3,44px);gap:5px" aria-label="8方向の移動操作"><button data-move="-1,-1" aria-label="左上に移動">↖</button><button data-move="0,-1" aria-label="上に移動">↑</button><button data-move="1,-1" aria-label="右上に移動">↗</button><button data-move="-1,0" aria-label="左に移動">←</button><button id="wait" aria-label="方向モードをONにする" aria-pressed="false">方向</button><button data-move="1,0" aria-label="右に移動">→</button><button data-move="-1,1" aria-label="左下に移動">↙</button><button data-move="0,1" aria-label="下に移動">↓</button><button data-move="1,1" aria-label="右下に移動">↘</button></div><div class="quick-actions"><button id="quick-potion">▣ 持ち物<small>アイテムを選んで使う</small></button><button id="quick-stairs"><span id="action-label">足踏みする</span><small id="action-detail">アクション</small></button><span>1秒長押しで連続移動</span></div></section><section class="card journal controller-journal"><div class="section-label">ADVENTURE LOG<span>冒険の記録</span></div><div id="log" role="log" aria-live="polite" aria-relevant="additions"></div></section><section id="minimap-panel" class="minimap-panel" aria-label="ミニマップ"><div class="minimap-copy"><span class="section-label">MINI MAP</span><b>探索の足あと</b><span id="explored">探索 0%</span><small>金色：現在地 / 水色：発見した階段<br>透視のゴーグル装備中は未探索の地形も表示</small><small>112 × 74 マス · 視界 半径8マス</small></div><canvas id="minimap" width="224" height="148" aria-label="探索済みの地図"></canvas></section><div class="map-footer"><span><i class="legend hero"></i>あなた</span><span><i class="legend monster"></i>敵</span><span><i class="legend herb"></i>薬草</span><span><i class="legend exit"></i>階段</span><span class="turn">TURN <b id="turn">0</b></span></div>
+<div class="under-map"><span>移動 <kbd>↑</kbd><kbd>←</kbd><kbd>↓</kbd><kbd>→</kbd> / <kbd>W A S D</kbd></span><span>敵に向かって移動で攻撃</span><span>足踏み <kbd>Space</kbd></span></div>
+</section>
+<aside><section class="card adventurer"><div class="section-label">ADVENTURER<span>冒険者</span></div><div class="player-title"><div class="portrait">♜</div><div><h2>灯りの旅人</h2><p>見習いの探索者</p></div><div class="level">Lv.<strong id="level">1</strong></div></div><div class="meter-label"><span>HP</span><strong id="hp"></strong></div><div class="meter hp"><div id="hp-bar"></div></div><div class="meter-label exp-label"><span>次のレベルまで</span><span id="xp"></span></div><div class="meter xp"><div id="xp-bar"></div></div><div class="stats"><div><small>攻撃力</small><strong id="attack"></strong></div><div><small>金貨</small><strong id="gold"></strong></div><div><small>倒した敵</small><strong id="kills"></strong></div></div></section>
+<section class="card inventory"><div class="section-label">BACKPACK<span>持ち物</span></div><button id="potion" class="item"><span class="item-icon">✦</span><span><b>薬草 <small>× <span id="potions"></span></small></b><small>持ち物を開いて選ぶ</small></span></button><button id="stairs" class="stairs-button">アクション <kbd>Enter</kbd></button><p class="hint" id="objective">目標：迷宮の奥にある階段を探す</p></section>
+
+</aside></div>
+<section class="bottom"><div><span class="small-lantern">✧</span><p><b>一歩ずつ、考えて進もう。</b><br>あなたが行動すると、敵も1回行動します。止まっている間は時間も止まります。</p></div><button id="restart" class="subtle">↻ はじめから</button></section>
+<footer>灯りの迷宮 <span>探索・発見・小さな冒険。</span><span>PROTOTYPE / 01</span></footer>
+</main><dialog id="help-dialog"><button id="close-help" class="close" aria-label="閉じる">×</button><p class="eyebrow">HOW TO PLAY</p><h2>灯りを頼りに、階段へ。</h2><p>矢印キー / WASD / 方向ボタンで、上下左右・斜めに1マス移動します。斜めは方向ボタンまたは Q / E / Z / C キーで操作できます。壁の角を斜めにすり抜けることはできません。敵のいる方向へ移動すると攻撃します。</p><p>移動・攻撃・薬草・足踏みで1ターン進み、近くの敵が行動します。壁への移動ではターンが進みません。方向ボタンは押した時に1回移動し、1秒長押しすると追加の待ち時間なしで、描画フレームごとに移動します。離すと停止します。また、斜めを含む周囲1マスに敵が来ると連続入力が停止します。押し直すと1回操作できます。中央の「方向」をONにすると次の方向入力は移動せず向きだけ変更し、その次の入力でOFFになって移動します。方向変更ではターンは進みません。持ち物から装備やアイテムを足元に置けます。小石を選ぶと向いている方向へ最大10マス投げられます。初期装備は石の斧。武器を拾ったら持ち物から装備を変更でき、攻撃力と姿が変わります。透視のゴーグルは持ち物から1個まで装備できます。装備中は未探索の地形と階段もミニマップに表示します。耐久10000で被攻撃時に1減り、能力値補正はありません。初期持ち物にのみ追加しています。鎧は防御力と見た目が変わり、ダメージを軽減します（最低1ダメージ）。武器は攻撃時、鎧は被攻撃時に耐久が1減ります。耐久0で壊れて自動的に外れます。壊れた武器は持ち物から消えます。地面や番兵から手に入る装備は消耗しています。素手のダメージは半分（端数切り捨て・最低1）です。木の周囲では枝や葉っぱを拾えます。約半数の木には果実があり、近くでアクション「木を調べる」で採取できます。果実の効果は未実装です。草むらは歩けます。水辺は歩けませんが視界を遮らず、水辺の角を挟んだ斜め移動は可能です。BGMと効果音は音ボタンでまとめて切り替えられます。最初の操作から音が始まります。</p><p>薬草と金貨は上に乗ると拾えます。「持ち物」でアイテムを選んで使用できます。アクションは階段の上なら降りる、隣接する敵がいれば攻撃、それ以外は足踏みになります。<b>H</b>で薬草を使い、<b>Space</b>で足踏み。敵を倒すと経験値を獲得し、レベルアップで強くなります。</p><p>見える範囲は周囲8マスまでで、壁の向こうは見えません。画面は移動に合わせて追従します。探索済みの道はミニマップに残ります。<b>M</b>でミニマップを拡大・縮小できます。</p><p>地下70階まで探索できます。5階ごとにBGMと地形の色味が変わります。鋼・白銀・ミスリル・アダマンタイトの武器と鎧は深い階ほど出やすくなります。遺跡の番兵は全階にやや低確率で出現し、その階に応じた能力と装備を持ちます。下り階段で次の階へ、青い上り階段で前の階へ戻れます。70階の最奥の宝珠でアクションを使うとクリア。各階の地形・敵・アイテム・探索状況は保持されます。未訪問の階は到着時に生成します。20ターンごとにHPが1回復します。50〜100ターンごとに、視界外で敵が1体出現することがあります。各階の敵が初期配置数の2倍以上の間は追加出現しません。追加敵は出口を目指して徘徊し、出現のたびに階別の強化率が1％増加します。初期配置は基礎能力のまま、時間経過で出現する1体目は基礎値×1.01、2体目は×1.02…（切り捨て）になります。すでに出現済みの敵と経験値は変わりません。カウントは各階に残り、往復でもリセットされません。行動後に同じブラウザへ自動保存され、ページを開き直すと再開します。HPが0になるとレベルが1下がり（最低1）、10階戻ってHP全回復で再開します。戻り先の最低階は1階です。3・6・9階…には行商人がおり、近くでアクションから会話できます。薬草は50枚、石の斧は500枚、石の鎧は250枚で購入できます。金貨の量は深い階ほど増え、大きくばらつきます。敵は装備とは別に薬草と金貨をそれぞれ5%で落とします。</p><button id="start" class="primary">探索に戻る</button></dialog><dialog id="reset-dialog"><h2>最初から探索しますか？</h2><p>自動保存を含む今回の冒険をリセットし、新しいダンジョンで始めます。</p><div class="dialog-actions"><button id="cancel-reset" class="subtle">戻る</button><button id="confirm-reset" class="primary">最初から</button></div></dialog>
+<dialog id="inventory-dialog"><button id="close-inventory" class="close" aria-label="持ち物を閉じる">×</button><p class="eyebrow">BACKPACK</p><h2>持ち物</h2><p>アイテムを選んで使用します。開く・選ぶ操作ではターンは進みません。</p><div class="inventory-choices"><button id="select-herb" aria-pressed="true">✦ 薬草 <span id="bag-herbs"></span></button><button id="select-pebble" aria-pressed="false">小石 <span id="bag-pebbles"></span></button><button id="select-gold" aria-pressed="false">◈ 金貨 <span id="bag-gold"></span></button></div><div class="inventory-choices"><button id="select-branch" aria-pressed="false">木の枝 <span id="bag-branches"></span></button><button id="select-leaf" aria-pressed="false">葉っぱ <span id="bag-leaves"></span></button></div><div id="fruit-choices" class="inventory-choices"></div><div id="weapon-choices" class="inventory-choices weapon-choices"></div><h3 id="item-name">薬草</h3><p id="item-description"></p><p id="bag-health"></p><div class="dialog-actions"><button id="use-item" class="primary">使う</button><button id="drop-item" class="subtle">足元に置く</button></div></dialog>
+<dialog id="shop-dialog" aria-labelledby="shop-title"><button id="close-shop" class="close" aria-label="お店を閉じる">×</button><p class="eyebrow">TRAVELING MERCHANT</p><h2 id="shop-title">行商人のお店</h2><p id="shop-gold"></p><p>装備は耐久満タン。会話・購入ではターンは進みません。</p><div id="shop-products" class="inventory-choices"></div><p id="shop-message" role="status"></p></dialog>
+<script>
+(function(root){
+ const profiles={stone_axe:{wave:'triangle',from:220,to:55,length:.16,gain:.11,noise:.10},iron_sword:{wave:'sine',from:1400,to:390,length:.20,gain:.075,noise:.05},oak_staff:{wave:'triangle',from:380,to:100,length:.09,gain:.10,noise:.035},unarmed:{wave:'sine',from:130,to:42,length:.09,gain:.10,noise:.025}};
+ for(const [key,from,to] of [['steel_sword',1250,310],['silver_sword',1800,550],['mithril_sword',2100,700],['adamant_sword',950,220]])profiles[key]={wave:'sine',from,to,length:.22,gain:.075,noise:.045};
+ profiles.pebble={wave:'triangle',from:600,to:130,length:.12,gain:.06,noise:.03};
+ const motifs=[[0,4,2,3,2,0,-1,2],[0,2,4,5,4,2,1,0],[4,3,1,0,2,4,6,3],[0,3,5,4,2,1,3,0],[0,1,3,2,5,3,1,-1],[2,4,6,5,3,4,1,0],[0,4,5,2,3,6,4,1],[3,2,0,4,6,5,2,1],[0,1,4,3,6,2,5,0],[4,6,3,5,2,4,1,0],[0,2,1,5,3,6,4,2],[0,3,1,4,2,6,5,3],[6,4,5,2,3,1,4,0],[0,4,6,3,5,2,4,7]];
+ const tracks=motifs.map((motif,i)=>{const scale=i%3===0?[0,2,3,5,7,8,10]:i%3===1?[0,2,4,5,7,9,11]:[0,1,3,5,7,8,10],root=48+[2,5,0,3,7,2,5,0,3,7,0,2,1,5][i];return {root,step:[.42,.36,.46,.4,.32,.48,.38,.44,.34,.5,.4,.3,.46,.36][i],wave:i%2?'triangle':'sine',melody:motif.flatMap((degree,n)=>{const pitch=root+12+scale[(degree+7)%7]+12*Math.floor(degree/7);return [pitch,n%3===i%3?pitch+7:null];})};});
+ root.CombatAudio={profiles,tracks,create(){
+   let context=null,muted=false;try{muted=root.localStorage?.getItem('lantern-sound-muted')==='1';}catch{}
+   let active=true,musicTimer=null,nextBeat=0,beat=0,trackIndex=0;
+   const musicNodes=new Set();
+
+   const hz=midi=>440*Math.pow(2,(midi-69)/12);
+   function note(midi,start,duration,volume,wave='sine',music=false){
+     const osc=context.createOscillator(),gain=context.createGain();osc.type=wave;osc.frequency.setValueAtTime(hz(midi),start);
+     gain.gain.setValueAtTime(.0001,start);gain.gain.exponentialRampToValueAtTime(volume,start+.025);gain.gain.exponentialRampToValueAtTime(.0001,start+duration);
+     osc.connect(gain);gain.connect(context.destination);if(music)musicNodes.add(osc);
+     osc.onended=()=>{musicNodes.delete(osc);osc.disconnect();gain.disconnect();};osc.start(start);osc.stop(start+duration+.02);
+   }
+   function stopMusic(){if(musicTimer!==null)root.clearTimeout(musicTimer);musicTimer=null;for(const osc of musicNodes){try{osc.stop();}catch{}}musicNodes.clear();nextBeat=0;}
+   function scheduleMusic(){
+     musicTimer=null;if(!active||muted||!context||context.state!=='running')return;
+     if(nextBeat<context.currentTime)nextBeat=context.currentTime+.04;
+     while(nextBeat<context.currentTime+.3){
+       const track=tracks[trackIndex],midi=track.melody[beat%track.melody.length];if(midi!==null)note(midi,nextBeat,track.step*1.4,.022,track.wave,true);
+       if(beat%4===0){const bass=track.root-12+[0,-2,-4,-5][Math.floor(beat/8)%4];note(bass,nextBeat,1.5,.025,'triangle',true);note(bass+19,nextBeat,1.2,.009,'sine',true);}
+       beat++;nextBeat+=track.step;
+     }
+     musicTimer=root.setTimeout(scheduleMusic,120);
+   }
+   function beginMusic(){if(musicTimer===null&&active&&!muted&&context?.state==='running')scheduleMusic();}
+   function unlock(){if(muted||!active)return;try{const C=root.AudioContext||root.webkitAudioContext;if(!context&&C)context=new C();if(context?.state==='suspended')context.resume().then(beginMusic).catch(()=>{});else beginMusic();}catch{}}
+   function setFloor(floor){const index=Math.max(0,Math.min(tracks.length-1,Math.floor((floor-1)/5)));if(index===trackIndex)return;stopMusic();trackIndex=index;beat=0;beginMusic();}
+   function setActive(value){active=value;if(!active){stopMusic();try{context?.suspend().catch(()=>{});}catch{}}else if(context)unlock();}
+   function setMuted(value){muted=value;try{root.localStorage?.setItem('lantern-sound-muted',muted?'1':'0');}catch{}if(muted){stopMusic();try{context?.suspend().catch(()=>{});}catch{}}else unlock();}
+   function cue(type,direction){
+     if(muted||!active)return;unlock();if(!context)return;
+     if(context.state==='suspended'){context.resume().then(()=>{if(context.state==='running')cue(type,direction);}).catch(()=>{});return;}
+     if(context.state!=='running')return;
+     const notes=type==='pickup'?[76,83,88]:direction==='up'?[50,55,62,67]:[67,62,55,50];
+     notes.forEach((m,i)=>note(m,context.currentTime+i*.07,.23,type==='pickup'?.055:.045,'sine'));
+   }
+   function play(weapon,hurt=false,delay=0){
+     if(muted||!active)return;unlock();if(!context)return;if(context.state==='suspended'){context.resume().then(()=>{if(context.state==='running')play(weapon,hurt,delay);}).catch(()=>{});return;}if(context.state!=='running')return;
+     try{const p=profiles[weapon]||profiles.unarmed,start=context.currentTime+delay;
+       const gain=context.createGain(),tone=context.createOscillator();tone.type=p.wave;
+       tone.frequency.setValueAtTime(p.from*(hurt?.8:1),start);tone.frequency.exponentialRampToValueAtTime(p.to,start+p.length);
+       gain.gain.setValueAtTime(.0001,start);gain.gain.exponentialRampToValueAtTime(p.gain,start+.005);gain.gain.exponentialRampToValueAtTime(.0001,start+p.length);
+       tone.connect(gain);gain.connect(context.destination);tone.start(start);tone.stop(start+p.length+.01);
+       const frames=Math.floor(context.sampleRate*p.length),buffer=context.createBuffer(1,frames,context.sampleRate),samples=buffer.getChannelData(0);
+       for(let i=0;i<frames;i++)samples[i]=(Math.random()*2-1)*(1-i/frames);
+       const noise=context.createBufferSource(),ng=context.createGain();noise.buffer=buffer;ng.gain.setValueAtTime(p.noise,start);noise.connect(ng);ng.connect(context.destination);noise.start(start);noise.stop(start+p.length);
+       tone.onended=()=>{tone.disconnect();gain.disconnect();};noise.onended=()=>{noise.disconnect();ng.disconnect();};
+     }catch{}
+   }
+   return {unlock,play,cue,setFloor,setActive,setMuted,isMuted:()=>muted};
+ }};
+})(globalThis);
+
+</script><script>
+(function(root){
+  root.HoldRepeat={create(clock={setTimeout:(fn,ms)=>setTimeout(fn,ms),clearTimeout:id=>clearTimeout(id),requestAnimationFrame:fn=>requestAnimationFrame(fn),cancelAnimationFrame:id=>cancelAnimationFrame(id)}){
+    let timer=null,frame=null,generation=0;
+    const stop=()=>{generation++;if(timer!==null)clock.clearTimeout(timer);if(frame!==null)clock.cancelAnimationFrame(frame);timer=null;frame=null;};
+    const start=callback=>{stop();const token=generation;callback();
+      const repeat=()=>{frame=null;if(token!==generation)return;callback();if(token===generation)frame=clock.requestAnimationFrame(repeat);};
+      if(token===generation)timer=clock.setTimeout(()=>{timer=null;repeat();},1000);
+    };
+    return {start,stop};
+  }};
+})(globalThis);
+
+</script><script>
+/* Shared, deterministic turn-based rules. No rendering or browser dependencies. */
+(function (root) {
+  const W = 112, H = 74, VISION = 8, MAX_FLOORS = 70;
+  const STAGE_THEMES=[['苔の回廊',110],['琥珀の洞穴',38],['青銅の遺跡',175],['薄紫の石室',270],['赤土の坑道',18],['蒼い水脈',205],['黄昏の古道',48],['翡翠の地下庭園',150],['紅晶の岩窟',345],['白銀の祭壇',220],['深層の石殿',245],['熾火の迷路',8],['深淵の回廊',285],['古代の聖域',190]].map(([name,hue],index)=>({name,hue,index,from:index*5+1,to:index*5+5}));
+  function stageTheme(floor){return STAGE_THEMES[Math.max(0,Math.min(13,Math.floor((floor-1)/5)))];}
+  const floorSeed=(seed,number)=>number===1?seed:number===2?(seed^0x85ebca6b)>>>0:(seed^Math.imul(0x85ebca6b,number-1))>>>0;
+  const MONSTERS={slime:{kind:'slime',name:'こけスライム',hp:9,attack:3,defense:0,xp:4},ant:{kind:'ant',name:'はたらきアリ',hp:11,attack:4,defense:0,xp:5},bat:{kind:'bat',name:'洞窟コウモリ',hp:12,attack:4,defense:0,xp:5},guard:{kind:'guard',name:'遺跡の番兵',hp:20,attack:5,defense:0,xp:8},beetle:{kind:'beetle',name:'鉄甲コガネ',hp:24,attack:6,defense:1,xp:10},wolf:{kind:'wolf',name:'洞窟オオカミ',hp:28,attack:8,defense:1,xp:12},boar:{kind:'boar',name:'荒牙イノシシ',hp:30,attack:8,defense:2,xp:13},spider:{kind:'spider',name:'大グモ',hp:32,attack:9,defense:1,xp:14},golem:{kind:'golem',name:'深層ゴーレム',hp:38,attack:9,defense:3,xp:16},wraith:{kind:'wraith',name:'深淵の亡霊',hp:44,attack:11,defense:2,xp:20}};
+  Object.assign(MONSTERS,{rat:{kind:'rat',name:'大ネズミ',hp:36,attack:10,defense:2,xp:16},snake:{kind:'snake',name:'岩ヘビ',hp:40,attack:11,defense:2,xp:18},crab:{kind:'crab',name:'石甲ガニ',hp:44,attack:11,defense:4,xp:20},lizard:{kind:'lizard',name:'洞窟トカゲ',hp:48,attack:13,defense:3,xp:22},mantis:{kind:'mantis',name:'大カマキリ',hp:50,attack:15,defense:3,xp:24},bear:{kind:'bear',name:'穴ぐらグマ',hp:58,attack:16,defense:4,xp:26},scorpion:{kind:'scorpion',name:'鎧サソリ',hp:62,attack:17,defense:5,xp:28}});
+  Object.assign(MONSTERS,{horn_rabbit:{kind:'horn_rabbit',name:'角ウサギ',hp:66,attack:18,defense:5,xp:30},fungus:{kind:'fungus',name:'歩きキノコ',hp:70,attack:19,defense:5,xp:32},mud_crab:{kind:'mud_crab',name:'泥甲ガニ',hp:76,attack:20,defense:7,xp:36},cave_hound:{kind:'cave_hound',name:'岩穴ハウンド',hp:80,attack:22,defense:6,xp:38},red_ant:{kind:'red_ant',name:'赤牙アリ',hp:84,attack:23,defense:6,xp:40},stone_turtle:{kind:'stone_turtle',name:'岩背ガメ',hp:92,attack:23,defense:9,xp:44},fang_lizard:{kind:'fang_lizard',name:'牙トカゲ',hp:96,attack:25,defense:7,xp:46},cave_moth:{kind:'cave_moth',name:'洞窟オオガ',hp:100,attack:26,defense:7,xp:48},iron_boar:{kind:'iron_boar',name:'鉄牙イノシシ',hp:108,attack:28,defense:8,xp:52},crystal_spider:{kind:'crystal_spider',name:'水晶グモ',hp:112,attack:29,defense:8,xp:54},black_mantis:{kind:'black_mantis',name:'黒刃カマキリ',hp:116,attack:31,defense:8,xp:56},rock_bear:{kind:'rock_bear',name:'岩窟グマ',hp:126,attack:32,defense:9,xp:60},silver_wolf:{kind:'silver_wolf',name:'銀牙オオカミ',hp:130,attack:34,defense:9,xp:64},golem:{kind:'golem',name:'深層ゴーレム',hp:142,attack:34,defense:12,xp:68},night_serpent:{kind:'night_serpent',name:'夜色ヘビ',hp:144,attack:36,defense:10,xp:70},obsidian_beetle:{kind:'obsidian_beetle',name:'黒曜コガネ',hp:152,attack:37,defense:13,xp:74},ember_lizard:{kind:'ember_lizard',name:'熾火トカゲ',hp:156,attack:39,defense:11,xp:78},wraith:{kind:'wraith',name:'深淵の亡霊',hp:160,attack:40,defense:10,xp:80},abyss_crab:{kind:'abyss_crab',name:'深穴ガニ',hp:172,attack:41,defense:14,xp:84},moon_mantis:{kind:'moon_mantis',name:'月影カマキリ',hp:176,attack:43,defense:12,xp:88},dread_bear:{kind:'dread_bear',name:'巨躯グマ',hp:190,attack:44,defense:13,xp:92},crystal_scorpion:{kind:'crystal_scorpion',name:'結晶サソリ',hp:194,attack:46,defense:14,xp:96},ancient_beast:{kind:'ancient_beast',name:'古代の巨獣',hp:210,attack:48,defense:15,xp:100}});
+  function enemyPool(floor){const pool=['slime','ant','bat'];if(floor>=2)pool.push('guard');for(const [level,kind]of [[4,'beetle'],[6,'wolf'],[8,'boar'],[10,'spider'],[12,'rat'],[14,'snake'],[16,'crab'],[18,'lizard'],[20,'mantis'],[22,'bear'],[24,'scorpion'],[26,'horn_rabbit'],[28,'fungus'],[30,'mud_crab'],[32,'cave_hound'],[34,'red_ant'],[36,'stone_turtle'],[38,'fang_lizard'],[40,'cave_moth'],[42,'iron_boar'],[44,'crystal_spider'],[46,'black_mantis'],[48,'rock_bear'],[50,'silver_wolf'],[52,'golem'],[54,'night_serpent'],[56,'obsidian_beetle'],[58,'ember_lizard'],[60,'wraith'],[62,'abyss_crab'],[64,'moon_mantis'],[66,'dread_bear'],[68,'crystal_scorpion'],[70,'ancient_beast']])if(floor>=level){pool.shift();pool.push(kind);}return [...pool.filter(k=>k!=='guard'),'guard'];}
+  function guardBase(floor){const peers=enemyPool(floor).filter(k=>k!=='guard').map(k=>MONSTERS[k]);return {...MONSTERS.guard,hp:Math.ceil(Math.max(...peers.map(m=>m.hp))*1.15),attack:Math.ceil(Math.max(...peers.map(m=>m.attack))*1.1),defense:Math.max(...peers.map(m=>m.defense))+1,xp:Math.ceil(Math.max(...peers.map(m=>m.xp))*1.1)};}
+  function rollEnemy(floor,random){const pool=enemyPool(floor),weight=pool.length-1+.65;const index=random()*weight;return index>=pool.length-1?'guard':pool[Math.floor(index)];}
+  function makeEnemy(kind,at,percent=0,floor=1){const base=kind==='guard'?guardBase(floor):MONSTERS[kind],scale=n=>Math.floor(n*(100+percent)/100);return {...base,...at,hp:scale(base.hp),maxHp:scale(base.hp),attack:scale(base.attack),defense:scale(base.defense),spawnBonus:percent};}
+  const WEAPONS={stone_axe:{name:'石の斧',bonus:2,description:'石の刃をつけた斧。攻撃力 +2。'},iron_sword:{name:'鉄の剣',bonus:4,description:'鋭い鉄の剣。攻撃力 +4。'},oak_staff:{name:'木の杖',bonus:1,description:'丈夫な木の杖。攻撃力 +1。'}};
+  Object.assign(WEAPONS.stone_axe,{slot:'weapon',maxDurability:50});Object.assign(WEAPONS.iron_sword,{slot:'weapon',maxDurability:140});Object.assign(WEAPONS.oak_staff,{slot:'weapon',maxDurability:22});
+  const ARMORS={wood_armor:{name:'木の胸当て',slot:'armor',bonus:1,maxDurability:22,description:'木の板で守る胸当て。防御力 +1。'},stone_armor:{name:'石の鎧',slot:'armor',bonus:2,maxDurability:50,description:'石を編み込んだ鎧。防御力 +2。'},iron_armor:{name:'鉄の鎧',slot:'armor',bonus:4,maxDurability:140,description:'鉄板で守る鎧。防御力 +4。'}};
+  const MATERIAL_TIERS=[['oak_staff','wood_armor'],['stone_axe','stone_armor'],['iron_sword','iron_armor'],['steel_sword','steel_armor'],['silver_sword','silver_armor'],['mithril_sword','mithril_armor'],['adamant_sword','adamant_armor']];
+  for(const [material,name,bonus,durability,color] of [['steel','鋼',7,180,'#aebbc9'],['silver','白銀',10,220,'#e7e8f6'],['mithril','ミスリル',14,280,'#8fe0d9'],['adamant','アダマンタイト',18,360,'#c3a0da']]){WEAPONS[material+'_sword']={name:name+'の剣',slot:'weapon',bonus,maxDurability:durability,color,description:`${name}製の剣。攻撃力 +${bonus}。`};ARMORS[material+'_armor']={name:name+'の鎧',slot:'armor',bonus,maxDurability:durability,color,description:`${name}製の鎧。防御力 +${bonus}。`};}
+  function equipmentWeights(floor){return floor<=10?[45,45,10,0,0,0,0]:floor<=20?[10,25,50,15,0,0,0]:floor<=30?[0,10,25,50,15,0,0]:floor<=40?[0,0,10,25,50,15,0]:floor<=50?[0,0,0,10,25,50,15]:floor<=60?[0,0,0,0,20,55,25]:[0,0,0,0,10,35,55];}
+  const GOGGLES={seer_goggles:{name:'透視のゴーグル',slot:'goggles',bonus:0,maxDurability:10000,description:'装備中は未探索の地形と階段もミニマップに表示。能力値補正なし。'}};
+  const EQUIPMENT={...WEAPONS,...ARMORS,...GOGGLES};
+  function hasMapSight(s){return equippedGear(s.player,'goggles')?.key==='seer_goggles';}
+  function makeGear(key,id,wear=1){return {id,key,durability:Math.max(1,Math.floor(EQUIPMENT[key].maxDurability*wear))};}
+  function equippedGear(p,slot){return p.gear.find(g=>g.id===p[slot+'Id']&&g.durability>0)||null;}
+  function wearPlayer(s,slot){const p=s.player,g=equippedGear(p,slot);if(!g)return;g.durability--;if(g.durability===0){p[slot+'Id']=null;if(slot==='weapon'){p.attack-=EQUIPMENT[g.key].bonus;p.equipped=null;p.gear=p.gear.filter(item=>item.id!==g.id);p.weapons=[...new Set(p.gear.filter(item=>WEAPONS[item.key]).map(item=>item.key))];}else if(slot==='armor')p.defense=0;say(s,`${EQUIPMENT[g.key].name}が壊れた！`);}}
+  function addGear(p,g){p.gear.push({...g});if(WEAPONS[g.key]&&!p.weapons.includes(g.key))p.weapons.push(g.key);}
+  function rollEquipment(slot,random,floor=1){let draw=random()*100;const weights=equipmentWeights(floor);for(let i=0;i<weights.length;i++){draw-=weights[i];if(draw<0)return MATERIAL_TIERS[i][slot==='weapon'?0:1];}return MATERIAL_TIERS[6][slot==='weapon'?0:1];}
+  function outfitGuard(e,floor,random,id){e.weapon=makeGear(rollEquipment('weapon',random,floor),id+':weapon',.25+random()*.65);if(random()<.4){let key=rollEquipment('armor',random,floor);if(EQUIPMENT[key].bonus>e.defense)key=MATERIAL_TIERS.map(t=>t[1]).filter((k,i)=>equipmentWeights(floor)[i]>0&&EQUIPMENT[k].bonus<=e.defense).at(-1);if(key)e.armor=makeGear(key,id+':armor',.25+random()*.65);}e.attack=Math.max(1,e.attack-EQUIPMENT[e.weapon.key].bonus);e.defense=Math.max(0,e.defense-(e.armor?EQUIPMENT[e.armor.key].bonus:0));}
+  function outfitFloor(f,seed,addArmor,floor=1){
+    let n=(seed^0x74a81c39)>>>0;const rand=()=>{n=(Math.imul(n,1664525)+1013904223)>>>0;return n/4294967296;};
+    const damaged=(key,id)=>makeGear(key,id,.25+rand()*.65);
+    for(const i of f.items)if(i.type==='weapon'){i.type='gear';i.gear=damaged(rollEquipment('weapon',rand,floor),`${seed}:floor:${i.x}:${i.y}`);delete i.weapon;}
+    if(addArmor&&!f.items.some(i=>i.type==='gear'&&ARMORS[i.gear?.key])){for(let index=0;index<f.rooms.length;index+=5){const r=f.rooms[index];const key=rollEquipment('armor',rand,floor);const free=[];for(let y=r.y;y<r.y+r.h;y++)for(let x=r.x;x<r.x+r.w;x++)if(!(x===5&&y===5)&&!(x===f.stairs.x&&y===f.stairs.y)&&!f.enemies.some(e=>e.x===x&&e.y===y)&&!f.items.some(i=>i.x===x&&i.y===y))free.push({x,y});if(free.length){const at=free[Math.floor(rand()*free.length)];f.items.push({...at,type:'gear',gear:damaged(key,`${seed}:armor:${index}`)});}}}
+    // Guard equipment is assigned after the final floor population is chosen.
+  }
+  const MATERIALS={branch:{name:'木の枝',description:'木の周りに落ちていた枝。素材として保管します（使い道は今後追加予定）。'},leaf:{name:'葉っぱ',description:'木から落ちた葉。素材として保管します（使い道は今後追加予定）。'}};
+  const FRUITS={apple:{name:'りんご',color:'#e86f61'},orange:{name:'みかん',color:'#ffa443'},grapes:{name:'ぶどう',color:'#b188dc'},acorn:{name:'どんぐり',color:'#ba8750'}};
+  for(const f of Object.values(FRUITS))f.description='木から採った実。効果は未実装です。';Object.assign(MATERIALS,FRUITS);
+  function nearbyTree(s){const p=s.player;return s.trees.filter(t=>(t.x===p.x&&t.y===p.y)||canStep(s,p.x,p.y,t.x-p.x,t.y-p.y)).sort((a,b)=>Number(!!b.fruit)-Number(!!a.fruit))[0];}
+  function addNature(s,seed,protectedPlayer){
+    if(Array.isArray(s.grassPatches))return;
+    let n=(seed^0x6ac143e7)>>>0;const random=()=>{n=(Math.imul(n,1664525)+1013904223)>>>0;return n/4294967296;};
+    for(const t of s.trees)if(t.fruit===undefined)t.fruit=random()<.5?Object.keys(FRUITS)[Math.floor(random()*4)]:null;
+    const protectedCells=new Set([...s.trees,...s.items,...s.enemies,s.stairs,s.upStairs,s.merchant,protectedPlayer,{x:5,y:5}].filter(Boolean).map(p=>`${p.x},${p.y}`));
+    const grow=(r,size,blocked)=>{const free=[];for(let y=r.y+1;y<r.y+r.h-1;y++)for(let x=r.x+1;x<r.x+r.w-1;x++)if(walk(s,x,y)&&!blocked.has(`${x},${y}`))free.push({x,y});if(!free.length)return [];const allowed=new Set(free.map(p=>`${p.x},${p.y}`)),patch=[free[Math.floor(random()*free.length)]],used=new Set([`${patch[0].x},${patch[0].y}`]);while(patch.length<size){const edge=[];for(const p of patch)for(const [dx,dy]of[[1,0],[-1,0],[0,1],[0,-1]]){const x=p.x+dx,y=p.y+dy,key=`${x},${y}`;if(allowed.has(key)&&!used.has(key))edge.push({x,y});}if(!edge.length)return [];const at=edge[Math.floor(random()*edge.length)];patch.push(at);used.add(`${at.x},${at.y}`);}return patch;};
+    s.grassPatches=[];const blocked=new Set(protectedCells);for(let i=0;i<s.rooms.length;i+=4){const patch=grow(s.rooms[i],4+Math.floor(random()*9),blocked);if(patch.length){s.grassPatches.push(patch);for(const p of patch)blocked.add(`${p.x},${p.y}`);}}
+    if(random()<.5){for(let attempt=0;attempt<40;attempt++){const room=s.rooms[1+Math.floor(random()*(s.rooms.length-1))],patch=grow(room,4+Math.floor(random()*9),blocked);if(!patch.length)continue;for(const p of patch)s.tiles[p.y][p.x]=3;const queue=[{x:5,y:5}],seen=new Set(['5,5']);for(let i=0;i<queue.length;i++)for(const [dx,dy]of[[1,0],[-1,0],[0,1],[0,-1]]){const x=queue[i].x+dx,y=queue[i].y+dy,k=`${x},${y}`;if(walk(s,x,y)&&!seen.has(k)){seen.add(k);queue.push({x,y});}}let total=0;for(let y=0;y<H;y++)for(let x=0;x<W;x++)if(walk(s,x,y))total++;if(seen.size===total)break;for(const p of patch)s.tiles[p.y][p.x]=1;}}
+  }
+  function plantTrees(f,seed){
+    if(f.trees)return;f.trees=[];let n=(seed^0x372f65a1)>>>0;
+    const rand=()=>{n=(Math.imul(n,1664525)+1013904223)>>>0;return n/4294967296;};
+    const occupied=new Set([...f.items,...f.enemies,f.stairs,{x:5,y:5}].map(p=>`${p.x},${p.y}`));
+    for(let index=0;index<f.rooms.length;index+=4){const r=f.rooms[index],spots=[];
+      for(let y=r.y+1;y<r.y+r.h-1;y++)for(let x=r.x+1;x<r.x+r.w-1;x++)if(!occupied.has(`${x},${y}`))spots.push({x,y});
+      if(!spots.length)continue;const tree=spots[Math.floor(rand()*spots.length)];f.trees.push(tree);occupied.add(`${tree.x},${tree.y}`);
+      let count=0;for(const [dx,dy] of [[1,0],[0,1],[-1,0],[0,-1],[1,1],[-1,-1]]){const x=tree.x+dx,y=tree.y+dy;if(!f.tiles[y]?.[x]||occupied.has(`${x},${y}`))continue;f.items.push({x,y,type:count%2?'leaf':'branch'});occupied.add(`${x},${y}`);if(++count===4)break;}
+    }
+  }
+  const SHOP={potion:{name:'薬草',price:50},stone_axe:{name:'石の斧',price:500},stone_armor:{name:'石の鎧',price:250}};
+  function goldAmount(floor,random){return Math.max(1,Math.round((20+5*floor)*(.2+2.8*random()**2)));}
+  function economyRandom(s){s.economySeed=(Math.imul(s.economySeed,1664525)+1013904223)>>>0;return s.economySeed/4294967296;}
+  function merchantAt(s,x,y){return s.merchant?.x===x&&s.merchant?.y===y;}
+  function canTrade(s){const m=s.merchant,p=s.player;return s.status==='playing'&&!!m&&((p.x===m.x&&p.y===m.y)||canStep(s,p.x,p.y,m.x-p.x,m.y-p.y));}
+  function setupEconomy(s,floor,seed,legacy=false){
+    s.economySeed=(seed^0x57d983a1)>>>0;s.shopPurchases=0;s.merchant=null;
+    for(const i of s.items)if(i.type==='gold'&&!Number.isInteger(i.amount))i.amount=legacy?25:goldAmount(floor,()=>economyRandom(s));
+    if(floor%3===0){const r=s.rooms[0],spots=[];for(let y=r.y;y<r.y+r.h;y++)for(let x=r.x;x<r.x+r.w;x++)if(walk(s,x,y)&&!(x===5&&y===5)&&!isStair(s,x,y)&&!s.enemies.some(e=>e.x===x&&e.y===y)&&!s.items.some(i=>i.x===x&&i.y===y)&&!s.trees.some(t=>t.x===x&&t.y===y))spots.push({x,y});spots.sort((a,b)=>(Math.abs(a.x-5)+Math.abs(a.y-5))-(Math.abs(b.x-5)+Math.abs(b.y-5)));s.merchant=spots[0]||null;}
+  }
+  function dropLoot(s,enemy){const herb=economyRandom(s)<.05,coins=economyRandom(s)<.05;if(herb){s.items.push({x:enemy.x,y:enemy.y,type:'potion'});say(s,`${enemy.name}が薬草を落とした。`);}if(coins){const amount=goldAmount(s.floor,()=>economyRandom(s))*2;s.items.push({x:enemy.x,y:enemy.y,type:'gold',amount});say(s,`${enemy.name}が金貨${amount}枚を落とした。`);}}
+  function recoverDefeat(s){
+    const p=s.player,from=s.floor,target=Math.max(1,from-10),oldLevel=p.level;
+    if(p.level>1){p.level--;p.maxHp=Math.max(30,p.maxHp-6);p.attack=Math.max(1,p.attack-2);p.xp=Math.min(p.xp,p.level*6-1);}
+    s.floors[from]=snapshotFloor(s);Object.assign(s,s.floors[target]||snapshotFloor(prepareFloor(createFloor(floorSeed(s.seed,target),target),target)));s.floor=target;s.status='playing';p.hp=p.maxHp;
+    const spots=[];for(let y=1;y<H-1;y++)for(let x=1;x<W-1;x++)if(walk(s,x,y)&&!enemyAt(s,x,y)&&!merchantAt(s,x,y))spots.push({x,y});
+    spots.sort((a,b)=>(Math.abs(a.x-5)+Math.abs(a.y-5))-(Math.abs(b.x-5)+Math.abs(b.y-5)));
+    Object.assign(p,spots.find(at=>!s.enemies.some(e=>Math.max(Math.abs(e.x-at.x),Math.abs(e.y-at.y))<=1))||spots[0]||{x:5,y:5});
+    p.directionMode=false;p.directionPending=false;s.events=[{type:'revive'}];reveal(s);say(s,`倒れて地下${target}階へ戻された。${oldLevel>1?`Lv.${oldLevel} → ${p.level}。`:'Lv.1を維持。'}HPが全回復した。`);
+  }
+  function scatterPebbles(s,seed){let n=(seed^0x5a31b937)>>>0;const random=()=>{n=(Math.imul(n,1664525)+1013904223)>>>0;return n/4294967296;};for(let i=0;i<s.rooms.length;i+=2){const r=s.rooms[i],spots=[];for(let y=r.y;y<r.y+r.h;y++)for(let x=r.x;x<r.x+r.w;x++)if(walk(s,x,y)&&!(x===5&&y===5)&&!isStair(s,x,y)&&!merchantAt(s,x,y)&&!s.enemies.some(e=>e.x===x&&e.y===y)&&!s.items.some(t=>t.x===x&&t.y===y)&&!s.trees.some(t=>t.x===x&&t.y===y))spots.push({x,y});if(spots.length)s.items.push({...spots[Math.floor(random()*spots.length)],type:'pebble'});}}
+  function putDown(s,item){const p=s.player,at={x:p.x,y:p.y};const gear=p.gear.find(g=>g.id===item);if(gear){const slot=EQUIPMENT[gear.key].slot;if(p[slot+'Id']===gear.id){p[slot+'Id']=null;if(slot==='weapon'){p.attack-=EQUIPMENT[gear.key].bonus;p.equipped=null;}else if(slot==='armor')p.defense=0;}p.gear=p.gear.filter(g=>g!==gear);p.weapons=[...new Set(p.gear.filter(g=>WEAPONS[g.key]).map(g=>g.key))];s.items.push({...at,type:'gear',gear:{...gear}});say(s,`${EQUIPMENT[gear.key].name}を足元に置いた。`);return true;}const field={potion:'potions',pebble:'pebbles',gold:'gold'}[item];if(field){if(p[field]<1)return false;p[field]--;s.items.push({...at,type:item,...(item==='gold'?{amount:1}:{})});}else if(Object.hasOwn(MATERIALS,item)){if(p.materials[item]<1)return false;p.materials[item]--;s.items.push({...at,type:item});}else return false;say(s,'アイテムを1つ足元に置いた。');return true;}
+  function createFloor(seed=Math.floor(Math.random()*4294967296),floor=1) {
+    let rng=seed>>>0;
+    const random=()=>{rng=(rng+0x6D2B79F5)>>>0;let t=rng;t=Math.imul(t^(t>>>15),t|1);t^=t+Math.imul(t^(t>>>7),t|61);return ((t^(t>>>14))>>>0)/4294967296;};
+    const int=(min,max)=>min+Math.floor(random()*(max-min+1));
+    const tiles=Array.from({length:H},()=>Array(W).fill(0)),rooms=[];
+    const cells=Array.from({length:5},()=>Array(6).fill(null));
+    // Partition into zones; merge some neighboring zones into double-size halls.
+    for(let row=0;row<5;row++)for(let col=0;col<6;col++){
+      if(cells[row][col])continue;
+      const wide=col<5&&!(row===0&&col===0)&&((row===2&&col===0)||random()<.28);
+      const r=row===0&&col===0?{x:2,y:2,w:12,h:10}:{x:col*18+int(2,4),y:row*14+int(2,4),w:wide?int(25,31):int(8,13),h:int(6,10)};
+      rooms.push(r);cells[row][col]=r;if(wide)cells[row][col+1]=r;
+      for(let y=r.y;y<r.y+r.h;y++)for(let x=r.x;x<r.x+r.w;x++)tiles[y][x]=1;
+    }
+    const center=r=>({x:r.x+Math.floor(r.w/2),y:r.y+Math.floor(r.h/2)});
+    const carve=(a,b)=>{let {x,y}=a;const horizontal=()=>{while(x!==b.x){if(!tiles[y][x])tiles[y][x]=2;x+=Math.sign(b.x-x);}};const vertical=()=>{while(y!==b.y){if(!tiles[y][x])tiles[y][x]=2;y+=Math.sign(b.y-y);}};if(random()<.5){horizontal();vertical();}else{vertical();horizontal();}if(!tiles[y][x])tiles[y][x]=2;};
+    // Every room joins an earlier room, guaranteeing connectivity; extra edges form loops.
+    for(let i=1;i<rooms.length;i++){
+      const c=center(rooms[i]);let nearest=rooms[0],best=Infinity;
+      for(let j=0;j<i;j++){const d=center(rooms[j]),dist=Math.abs(c.x-d.x)+Math.abs(c.y-d.y);if(dist<best){best=dist;nearest=rooms[j];}}
+      carve(c,center(nearest));
+    }
+    for(let row=0;row<4;row++)for(let col=0;col<6;col++)if(random()<.35)carve(center(cells[row][col]),center(cells[row+1][col]));
+    const s={seed,rooms,tiles,player:{x:5,y:5,hp:30,maxHp:30,level:1,xp:0,attack:6,potions:1,gold:0,weapons:['stone_axe'],equipped:'stone_axe',gear:[makeGear('stone_axe','starter-axe'),makeGear('seer_goggles','starter-goggles')],gogglesId:null,weaponId:'starter-axe',armorId:null,defense:0,materials:{branch:0,leaf:0,apple:0,orange:0,grapes:0,acorn:0},pebbles:0,facing:{dx:0,dy:1},directionMode:false,directionPending:false},turn:0,kills:0,status:'playing',stairs:center(rooms[rooms.length-1]),seen:[],visible:[],log:[],enemies:[],items:[{x:8,y:4,type:'potion'}]};
+    const kinds=[{kind:'slime',name:'こけスライム',hp:9,maxHp:9,attack:3,xp:4},{kind:'bat',name:'洞窟コウモリ',hp:12,maxHp:12,attack:4,xp:5},{kind:'guard',name:'石の番人',hp:20,maxHp:20,attack:5,xp:8}];
+    const occupied=new Set([s.player,s.stairs,...s.items].map(p=>`${p.x},${p.y}`));
+    const place=r=>{const free=[];for(let y=r.y;y<r.y+r.h;y++)for(let x=r.x;x<r.x+r.w;x++)if(!occupied.has(`${x},${y}`))free.push({x,y});const p=free[int(0,free.length-1)];occupied.add(`${p.x},${p.y}`);return p;};
+    s.enemies.push({...kinds[0],x:9,y:7});occupied.add('9,7');
+    for(let i=1;i<rooms.length;i++){
+      const r=rooms[i];for(let n=0;n<(r.w>20?3:int(1,2));n++)s.enemies.push({...kinds[int(0,Math.min(2,Math.floor(i/4)))],...place(r)});
+      s.items.push({...place(r),type:'potion'},{...place(r),type:'gold'});
+    }
+    // Place equipment after population generation to preserve existing seeded layouts.
+    s.items.push({x:10,y:4,type:'weapon',weapon:'iron_sword'});
+    for(let i=3;i<rooms.length;i+=7){const r=rooms[i];let placed=false;for(let y=r.y;y<r.y+r.h&&!placed;y++)for(let x=r.x;x<r.x+r.w;x++)if(!occupied.has(`${x},${y}`)){s.items.push({x,y,type:'weapon',weapon:i%2?'oak_staff':'iron_sword'});placed=true;break;}}
+    // Retain one of each pair of herbs, including the starter herb.
+    let herbIndex=0;s.items=s.items.filter(i=>i.type!=='potion'||herbIndex++%2===0);
+    outfitFloor(s,seed,true,floor);plantTrees(s,seed);
+    say(s,'新しい迷宮が姿を現した。地下1階の階段を探そう。');reveal(s);return s;
+  }
+  const FLOOR_KEYS=['rooms','tiles','stairs','upStairs','enemies','items','seen','spawnClock','spawnSeed','initialEnemyCount','trees','grassPatches','spawnCount','economySeed','merchant','shopPurchases'];
+  function snapshotFloor(s){return Object.fromEntries(FLOOR_KEYS.map(k=>[k,s[k]]));}
+  function prepareFloor(s,number){
+    s.upStairs=number>1?{x:5,y:5}:null;s.spawnSeed=(s.seed^0x9e3779b9)>>>0;s.spawnClock=nextSpawnDelay(s);s.initialEnemyCount=s.enemies.length;
+    s.spawnCount=0;
+    const random=()=>randomSpawn(s);s.enemies=s.enemies.map(e=>{const enemy=makeEnemy(rollEnemy(number,random),{x:e.x,y:e.y},0,number);if(enemy.kind==='guard')outfitGuard(enemy,number,random,`${s.seed}:guard:${e.x}:${e.y}`);return enemy;});
+    setupEconomy(s,number,s.seed);scatterPebbles(s,s.seed);addNature(s,s.seed);return s;
+  }
+  function create(seed=Math.floor(Math.random()*4294967296)){
+    const s=prepareFloor(createFloor(seed),1);s.floor=1;s.floors={};return s;
+  }
+  function changeFloor(s,target){
+    const descending=target>s.floor;
+    s.floors[s.floor]=snapshotFloor(s);
+    const next=s.floors[target]||snapshotFloor(prepareFloor(createFloor(floorSeed(s.seed,target),target),target));
+    Object.assign(s,next);s.floor=target;
+    Object.assign(s.player,descending?s.upStairs:s.stairs);
+    s.events.push({type:'stairs',direction:descending?'down':'up'});
+    s.turn++;recoverHP(s);reveal(s);say(s,`地下${target}階へ${descending?'降りた':'戻った'}。`);
+  }
+  function randomSpawn(s){s.spawnSeed=(Math.imul(s.spawnSeed,1664525)+1013904223)>>>0;return s.spawnSeed/4294967296;}
+  function nextSpawnDelay(s){return 50+Math.floor(randomSpawn(s)*51);}
+  function recoverHP(s){
+    if(s.status==='playing'&&s.turn>0&&s.turn%20===0&&s.player.hp>0&&s.player.hp<s.player.maxHp){
+      s.player.hp++;say(s,'ひと息ついて、HPが1回復した。');
+    }
+  }
+  function spawnEnemy(s){
+    if(s.status!=='playing')return;
+    s.spawnClock--;if(s.spawnClock>0)return;
+    const random=()=>randomSpawn(s);
+    s.spawnClock=nextSpawnDelay(s);
+    if(s.enemies.length>=s.initialEnemyCount*2)return;
+    const candidates=[];
+    for(let y=Math.max(1,s.player.y-18);y<Math.min(H-1,s.player.y+19);y++)for(let x=Math.max(1,s.player.x-18);x<Math.min(W-1,s.player.x+19);x++){
+      const distance=Math.max(Math.abs(x-s.player.x),Math.abs(y-s.player.y));
+      if(distance<9||distance>18||!walk(s,x,y)||s.visible[y]?.[x]||enemyAt(s,x,y)||s.items.some(i=>i.x===x&&i.y===y)||isStair(s,x,y)||merchantAt(s,x,y))continue;
+      candidates.push({x,y});
+    }
+    if(!candidates.length)return;
+    const at=candidates[Math.floor(random()*candidates.length)];
+    s.spawnCount++;const enemy=makeEnemy(rollEnemy(s.floor,random),at,s.spawnCount,s.floor);enemy.roaming=true;
+    if(enemy.kind==='guard')outfitGuard(enemy,s.floor,random,`spawn:${s.floor}:${s.spawnCount}`);
+    s.enemies.push(enemy);
+    say(s,`遠くで、新たな魔物の気配がする……（この階の追加敵 +${s.spawnCount}%）。`);
+  }
+  function isStair(s,x,y){return (s.stairs.x===x&&s.stairs.y===y)||(s.upStairs?.x===x&&s.upStairs?.y===y);}
+  function serialize(s){
+    const {visible,events,...data}=s;
+    return JSON.stringify({version:15,state:{...data,floors:{...s.floors,[s.floor]:snapshotFloor(s)}}},(key,value)=>key==='tiles'?value.map(row=>row.join('')):key==='seen'?value.map(row=>row?Array.from(row,v=>v===true?'1':v===false?'0':'.').join(''):null):value);
+  }
+  function deserialize(raw){
+    try{
+      const data=JSON.parse(raw);if(![1,2,3,4,5,6,7,8,9,10,11,12,13,14,15].includes(data.version))throw Error('version');const s=data.state;
+      const integer=(n,min,max)=>Number.isInteger(n)&&n>=min&&n<=max;
+      const point=p=>p&&integer(p.x,0,W-1)&&integer(p.y,0,H-1);
+      if(!s||!integer(s.floor,1,MAX_FLOORS)||!integer(s.seed,0,4294967295)||!integer(s.turn,0,1e9)||!integer(s.kills,0,1e9)||!['playing','won','lost'].includes(s.status)||!Array.isArray(s.log)||!s.log.every(t=>typeof t==='string')||!s.floors)throw Error('state');
+      const p=s.player;if(!point(p)||!integer(p.maxHp,1,1e8)||!integer(p.hp,0,p.maxHp)||!integer(p.level,1,1e7)||!integer(p.xp*2,0,2e9)||!integer(p.attack,1,1e8)||!integer(p.potions,0,1e8)||!integer(p.gold,0,1e9))throw Error('player');
+      if(data.version<14){p.pebbles=0;p.facing={dx:0,dy:1};p.directionMode=false;p.directionPending=false;}
+      if(!integer(p.pebbles,0,1e9)||!p.facing||!integer(p.facing.dx,-1,1)||!integer(p.facing.dy,-1,1)||Math.max(Math.abs(p.facing.dx),Math.abs(p.facing.dy))!==1||typeof p.directionMode!=='boolean'||typeof p.directionPending!=='boolean')throw Error('facing');
+      if(data.version<3){p.weapons=['stone_axe'];p.equipped='stone_axe';}
+      if(data.version<4){
+        if(!Array.isArray(p.weapons)||!p.weapons.every(w=>Object.hasOwn(WEAPONS,w))||!p.weapons.includes(p.equipped))throw Error('legacy equipment');
+        p.gear=p.weapons.map((key,i)=>makeGear(key,`legacy:${i}`));p.weaponId=p.gear.find(g=>g.key===p.equipped).id;p.armorId=null;p.defense=0;
+      }
+      if(data.version<5)p.materials={branch:0,leaf:0};
+      if(data.version<15&&p.materials)for(const key of Object.keys(FRUITS))p.materials[key]??=0;
+      if(!p.materials||!Object.keys(FRUITS).every(key=>integer(p.materials[key],0,1e9))||!integer(p.materials.branch,0,1e9)||!integer(p.materials.leaf,0,1e9))throw Error('materials');
+      const gearValid=g=>g&&typeof g.id==='string'&&Object.hasOwn(EQUIPMENT,g.key)&&integer(g.durability,0,EQUIPMENT[g.key].maxDurability);
+      if(!Array.isArray(p.gear)||!p.gear.every(gearValid)||new Set(p.gear.map(g=>g.id)).size!==p.gear.length||!Array.isArray(p.weapons))throw Error('gear');
+      if(data.version<10){p.gogglesId=null;if(!p.gear.some(g=>g.key==='seer_goggles'))p.gear.push(makeGear('seer_goggles','starter-goggles'));p.xp=Math.ceil(p.xp);}
+      for(const slot of ['weapon','armor','goggles']){const id=p[slot+'Id'];if(id!==null&&!p.gear.some(g=>g.id===id&&g.durability>0&&EQUIPMENT[g.key].slot===slot))throw Error('slot');}
+      p.equipped=equippedGear(p,'weapon')?.key||null;p.defense=EQUIPMENT[equippedGear(p,'armor')?.key]?.bonus||0;
+      p.gear=p.gear.filter(g=>!(WEAPONS[g.key]&&g.durability===0));p.weapons=[...new Set(p.gear.filter(g=>WEAPONS[g.key]).map(g=>g.key))];
+      for(const [number,f] of Object.entries(s.floors)){
+        // Compact rows coexist with legacy array saves; validate symbols before decoding.
+        if(Array.isArray(f.tiles))f.tiles=f.tiles.map(row=>{if(typeof row!=='string')return row;if(!/^[0123]+$/.test(row))throw Error('tile encoding');return [...row].map(Number);});
+        if(Array.isArray(f.seen))f.seen=f.seen.map(row=>{if(typeof row!=='string')return row;if(!/^[01.]*$/.test(row))throw Error('seen encoding');return [...row].map(v=>v==='1'?true:v==='0'?false:null);});
+        if(!integer(Number(number),1,MAX_FLOORS)||!Array.isArray(f.tiles)||f.tiles.length!==H||!f.tiles.every(row=>Array.isArray(row)&&row.length===W&&row.every(n=>[0,1,2,3].includes(n))))throw Error('tiles');
+        const floorPoint=p=>point(p)&&walk(f,p.x,p.y);
+        if(data.version===1){
+          const original=createFloor(floorSeed(s.seed,Number(number)));
+          f.initialEnemyCount=original.enemies.length;f.spawnClock=nextSpawnDelay(f);
+        }
+        if(!integer(f.initialEnemyCount,1,1000))throw Error('initial enemies');
+        if(!floorPoint(f.stairs)||(Number(number)>1&&!floorPoint(f.upStairs))||!Array.isArray(f.rooms)||!Array.isArray(f.seen)||f.seen.length>H||!f.seen.every(row=>row===null||(Array.isArray(row)&&row.length<=W&&row.every(n=>n===null||typeof n==='boolean')))||!integer(f.spawnClock,1,100)||!integer(f.spawnSeed,0,4294967295))throw Error('floor');
+        if(data.version<4)outfitFloor(f,floorSeed(s.seed,Number(number)),true);
+        if(data.version<5)plantTrees(f,floorSeed(s.seed,Number(number)));
+        if(data.version<7){f.spawnCount=0;for(const e of f.enemies){e.defense=0;if(number==='1'&&e.kind==='guard'){const ratio=e.hp/e.maxHp;Object.assign(e,makeEnemy('ant',{x:e.x,y:e.y}));e.hp=Math.max(1,Math.floor(e.maxHp*ratio));delete e.weapon;delete e.armor;}}}
+        if(data.version<8){for(const e of f.enemies){const kind=e.kind==='golem'?'boar':e.kind==='wraith'?'spider':null;if(kind){const ratio=e.hp/e.maxHp;Object.assign(e,makeEnemy(kind,{x:e.x,y:e.y},e.spawnBonus||0));e.hp=Math.max(1,Math.floor(e.maxHp*ratio));}}}
+        if(data.version<12){let seed=floorSeed(s.seed,Number(number));const random=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296;};for(const e of f.enemies)if(e.kind==='guard'){const ratio=e.hp/e.maxHp;delete e.weapon;delete e.armor;Object.assign(e,makeEnemy('guard',{x:e.x,y:e.y},e.spawnBonus||0,Number(number)));outfitGuard(e,Number(number),random,`migrated:${number}:${e.x}:${e.y}`);e.hp=Math.max(1,Math.floor(e.maxHp*ratio));}}
+        if(!integer(f.spawnCount,0,1e9))throw Error('spawn count');
+        if(!Array.isArray(f.trees)||!f.trees.every(floorPoint))throw Error('trees');
+        if(!Array.isArray(f.items)||!f.items.every(i=>floorPoint(i)&&((['potion','gold','pebble'].includes(i.type)||Object.hasOwn(MATERIALS,i.type))||(i.type==='gear'&&gearValid(i.gear))))||!Array.isArray(f.enemies)||!f.enemies.every(e=>floorPoint(e)&&Object.hasOwn(MONSTERS,e.kind)&&typeof e.name==='string'&&integer(e.maxHp,1,1e8)&&integer(e.hp,1,e.maxHp)&&integer(e.attack,0,1e8)&&integer(e.xp,0,1e8)&&(!e.weapon||(gearValid(e.weapon)&&EQUIPMENT[e.weapon.key].slot==='weapon'))&&(!e.armor||(gearValid(e.armor)&&EQUIPMENT[e.armor.key].slot==='armor'))))throw Error('entities');
+        if(data.version<13)setupEconomy(f,Number(number),floorSeed(s.seed,Number(number)),true);
+        if(!integer(f.economySeed,0,4294967295)||!integer(f.shopPurchases,0,1e9)||(Number(number)%3===0?!floorPoint(f.merchant):f.merchant!==null)||!f.items.every(i=>i.type!=='gold'||integer(i.amount,1,1e9)))throw Error('economy');
+        if(data.version<14)scatterPebbles(f,floorSeed(s.seed,Number(number)));
+        if(data.version<15)addNature(f,floorSeed(s.seed,Number(number)),Number(number)===s.floor?p:null);
+        if(!Array.isArray(f.grassPatches)||!f.grassPatches.every(patch=>Array.isArray(patch)&&patch.length>=4&&patch.length<=12&&patch.every(floorPoint))||!f.trees.every(t=>t.fruit===null||Object.hasOwn(FRUITS,t.fruit)))throw Error('nature');
+        f.items=f.items.filter(i=>!(i.type==='gear'&&WEAPONS[i.gear.key]&&i.gear.durability===0));for(const e of f.enemies)if(e.weapon?.durability===0)delete e.weapon;
+      }
+      if(s.status==='won'&&((data.version<6&&s.floor===2)||(data.version<9&&s.floor===10)||(data.version<11&&s.floor===25))){s.status='playing';say(s,'地下70階までの道が開いた。探索を続けよう。');}
+      if(!s.floors[s.floor])throw Error('missing floor');Object.assign(s,s.floors[s.floor]);if(!walk(s,p.x,p.y))throw Error('position');if(data.version<13&&s.status==='lost'){s.events=[];recoverDefeat(s);}reveal(s);return s;
+    }catch{return null;}
+  }
+  function contextAction(s){
+    const p=s.player;
+    if(s.status!=='playing')return {type:'none',label:'冒険終了',detail:'もう一度探索できます'};
+    if(p.x===s.upStairs?.x&&p.y===s.upStairs?.y)return {type:'stairs',label:'階段を上る',detail:`地下${s.floor-1}階へ戻る`};
+    if(p.x===s.stairs.x&&p.y===s.stairs.y)return {type:'stairs',label:s.floor<MAX_FLOORS?'階段を降りる':'探索を完了する',detail:s.floor<MAX_FLOORS?`地下${s.floor+1}階へ`:'遺跡の最奥・クリア'};
+    const target=s.enemies.find(e=>canStep(s,p.x,p.y,e.x-p.x,e.y-p.y));
+    if(target)return {type:'move',dx:target.x-p.x,dy:target.y-p.y,label:'攻撃する',detail:target.name};
+    if(canTrade(s))return {type:'shop',label:'行商人と話す',detail:'薬草・石の装備を購入'};
+    const tree=nearbyTree(s);if(tree)return {type:'harvest',label:'木を調べる',detail:tree.fruit?FRUITS[tree.fruit].name+'が実っている':'実はついていない'};
+    return {type:'wait',label:'足踏みする',detail:'周囲をうかがう・1ターン'};
+  }
+  function say(s,text){s.log.unshift(text);s.log=s.log.slice(0,30);}
+  function openTerrain(s,x,y){return Boolean(s.tiles[y]?.[x]);}
+  function walk(s,x,y){return openTerrain(s,x,y)&&s.tiles[y][x]!==3;}
+  function canStep(s,x,y,dx,dy){
+    if(!Number.isInteger(dx)||!Number.isInteger(dy)||Math.max(Math.abs(dx),Math.abs(dy))!==1)return false;
+    return walk(s,x+dx,y+dy)&&(!dx||!dy||(openTerrain(s,x+dx,y)&&openTerrain(s,x,y+dy)));
+  }
+  function enemyAt(s,x,y){return s.enemies.find(e=>e.x===x&&e.y===y);}
+  // Walls are visible, but block the cells beyond them (including diagonal corners).
+  function lineOfSight(s,tx,ty){
+    let x=s.player.x,y=s.player.y;
+    const dx=Math.abs(tx-x),dy=Math.abs(ty-y),sx=Math.sign(tx-x),sy=Math.sign(ty-y);
+    let err=dx-dy;
+    while(x!==tx||y!==ty){
+      const twice=2*err;let nx=x,ny=y;
+      if(twice>-dy){err-=dy;nx+=sx;}
+      if(twice<dx){err+=dx;ny+=sy;}
+      if(nx!==x&&ny!==y&&!openTerrain(s,nx,y)&&!openTerrain(s,x,ny))return false;
+      x=nx;y=ny;
+      if(x===tx&&y===ty)return true;
+      if(!openTerrain(s,x,y))return false;
+    }
+    return true;
+  }
+  function reveal(s){
+    const p=s.player;
+    s.visible=Array.from({length:H},()=>Array(W).fill(false));
+    for(let y=Math.max(0,p.y-VISION);y<=Math.min(H-1,p.y+VISION);y++)
+      for(let x=Math.max(0,p.x-VISION);x<=Math.min(W-1,p.x+VISION);x++){
+        if((x-p.x)**2+(y-p.y)**2<=VISION**2&&lineOfSight(s,x,y)){
+          s.visible[y][x]=true;(s.seen[y]??=[])[x]=true;
+        }
+      }
+  }
+  function collect(s){const p=s.player;const found=s.items.filter(i=>i.x===p.x&&i.y===p.y);s.items=s.items.filter(i=>!found.includes(i));
+    if(found.length)s.events.push({type:'pickup'});
+    for(const item of found){if(item.type==='pebble'){p.pebbles++;say(s,'小石を拾った。向いている方向へ投げられる。');}else if(item.type==='potion'){p.potions++;say(s,'薬草を拾った。持ち物から使うとHPが20回復。');}else if(MATERIALS[item.type]){p.materials[item.type]++;say(s,`${MATERIALS[item.type].name}を拾った。`);}else if(item.type==='gear'){addGear(p,item.gear);say(s,`${EQUIPMENT[item.gear.key].name}を拾った（耐久 ${item.gear.durability}/${EQUIPMENT[item.gear.key].maxDurability}）。`);}else{const amount=item.amount??25;p.gold+=amount;say(s,`${amount}枚の金貨を拾った。`);}}
+  }
+  const CARDINAL=[[0,-1],[1,0],[0,1],[-1,0]];
+  function wander(s,e){
+    const free=(x,y)=>walk(s,x,y)&&!isStair(s,x,y)&&!merchantAt(s,x,y);
+    const room=s.rooms.find(r=>e.x>=r.x&&e.x<r.x+r.w&&e.y>=r.y&&e.y<r.y+r.h);
+    if(room&&!e.route?.length){
+      const exits=[];
+      for(let y=room.y;y<room.y+room.h;y++)for(let x=room.x;x<room.x+room.w;x++)for(const [dx,dy]of CARDINAL){const nx=x+dx,ny=y+dy;if((nx<room.x||nx>=room.x+room.w||ny<room.y||ny>=room.y+room.h)&&free(nx,ny))exits.push({x:nx,y:ny});}
+      const alternatives=exits.filter(p=>p.x!==e.previous?.x||p.y!==e.previous?.y),choices=alternatives.length?alternatives:exits;
+      if(!choices.length)return;
+      const goal=choices[(e.exitIndex||0)%choices.length];e.exitIndex=(e.exitIndex||0)+1;
+      const queue=[{x:e.x,y:e.y,path:[]}],visited=new Set([`${e.x},${e.y}`]);
+      for(let i=0;i<queue.length;i++){const n=queue[i];if(n.x===goal.x&&n.y===goal.y){e.route=n.path;break;}for(const [dx,dy]of CARDINAL){const x=n.x+dx,y=n.y+dy,k=`${x},${y}`;if(visited.has(k)||!free(x,y))continue;if((x<room.x||x>=room.x+room.w||y<room.y||y>=room.y+room.h)&&(x!==goal.x||y!==goal.y))continue;visited.add(k);queue.push({x,y,path:[...n.path,{x,y}]});}}
+    }
+    let step=e.route?.[0];
+    if(!room&&!step){const dx=e.x-(e.previous?.x??e.x),dy=e.y-(e.previous?.y??e.y);const heading=CARDINAL.findIndex(d=>d[0]===dx&&d[1]===dy);const order=heading<0?[0,1,2,3]:[heading,(heading+1)%4,(heading+3)%4,(heading+2)%4];step=order.map(i=>({x:e.x+CARDINAL[i][0],y:e.y+CARDINAL[i][1]})).find(p=>free(p.x,p.y));}
+    if(!step)return;
+    if(enemyAt(s,step.x,step.y)||(step.x===s.player.x&&step.y===s.player.y)){e.blocked=(e.blocked||0)+1;if(e.blocked>=3){e.route=null;e.blocked=0;}return;}
+    e.previous={x:e.x,y:e.y};e.x=step.x;e.y=step.y;e.blocked=0;if(e.route?.length)e.route.shift();
+  }
+  function enemiesTurn(s){const p=s.player;
+    for(const e of s.enemies){
+      let distance=Math.max(Math.abs(e.x-p.x),Math.abs(e.y-p.y));
+      if(distance===1&&canStep(s,e.x,e.y,p.x-e.x,p.y-e.y)){const damage=Math.max(1,e.attack+(e.weapon?.durability>0?EQUIPMENT[e.weapon.key].bonus:0)-p.defense);s.events.push({type:'hurt',x:p.x,y:p.y,weapon:e.weapon?.durability>0?e.weapon.key:'unarmed',damage});p.hp=Math.max(0,p.hp-damage);say(s,`${e.name}の攻撃。${damage}ダメージ！`);wearPlayer(s,'armor');wearPlayer(s,'goggles');if(e.weapon?.durability>0){e.weapon.durability--;if(e.weapon.durability===0){say(s,`${e.name}の${EQUIPMENT[e.weapon.key].name}が壊れた。`);delete e.weapon;}}if(p.hp===0){recoverDefeat(s);return true;}continue;}
+      if(distance>7){if(e.roaming)wander(s,e);continue;}
+      e.route=null;
+      // Breadth-first search follows corridors and respects occupied tiles.
+      const queue=[{x:e.x,y:e.y,first:null}],visited=new Set([`${e.x},${e.y}`]);let step=null;
+      for(let i=0;i<queue.length;i++){const n=queue[i];if(n.x===p.x&&n.y===p.y){step=n.first;break;}
+        for(const [dx,dy] of [[0,-1],[-1,0],[1,0],[0,1],[-1,-1],[1,-1],[-1,1],[1,1]]){const x=n.x+dx,y=n.y+dy,key=`${x},${y}`;
+          if(visited.has(key)||!canStep(s,n.x,n.y,dx,dy)||enemyAt(s,x,y)||merchantAt(s,x,y))continue;visited.add(key);queue.push({x,y,first:n.first||{x,y}});
+        }
+      }
+      if(step&&!isStair(s,step.x,step.y)&&!merchantAt(s,step.x,step.y)&&(step.x!==p.x||step.y!==p.y)){e.x=step.x;e.y=step.y;}
+    }
+  }
+  function defeatEnemy(s,enemy){const p=s.player;for(const g of [enemy.weapon,enemy.armor])if(g&&!(WEAPONS[g.key]&&g.durability===0)){s.items.push({x:enemy.x,y:enemy.y,type:'gear',gear:{...g}});say(s,`${enemy.name}が${EQUIPMENT[g.key].name}を落とした。`);}dropLoot(s,enemy);s.enemies=s.enemies.filter(e=>e!==enemy);const earnedXP=Math.ceil(enemy.xp/2);p.xp+=earnedXP;s.kills++;say(s,`${enemy.name}を倒した！ 経験値 +${earnedXP}`);
+          while(p.xp>=p.level*6){p.xp-=p.level*6;p.level++;p.maxHp+=6;p.hp=Math.min(p.maxHp,p.hp+6);p.attack+=2;say(s,`レベル${p.level}！ 最大HP +6・攻撃力 +2・HP +6。`);}
+        }
+  function act(s,action){
+    s.events=[];if(s.status!=='playing')return false;const p=s.player;
+    if(action.type==='direction'){p.directionMode=!p.directionMode;p.directionPending=p.directionMode;return true;}
+    if(action.type==='buy'){const product=Object.hasOwn(SHOP,action.item)?SHOP[action.item]:null;if(!product||!canTrade(s)||p.gold<product.price)return false;p.gold-=product.price;if(action.item==='potion')p.potions++;else addGear(p,makeGear(action.item,`shop:${s.floor}:${++s.shopPurchases}`));s.events.push({type:'pickup'});say(s,`${product.name}を金貨${product.price}枚で購入した。`);return true;}
+    if(action.type==='move'){
+      const {dx,dy}=action;if(!Number.isInteger(dx)||!Number.isInteger(dy)||Math.max(Math.abs(dx),Math.abs(dy))!==1)return false;
+      if(p.directionMode&&p.directionPending){p.facing={dx,dy};p.directionPending=false;return true;}
+      const wasDirection=p.directionMode;p.directionMode=false;p.directionPending=false;if(!canStep(s,p.x,p.y,dx,dy))return wasDirection;p.facing={dx,dy};const x=p.x+dx,y=p.y+dy;
+      const enemy=enemyAt(s,x,y);
+      if(enemy){const weapon=equippedGear(p,'weapon');const raw=Math.max(1,p.attack-(enemy.defense||0)-(enemy.armor?.durability>0?EQUIPMENT[enemy.armor.key].bonus:0));const damage=weapon?raw:Math.max(1,Math.floor(raw/2));s.events.push({type:'attack',x:enemy.x,y:enemy.y,weapon:weapon?.key||'unarmed',damage});enemy.hp-=damage;say(s,`${enemy.name}に${damage}ダメージ。`);if(enemy.armor?.durability>0)enemy.armor.durability--;wearPlayer(s,'weapon');if(enemy.hp<=0)defeatEnemy(s,enemy);}else{p.x=x;p.y=y;collect(s);}
+    }else if(action.type==='harvest'){
+      const tree=nearbyTree(s);if(!tree)return false;if(tree.fruit){const key=tree.fruit;p.materials[key]++;tree.fruit=null;s.events.push({type:'pickup'});say(s,`${FRUITS[key].name}を1個手に入れた。`);}else say(s,'この木には実がついていない。');
+    }else if(action.type==='drop'){
+      if(!putDown(s,action.item))return false;
+    }else if(action.type==='throw'){
+      if(p.pebbles<1)return false;p.pebbles--;const {dx,dy}=p.facing;let x=p.x,y=p.y,target=null;
+      for(let i=0;i<10;i++){if(!openTerrain(s,x+dx,y+dy)||(dx&&dy&&(!openTerrain(s,x+dx,y)||!openTerrain(s,x,y+dy))))break;x+=dx;y+=dy;target=enemyAt(s,x,y);if(target)break;}
+      s.events.push({type:'throw',fromX:p.x,fromY:p.y,x,y,weapon:'pebble'});
+      if(target){const weapon=equippedGear(p,'weapon'),base=p.attack-(weapon?EQUIPMENT[weapon.key].bonus:0),damage=Math.max(1,base-(target.defense||0)-(target.armor?.durability>0?EQUIPMENT[target.armor.key].bonus:0));target.hp-=damage;s.events.push({type:'attack',x,y,weapon:'pebble',damage});say(s,`小石が${target.name}に命中！ ${damage}ダメージ。`);if(target.armor?.durability>0)target.armor.durability--;if(target.hp<=0)defeatEnemy(s,target);}else if(walk(s,x,y)){s.items.push({x,y,type:'pebble'});say(s,'小石を投げた。小石は地面に落ちた。');}else say(s,'小石は水に沈んだ。');
+    }else if(action.type==='unequip'){
+      if(action.slot!=='goggles'||!p.gogglesId)return false;p.gogglesId=null;say(s,'ゴーグルを外した。');
+    }else if(action.type==='equip'){
+      const g=p.gear.find(g=>g.id===action.gearId)||p.gear.find(g=>g.key===action.weapon&&g.durability>0);
+      if(!g||g.durability<=0)return false;const definition=EQUIPMENT[g.key],slot=definition.slot;
+      if(p[slot+'Id']===g.id)return false;
+      if(slot==='weapon'){const previous=equippedGear(p,'weapon');p.attack+=definition.bonus-(previous?EQUIPMENT[previous.key].bonus:0);p.equipped=g.key;}else if(slot==='armor')p.defense=definition.bonus;
+      p[slot+'Id']=g.id;say(s,`${definition.name}を装備した（耐久 ${g.durability}/${definition.maxDurability}）。`);
+    }else if(action.type==='potion'){
+      if(p.potions===0){say(s,'薬草を持っていない。');return false;}if(p.hp===p.maxHp){say(s,'HPは満タン。薬草はまだ取っておこう。');return false;}
+      const healed=Math.min(20,p.maxHp-p.hp);p.potions--;p.hp+=healed;say(s,`薬草を使った。HPが${healed}回復。`);
+    }else if(action.type==='stairs'){
+      if(p.x===s.upStairs?.x&&p.y===s.upStairs?.y){changeFloor(s,s.floor-1);return true;}
+      if(p.x!==s.stairs.x||p.y!==s.stairs.y){say(s,'階段や最奥の宝珠の上でアクションを使おう。');return false;}
+      if(s.floor<MAX_FLOORS){changeFloor(s,s.floor+1);return true;}
+      s.turn++;recoverHP(s);s.status='won';say(s,'最奥の宝珠を見つけた！ 地下70階までの探索をクリア。');return true;
+    }else if(action.type!=='wait')return false;
+    s.turn++;if(enemiesTurn(s))return true;recoverHP(s);reveal(s);spawnEnemy(s);
+    if(s.status==='playing'&&isStair(s,p.x,p.y))say(s,`「${contextAction(s).label}」を選べます。`);return true;
+  }
+  root.DungeonEngine={W,H,VISION,MAX_FLOORS,MONSTERS,FRUITS,nearbyTree,SHOP,canTrade,goldAmount,dropLoot,STAGE_THEMES,stageTheme,GOGGLES,guardBase,equipmentWeights,rollEquipment,rollEnemy,hasMapSight,enemyPool,makeEnemy,wander,MATERIALS,WEAPONS,ARMORS,EQUIPMENT,makeGear,equippedGear,create,act,walk,reveal,canStep,contextAction,serialize,deserialize};
+})(globalThis);
+
+</script><script>
+const E=globalThis.DungeonEngine;
+const SAVE_KEY='lantern-dungeon-save-v1';
+let saveMessage='',restored=false;
+function loadAdventure(){
+ try{const raw=localStorage.getItem(SAVE_KEY);if(raw){const loaded=E.deserialize(raw);if(loaded){restored=true;saveMessage='';return loaded;}saveMessage='保存データを読み込めませんでした';}}
+ catch{saveMessage='このブラウザでは保存できません';}
+ return E.create();
+}
+let state=loadAdventure(),largeMap=false;
+function saveAdventure(){
+ try{localStorage.setItem(SAVE_KEY,E.serialize(state));saveMessage='';}
+ catch{saveMessage='保存できません（空き容量・設定を確認）';}
+ $('save-error').textContent=saveMessage;$('save-error').hidden=!saveMessage;
+}
+const $=id=>document.getElementById(id),canvas=$('game'),ctx=canvas.getContext('2d'),T=32;
+const VIEW_W=19,VIEW_H=19;
+let camera={x:0,y:0};
+let movementFrame=null, movementTimer=null;
+const MIDPOINT_MS=25;
+const sound=globalThis.CombatAudio.create();
+let combatEffects=[],effectFrame=null;
+function startCombatEffects(events){
+ if(!events?.length)return;
+ for(const event of events){if(event.type==='pickup'||event.type==='stairs')sound.cue(event.type,event.direction);}
+ events=events.filter(e=>e.type==='attack'||e.type==='hurt'||e.type==='throw');if(!events.length)return;
+ const now=performance.now();combatEffects=combatEffects.filter(e=>now-e.start<240);
+ for(const [i,e] of events.entries()){combatEffects.push({...e,start:now+i*45});if(e.type!=='attack'||e.weapon!=='pebble')sound.play(e.weapon,e.type==='hurt',i*.045);}
+ combatEffects=combatEffects.slice(-16);
+ if(effectFrame===null)effectFrame=requestAnimationFrame(animateCombat);
+}
+function animateCombat(){effectFrame=null;const now=performance.now();combatEffects=combatEffects.filter(e=>now-e.start<240);draw();if(combatEffects.length)effectFrame=requestAnimationFrame(animateCombat);}
+function clearCombatEffects(){if(effectFrame!==null)cancelAnimationFrame(effectFrame);effectFrame=null;combatEffects=[];}
+function drawCombatEffects(){
+ const now=performance.now();
+ for(const e of combatEffects){const progress=(now-e.start)/240;if(progress<0||progress>1)continue;
+   if(e.type==='throw'){const x=(e.fromX+(e.x-e.fromX)*progress)*T+16,y=(e.fromY+(e.y-e.fromY)*progress)*T+16;rect(x-3,y-3,6,6,'#d3d2be');continue;}
+   const x=e.x*T+16,y=e.y*T+16,color=e.type==='hurt'?'#ff8376':e.weapon==='iron_sword'?'#d7f6ff':e.weapon==='oak_staff'?'#dab183':'#ffe3a0';
+   ctx.save();ctx.globalAlpha=1-progress;ctx.strokeStyle=color;ctx.lineWidth=3;
+   if(e.type==='attack'){ctx.beginPath();ctx.moveTo(x-12,y+12);ctx.lineTo(x+12,y-12);ctx.stroke();}
+   ctx.beginPath();ctx.arc(x,y,5+progress*19,0,Math.PI*2);ctx.stroke();
+   for(let i=0;i<6;i++){const angle=i*Math.PI/3;rect(x+Math.cos(angle)*(7+progress*22),y+Math.sin(angle)*(7+progress*22),3,3,color);}
+   ctx.fillStyle=color;ctx.font='bold 13px sans-serif';ctx.textAlign='center';ctx.fillText(`−${e.damage}`,x,y-19-progress*12);ctx.restore();
+ }
+}
+ctx.imageSmoothingEnabled=false;
+function rect(x,y,w,h,color){ctx.fillStyle=color;ctx.fillRect(x,y,w,h);}
+function pixelSprite(pattern,palette,x,y,scale=2){const width=pattern[0].length*scale;const height=pattern.length*scale;const ox=x*T+(T-width)/2,oy=y*T+(T-height)/2;pattern.forEach((row,j)=>[...row].forEach((c,i)=>{if(palette[c])rect(ox+i*scale,oy+j*scale,scale,scale,palette[c]);}));}
+const sprites={
+ player:['    hhhh    ','   hhhhhhh  ','   hhhhhh   ','   sssks    ','    ssss    ','   cccccc   ','  cccccccg  ','  scbbbcsf  ','   bbbbb    ','   bb bb    ','   dd dd    ','  ddd ddd   '],
+ slime:['            ','            ','    gggg    ','  gggggggg  ',' gggggggggg ',' gglgggglgg ',' gggkggkggg ',' gggggggggg ','  gggggggg  ','   dddddd   '],
+ bat:['            ',' w       w  ',' ww  pp ww  ',' wwp pppww  ',' wwwppppwww ','  wppkpkw   ','    pppp    ','    pppp    ','     pp     ','            '],
+ guard:['    gggg    ','   gllllg   ','   glklkg   ','   gllllg   ','  gggggggg  ',' ggllggllgg ',' ggllggllgg ','   gggggg   ','   gg  gg   ','  ggg  ggg  '],
+ potion:['      ll    ','     lll    ','  ll ll     ','  lllll     ','   lll      ','    s       ','   bbbb     ','  bbbbbl    ','  bbbbbl    ','   bbbb     ']
+};
+Object.assign(sprites,{
+ ant:['  k    k  ','   gggg   ','  ggkkgg  ','   gggg   ',' l  gg  l ','  lggggl  ',' l gggg l ','  lggggl  ',' l gggg l ','    gg    '],
+ beetle:['   gggg   ','  gllllg  ',' gglgglgg ','kgglgglggk',' gggggggg ','kgglgglggk','  gllllg  ','   gggg   '],
+ wolf:[' g      g ',' ggl  lgg ',' gggggggg ','  gkggkg  ','   gllg   ','  gggggg  ',' gggggggg ','  gg  gg  '],
+ boar:[' gg    gg ',' gggggggg ',' gglgglgg ','  gkggkg  ',' llggggll ','  gggggg  ',' gggggggg ','  gg  gg  '],
+ spider:[' k      k ','  kg  gk  ',' kggggggk ','  gkggkg  ',' kggggggk ','  kggggk  ',' k gggg k ','k        k'],
+ golem:['   gggggg   ','  gllllllg  ','  glkllklg  ','   gggggg   ',' gggggggggg ',' ggllllllgg ',' ggllllllgg ','   gg  gg   ','  ggg  ggg  '],
+ wraith:['    gggg    ','   gllllg   ','  gllkkllg  ','  gllllllg  ','   gllllg   ','  ggllllgg  ',' gggllllggg ','  gg gg gg  ']
+});
+const extraMonsterLooks={rat:['wolf','#9c826a','#d4b99b'],snake:['spider','#719e58','#c1d985'],crab:['beetle','#a77962','#e2bda5'],lizard:['wolf','#58948d','#acd3a0'],mantis:['ant','#71a74e','#c6da88'],bear:['boar','#88694d','#c2a383'],scorpion:['spider','#ad9255','#e7cf92']};
+Object.assign(extraMonsterLooks,{horn_rabbit:['wolf','#bc9c78','#eee0af'],fungus:['slime','#b46f66','#e8b599'],mud_crab:['beetle','#827454','#c1b687'],cave_hound:['wolf','#777585','#c0b4c9'],red_ant:['ant','#b25b46','#efad72'],stone_turtle:['beetle','#698772','#bdd0a0'],fang_lizard:['wolf','#4f9689','#b4dabe'],cave_moth:['spider','#b7a175','#eadfbb'],iron_boar:['boar','#757e89','#d0d9df'],crystal_spider:['spider','#779fac','#d3eff1'],black_mantis:['ant','#636878','#bbc3d6'],rock_bear:['boar','#8f7364','#d9baa0'],silver_wolf:['wolf','#a2aabc','#edf4ff'],golem:['golem','#707d99','#aebbd1'],night_serpent:['spider','#77709b','#bfb8e1'],obsidian_beetle:['beetle','#595c74','#b0a7cb'],ember_lizard:['wolf','#b35f43','#ffc280'],wraith:['wraith','#9986c2','#ddd0f2'],abyss_crab:['beetle','#597b95','#afcde4'],moon_mantis:['ant','#719d9c','#c7eddd'],dread_bear:['boar','#756482','#c4a7cb'],crystal_scorpion:['spider','#8a99b4','#d7e7fc'],ancient_beast:['golem','#9b8260','#e9d39d']});
+function drawWeapon(weapon,x,y){
+ const px=x*T,py=y*T;
+ if(weapon==='stone_axe'){rect(px+25,py+10,2,17,'#aa7848');rect(px+22,py+8,8,7,'#acb7aa');rect(px+22,py+8,3,7,'#d7ddce');}
+ else if(E.WEAPONS[weapon]?.color){const color=E.WEAPONS[weapon].color;rect(px+25,py+4,3,17,color);rect(px+24,py+4,1,15,'#f2f3f5');rect(px+22,py+21,9,2,color);rect(px+25,py+23,3,5,'#725447');}
+ else if(weapon==='iron_sword'){rect(px+25,py+5,3,15,'#d3e5ea');rect(px+25,py+5,1,13,'#ffffff');rect(px+22,py+20,9,2,'#d7b66a');rect(px+25,py+22,3,5,'#967047');}
+ else if(weapon==='oak_staff'){rect(px+25,py+8,3,20,'#bd925e');rect(px+23,py+5,6,5,'#90bd89');}
+}
+function drawArmor(key,x,y){
+ if(!key)return;const colors={wood_armor:['#9c7547','#d6ae72'],stone_armor:['#758177','#b6bdad'],iron_armor:['#708c9e','#d3e2eb']},[base,edge]=colors[key]||[E.EQUIPMENT[key].color,'#f0e4fa'],px=x*T,py=y*T;
+ rect(px+9,py+14,14,9,base);rect(px+8,py+13,5,4,edge);rect(px+20,py+13,5,4,edge);rect(px+15,py+15,2,7,edge);
+}
+function gearLabel(g){return g?`${E.EQUIPMENT[g.key].name} ${g.durability}/${E.EQUIPMENT[g.key].maxDurability}`:'なし';}
+function draw(){
+ const view=movementFrame||state,theme=E.stageTheme(view.floor),h=theme.hue,tone=(light,sat=22)=>`hsl(${h} ${sat}% ${light}%)`;
+ rect(0,0,canvas.width,canvas.height,tone(6));
+ camera={x:view.player.x-Math.floor(VIEW_W/2),y:view.player.y-Math.floor(VIEW_H/2)};
+ ctx.save();ctx.translate(-camera.x*T,-camera.y*T);
+ for(let y=0;y<E.H;y++)for(let x=0;x<E.W;x++){
+   if(!view.visible[y]?.[x])continue;
+   const tile=view.tiles[y][x],px=x*T,py=y*T,hash=(x*17+y*31)%11;
+   if(tile===3){rect(px,py,32,32,'#285e78');rect(px+5,py+9,14,2,'#68a6b6');rect(px+15,py+23,11,1,'#477e99');}
+   else if(tile){rect(px,py,31,31,tile===2?tone(18):hash<4?tone(26):tone(23));rect(px+2,py+2,27,1,tone(30));rect(px+2,py+29,28,2,tone(15));
+     if(hash%3===0){rect(px+8,py+11,4,2,tone(31));rect(px+20,py+23,5,2,tone(18));}
+     if(hash===2){rect(px+24,py+3,3,5,tone(38));rect(px+26,py+5,3,4,tone(30));}
+   }else{
+     const near=[[0,1],[0,-1],[-1,0],[1,0]].some(([dx,dy])=>E.walk(state,x+dx,y+dy));
+     if(near){rect(px,py,31,31,tone(12));rect(px+1,py+2,30,5,tone(32));rect(px+2,py+7,28,17,tone(23));rect(px+3,py+8,12,1,tone(40));rect(px+15,py+8,2,17,tone(16));rect(px+2,py+24,29,5,tone(9));if(hash<3)rect(px+4,py+5,6,3,tone(43));}
+   }
+
+ }
+ for(const patch of view.grassPatches||[])for(const g of patch)if(view.visible[g.y]?.[g.x]){const x=g.x*T,y=g.y*T;for(let i=0;i<4;i++){rect(x+5+i*6,y+10+(i%2)*5,2,13,'#799a58');rect(x+3+i*6,y+12+(i%2)*5,3,2,'#a1b96a');}}
+ for(const tree of view.trees||[]){if(!view.visible[tree.y]?.[tree.x])continue;const x=tree.x*T,y=tree.y*T;rect(x+14,y+13,5,16,'#926a43');rect(x+7,y+5,20,12,'#446d41');rect(x+11,y+1,12,18,'#6b9753');rect(x+10,y+5,5,4,'#a6bb68');if(tree.fruit){const color=E.FRUITS[tree.fruit].color;for(const [dx,dy]of[[9,10],[20,7],[17,15]]){rect(x+dx,y+dy,5,5,color);if(tree.fruit==='acorn')rect(x+dx,y+dy,5,2,'#69503a');if(tree.fruit==='grapes')rect(x+dx+1,y+dy+4,3,3,color);}}}
+ if(view.merchant&&view.visible[view.merchant.y]?.[view.merchant.x]){const m=view.merchant;pixelSprite(sprites.guard,{g:'#aa8551',l:'#f1d6a0',k:'#332e29'},m.x,m.y);rect(m.x*T+5,m.y*T+4,22,4,'#e9bf69');ctx.fillStyle='#fff0bd';ctx.font='bold 12px sans-serif';ctx.fillText('商',m.x*T+10,m.y*T-1);}
+ const stairs=view.stairs;
+ if(view.visible[stairs.y]?.[stairs.x]){
+   const x=stairs.x*T,y=stairs.y*T;rect(x+3,y+3,26,26,'#172625');for(let i=0;i<4;i++){rect(x+6+i*3,y+7+i*5,21-i*3,3,'#9eb1a0');rect(x+6+i*3,y+10+i*5,21-i*3,2,'#536c65');}
+   rect(x+25,y+3,3,5,'#dccc87');
+   if(view.floor===E.MAX_FLOORS){rect(x+3,y+3,26,26,'#243329');ctx.fillStyle='#efcb79';ctx.beginPath();ctx.moveTo(x+16,y+4);ctx.lineTo(x+27,y+16);ctx.lineTo(x+16,y+28);ctx.lineTo(x+5,y+16);ctx.closePath();ctx.fill();rect(x+14,y+10,4,12,'#fff0b4');}
+
+ }
+ const up=view.upStairs;
+ if(up&&view.visible[up.y]?.[up.x]){const x=up.x*T,y=up.y*T;rect(x+3,y+3,26,26,'#172625');for(let i=0;i<4;i++)rect(x+6,y+7+i*5,6+i*5,3,'#9ce0ed');ctx.fillStyle='#e4f8ef';ctx.font='bold 14px sans-serif';ctx.fillText('↑',x+16,y+17);}
+ for(const i of view.items){if(!view.visible[i.y]?.[i.x])continue;
+   if(i.type==='potion')pixelSprite(sprites.potion,{l:'#98ba6a',s:'#d0bd7b',b:'#64895e'},i.x,i.y);
+   else if(i.type==='branch'){ctx.save();ctx.strokeStyle='#be9464';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(i.x*T+9,i.y*T+24);ctx.lineTo(i.x*T+24,i.y*T+9);ctx.stroke();ctx.restore();}
+   else if(i.type==='leaf'){rect(i.x*T+10,i.y*T+11,12,7,'#99bd66');rect(i.x*T+14,i.y*T+9,6,13,'#6c964a');}
+   else if(i.type==='pebble'){rect(i.x*T+13,i.y*T+14,8,6,'#aeb3ad');rect(i.x*T+14,i.y*T+13,5,2,'#e1e0d1');}
+   else if(E.FRUITS[i.type]){rect(i.x*T+12,i.y*T+12,9,9,E.FRUITS[i.type].color);rect(i.x*T+16,i.y*T+9,2,4,'#7a9263');}
+   else if(i.type==='gear'){if(E.EQUIPMENT[i.gear.key].slot==='goggles'){rect(i.x*T+8,i.y*T+13,16,5,'#a2e5e8');rect(i.x*T+15,i.y*T+13,2,5,'#596970');}else if(E.EQUIPMENT[i.gear.key].slot==='weapon')drawWeapon(i.gear.key,i.x-.25,i.y);else drawArmor(i.gear.key,i.x,i.y);}
+   else{rect(i.x*T+10,i.y*T+13,13,11,'#90743f');rect(i.x*T+9,i.y*T+10,13,10,'#dbbd69');rect(i.x*T+12,i.y*T+10,3,7,'#ffe6a0');rect(i.x*T+15,i.y*T+19,10,3,'#d7a755');}
+ }
+ for(const e of view.enemies){if(!view.visible[Math.round(e.y)]?.[Math.round(e.x)])continue;
+   rect(e.x*T+5,e.y*T+27,22,3,'#19271f');
+   const palette=e.kind==='ant'?{g:'#ad6946',l:'#dfad70',k:'#241d19'}:e.kind==='beetle'?{g:'#5b9291',l:'#a9d5b4',k:'#25383d'}:e.kind==='wolf'?{g:'#9c9da4',l:'#d4d4da',k:'#402b36'}:e.kind==='boar'?{g:'#956a4c',l:'#e9d6a4',k:'#322b25'}:e.kind==='spider'?{g:'#81759a',l:'#b6a5c5',k:'#32283f'}:e.kind==='golem'?{g:'#707d99',l:'#aebbd1',k:'#dfab65'}:e.kind==='wraith'?{g:'#9986c2',l:'#ddd0f2',k:'#3d315c'}:e.kind==='slime'?{g:'#91a963',l:'#c4d390',k:'#172b28',d:'#536d45'}:e.kind==='bat'?{w:'#987c9d',p:'#b897ac',k:'#302738'}:{g:'#788575',l:'#a3ac8b',k:'#e4ad73'};
+   const look=extraMonsterLooks[e.kind];pixelSprite(sprites[e.kind]||sprites[look?.[0]]||sprites.guard,look?{g:look[1],l:look[2],k:'#252923'}:palette,e.x,e.y);if(e.armor?.durability>0)drawArmor(e.armor.key,e.x,e.y);if(e.weapon?.durability>0)drawWeapon(e.weapon.key,e.x,e.y);if(e.hp<e.maxHp){rect(e.x*T+5,e.y*T+1,22,3,'#3d2924');rect(e.x*T+5,e.y*T+1,22*e.hp/e.maxHp,3,'#d5977e');}
+ }
+ const p=view.player;ctx.fillStyle='#d7bc7520';ctx.beginPath();ctx.arc(p.x*T+16,p.y*T+16,24,0,Math.PI*2);ctx.fill();
+ rect(p.x*T+6,p.y*T+28,22,3,'#1e2b21');pixelSprite(sprites.player,{h:'#d6b671',s:'#eed0a1',k:'#44352d',c:'#749c94',b:'#4a655d',d:'#303f38',g:'#aa7b3f',f:'#ffdf86'},p.x,p.y);
+ drawArmor(E.equippedGear(p,'armor')?.key,p.x,p.y);drawWeapon(E.equippedGear(p,'weapon')?.key,p.x,p.y);if(E.equippedGear(p,'goggles')){rect(p.x*T+9,p.y*T+8,14,4,'#a2e5e8');rect(p.x*T+15,p.y*T+8,2,4,'#596970');}
+ ctx.fillStyle='#ffe6a1';ctx.font='bold 13px sans-serif';ctx.textAlign='center';ctx.fillText(facingArrow(p),p.x*T+16+p.facing.dx*15,p.y*T+20+p.facing.dy*14);ctx.textAlign='start';
+ ctx.strokeStyle='#d4c28a88';ctx.lineWidth=1;ctx.strokeRect(p.x*T+.5,p.y*T+.5,31,31);
+ drawCombatEffects();ctx.restore();drawMinimap();
+}
+function drawMinimap(){
+ const view=movementFrame||state;
+ const hue=E.stageTheme(view.floor).hue;
+ const map=$('minimap'),m=map.getContext('2d'),scale=2,clairvoyant=E.hasMapSight(view);
+ m.fillStyle='#0c1413';m.fillRect(0,0,map.width,map.height);
+ let explored=0,total=0;
+ for(let y=0;y<E.H;y++)for(let x=0;x<E.W;x++){
+   if(view.tiles[y][x])total++;
+   if(view.tiles[y][x]&&view.seen[y]?.[x])explored++;
+   if(!clairvoyant&&!view.seen[y]?.[x])continue;
+   m.fillStyle=view.tiles[y][x]===3?'#458aa4':view.tiles[y][x]?(view.visible[y]?.[x]?`hsl(${hue} 28% 65%)`:`hsl(${hue} 20% 36%)`):`hsl(${hue} 18% 16%)`;
+   m.fillRect(x*scale,y*scale,scale,scale);
+ }
+ const stairs=view.stairs;
+ if(clairvoyant||view.seen[stairs.y]?.[stairs.x]){m.fillStyle='#9ce0ed';m.fillRect(stairs.x*scale-1,stairs.y*scale-1,4,4);}
+ if(view.upStairs&&(clairvoyant||view.seen[view.upStairs.y]?.[view.upStairs.x])){m.fillStyle='#9ce0ed';m.fillRect(view.upStairs.x*scale-1,view.upStairs.y*scale-1,4,4);}
+ if(view.merchant&&(clairvoyant||view.seen[view.merchant.y]?.[view.merchant.x])){m.fillStyle='#ffd784';m.fillRect(view.merchant.x*scale-1,view.merchant.y*scale-1,4,4);}
+ for(const e of view.enemies)if(view.visible[Math.round(e.y)]?.[Math.round(e.x)]){m.fillStyle='#dc907b';m.fillRect(e.x*scale,e.y*scale,2,2);}
+ m.strokeStyle='#dcc98b55';m.strokeRect(camera.x*scale,camera.y*scale,VIEW_W*scale,VIEW_H*scale);
+ m.fillStyle='#ffe1a1';m.fillRect(view.player.x*scale-1,view.player.y*scale-1,4,4);
+ $('explored').textContent=`探索 ${Math.floor(explored/total*100)}%${clairvoyant?' · 透視中':''}`;
+ map.setAttribute('aria-label',`探索済みの地図。現在地 ${view.player.x}, ${view.player.y}。探索率 ${Math.floor(explored/total*100)}パーセント`);
+}
+function facingArrow(p){return {'-1,-1':'↖','0,-1':'↑','1,-1':'↗','-1,0':'←','1,0':'→','-1,1':'↙','0,1':'↓','1,1':'↘'}[`${p.facing.dx},${p.facing.dy}`];}
+function render(){const p=state.player;sound.setFloor(state.floor);sound.setActive(state.status==='playing'&&document.visibilityState!=='hidden');
+ $('wait').textContent=p.directionMode?'方向 ON':'方向';$('wait').setAttribute('aria-pressed',String(p.directionMode));$('wait').setAttribute('aria-label',p.directionMode?(p.directionPending?'方向モードON。次の入力は向きだけ変更':'方向モードON。次の入力でOFFになり移動'):'方向モードをONにする');$('facing-label').textContent=`向き ${facingArrow(p)}${p.directionMode?(p.directionPending?' · 次は向きだけ':' · 次は移動'):''}`;
+ $('equipment-name').textContent=gearLabel(E.equippedGear(p,'weapon'));$('armor-name').textContent=gearLabel(E.equippedGear(p,'armor'));$('goggles-name').textContent=gearLabel(E.equippedGear(p,'goggles'));$('defense').textContent=p.defense;$('spawn-bonus').textContent=`次の追加敵 +${state.spawnCount+1}%`;
+ $('floor-label').textContent=`地下${state.floor}階 · ${E.stageTheme(state.floor).name}`;$('floor-number').textContent=`B${state.floor}`;document.title=`灯りの迷宮 — 地下${state.floor}階`;$('save-error').textContent=saveMessage;$('save-error').hidden=!saveMessage;
+ $('hp').textContent=`${p.hp} / ${p.maxHp}`;$('hp-bar').style.width=`${100*p.hp/p.maxHp}%`;$('hp-bar').style.background=p.hp<p.maxHp*.3?'#cd826e':'#8aba90';
+ $('xp').textContent=`${p.xp} / ${p.level*6}`;$('xp-bar').style.width=`${100*p.xp/(p.level*6)}%`;
+ for(const [id,value] of Object.entries({level:p.level,attack:p.attack,gold:p.gold,kills:state.kills,potions:p.potions,turn:state.turn}))$(id).textContent=value;
+ $('potion').disabled=state.status!=='playing';
+ $('stairs').disabled=state.status!=='playing';$('stairs').textContent=E.contextAction(state).label+'（アクション）';
+ $('quick-level').textContent=p.level;$('quick-hp').textContent=`${p.hp} / ${p.maxHp}`;$('quick-potions').textContent=p.potions;
+ $('quick-hp-bar').style.width=`${100*p.hp/p.maxHp}%`;$('quick-hp-bar').style.background=p.hp<p.maxHp*.3?'#cd826e':'#8aba90';
+ $('quick-potion').disabled=state.status!=='playing';const contextual=E.contextAction(state);$('quick-stairs').disabled=contextual.type==='none';$('action-label').textContent=contextual.label;$('action-detail').textContent=contextual.detail;
+ for(const button of document.querySelectorAll('[data-move], #wait'))button.disabled=state.status!=='playing';
+
+ // Append only changed messages for an intelligible live log.
+ const signature=state.log.join('\n');if($('log').dataset.signature!==signature){$('log').replaceChildren(...state.log.slice(0,8).map(text=>{const el=document.createElement('p');el.textContent=text;return el;}));$('log').dataset.signature=signature;}
+ $('map-toggle').setAttribute('aria-pressed',String(largeMap));$('map-toggle').innerHTML=(largeMap?'マップを縮小':'マップを拡大')+' <kbd>M</kbd>';$('minimap-panel').classList.toggle('expanded',largeMap);
+ $('objective').textContent=E.contextAction(state).type==='stairs'?`${E.contextAction(state).label}：アクションで実行`:state.floor<E.MAX_FLOORS?`目標：階段を見つけて地下${state.floor+1}階へ`:`目標：最奥の宝珠を探す（階段で${E.MAX_FLOORS-1}階へ戻れます）`;
+ $('result').hidden=state.status==='playing';if(state.status!=='playing'){
+   const won=state.status==='won';$('result-tag').textContent=won?'FLOOR COMPLETE':'THE LIGHT FADES';$('result-title').textContent=won?'次の冒険は、この先に。':'灯りは、またともる。';$('result-description').textContent=(won?`地下${E.MAX_FLOORS}階まで踏破しました。`:'冒険はここでひと休み。')+`\nLv.${p.level} · ${state.turn}ターン · ${state.kills}体撃破 · ${p.gold}枚の金貨`;
+ }draw();
+}
+function finishMovement(){
+ if(movementTimer!==null)clearTimeout(movementTimer);
+ movementTimer=null;movementFrame=null;
+}
+function hasAdjacentEnemy(){return state.enemies.some(e=>Math.max(Math.abs(e.x-state.player.x),Math.abs(e.y-state.player.y))<=1);}
+function action(a){
+ sound.unlock();
+ // A new tap commits the preceding visual step immediately; no input is lost.
+ finishMovement();
+ if(a.type==='context')a=E.contextAction(state);
+ // A fresh press may act once near an enemy, but must never start a repeat.
+ if(a.type==='move'&&hasAdjacentEnemy())moveRepeater.stop();
+ if(a.type==='shop'){if(E.canTrade(state))openShop();return;}
+ const before={...state,player:{...state.player},items:state.items.map(i=>({...i})),enemies:state.enemies.map(e=>({...e}))};
+ const origins=new Map(state.enemies.map(e=>[e,{x:e.x,y:e.y}]));
+ const accepted=E.act(state,a);
+ if(hasAdjacentEnemy())moveRepeater.stop();
+ const revived=state.events?.some(e=>e.type==='revive');
+ if(revived){moveRepeater.stop();clearCombatEffects();}else if(accepted)startCombatEffects(state.events);
+ if(accepted)saveAdventure();
+ if(revived||state.floor!==before.floor){render();return;}
+ const moved=state.player.x!==before.player.x||state.player.y!==before.player.y;
+ const enemyMoved=state.enemies.some(e=>{const old=origins.get(e);return old&&(e.x!==old.x||e.y!==old.y);});
+ if(accepted&&(moved||enemyMoved)){
+   movementFrame={...before,
+     player:{...before.player,x:(before.player.x+state.player.x)/2,y:(before.player.y+state.player.y)/2},
+     enemies:state.enemies.map(e=>{const old=origins.get(e)||e;return {...e,x:(old.x+e.x)/2,y:(old.y+e.y)/2};})};
+   draw();
+   movementTimer=setTimeout(()=>{finishMovement();render();},MIDPOINT_MS);
+ }else render();
+}
+function reset(){clearCombatEffects();moveRepeater.stop();finishMovement();state=E.create();largeMap=false;saveAdventure();render();canvas.focus({preventScroll:true});}
+function toggleMap(){largeMap=!largeMap;render();}
+document.addEventListener('keydown',e=>{
+ if($('help-dialog').open||$('reset-dialog').open||$('inventory-dialog').open||$('shop-dialog').open||e.ctrlKey||e.metaKey||e.altKey)return;
+ // Keep Enter and Space available for focused buttons.
+ if(e.target instanceof HTMLButtonElement&&(e.key==='Enter'||e.key===' '))return;
+ const key=e.key.toLowerCase(),moves={arrowup:[0,-1],w:[0,-1],arrowdown:[0,1],s:[0,1],arrowleft:[-1,0],a:[-1,0],arrowright:[1,0],d:[1,0],q:[-1,-1],e:[1,-1],z:[-1,1],c:[1,1]};
+ if(moves[key]){e.preventDefault();if(!e.repeat)action({type:'move',dx:moves[key][0],dy:moves[key][1]});}
+ else if([' ','h','enter','m','?'].includes(key)){e.preventDefault();if(e.repeat)return;if(key==='m')toggleMap();else if(key==='?')$('help-dialog').showModal();else action({type:key===' '?'wait':key==='h'?'potion':'context'});}
+});
+const moveRepeater=globalThis.HoldRepeat.create();
+for(const button of document.querySelectorAll('[data-move]')){
+ const move=()=>{if(state.status!=='playing'||document.querySelector('dialog[open]')){moveRepeater.stop();return;}const [dx,dy]=button.dataset.move.split(',').map(Number);action({type:'move',dx,dy});};
+ button.addEventListener('pointerdown',e=>{if(!e.isPrimary||e.button!==0)return;e.preventDefault();button.setPointerCapture(e.pointerId);moveRepeater.start(move);});
+ for(const name of ['pointerup','pointercancel','lostpointercapture'])button.addEventListener(name,()=>moveRepeater.stop());
+ button.onclick=e=>{if(e.detail===0)move();};
+}
+document.addEventListener('pointerup',()=>moveRepeater.stop());
+document.addEventListener('pointercancel',()=>moveRepeater.stop());
+window.addEventListener('blur',()=>moveRepeater.stop());
+$('quick-potion').onclick=openInventory;$('quick-stairs').onclick=()=>action({type:'context'});
+$('potion').onclick=openInventory;$('stairs').onclick=()=>action({type:'context'});$('wait').onclick=()=>{moveRepeater.stop();action({type:'direction'});};$('map-toggle').onclick=toggleMap;
+$('restart').onclick=()=>{moveRepeater.stop();$('reset-dialog').showModal();};$('cancel-reset').onclick=()=>$('reset-dialog').close();$('confirm-reset').onclick=()=>{$('reset-dialog').close();reset();};$('play-again').onclick=reset;
+$('help').onclick=()=>{moveRepeater.stop();$('help-dialog').showModal();};for(const id of ['close-help','start'])$(id).onclick=()=>{$('help-dialog').close();canvas.focus({preventScroll:true});};
+canvas.addEventListener('click',e=>{canvas.focus({preventScroll:true});if(movementFrame){finishMovement();render();}const b=canvas.getBoundingClientRect(),x=Math.floor((e.clientX-b.left)/b.width*VIEW_W)+camera.x,y=Math.floor((e.clientY-b.top)/b.height*VIEW_H)+camera.y,dx=x-state.player.x,dy=y-state.player.y;if(Math.max(Math.abs(dx),Math.abs(dy))===1)action({type:'move',dx,dy});});
+let selectedItem='potion';
+function refreshInventory(){
+ const p=state.player,material=E.MATERIALS[selectedItem],gear=p.gear.find(g=>g.id===selectedItem),definition=gear?E.EQUIPMENT[gear.key]:null,herb=selectedItem==='potion',pebble=selectedItem==='pebble';
+ const equipped=gear&&gear.id===p[definition.slot+'Id'],count=gear?1:herb?p.potions:pebble?p.pebbles:material?p.materials[selectedItem]:p.gold;
+ for(const [key,id,value] of [['potion','herb',p.potions],['pebble','pebble',p.pebbles],['branch','branch',p.materials.branch],['leaf','leaf',p.materials.leaf],['gold','gold',p.gold]])$('select-'+id).setAttribute('aria-pressed',String(selectedItem===key));
+ $('bag-herbs').textContent=`× ${p.potions}`;$('bag-pebbles').textContent=`× ${p.pebbles}`;$('bag-branches').textContent=`× ${p.materials.branch}`;$('bag-leaves').textContent=`× ${p.materials.leaf}`;$('bag-gold').textContent=`× ${p.gold}`;
+ $('fruit-choices').replaceChildren(...Object.entries(E.FRUITS).map(([key,f])=>{const button=document.createElement('button');button.textContent=`${f.name} × ${p.materials[key]}`;button.style.color=f.color;button.setAttribute('aria-pressed',String(selectedItem===key));button.onclick=()=>{selectedItem=key;refreshInventory();};return button;}));
+ $('weapon-choices').replaceChildren(...p.gear.map(g=>{const button=document.createElement('button');button.textContent=gearLabel(g)+(g.id===p[E.EQUIPMENT[g.key].slot+'Id']?'（装備中）':g.durability===0?'（破損）':'');button.setAttribute('aria-pressed',String(selectedItem===g.id));button.onclick=()=>{selectedItem=g.id;refreshInventory();};return button;}));
+ $('item-name').textContent=herb?'薬草':pebble?'小石':definition?definition.name:material?material.name:'金貨';
+ $('item-description').textContent=herb?'HPを最大20回復します。使用・置く操作は1ターン。':pebble?`現在の向き ${facingArrow(p)} へ最大10マス投げます。武器補正を除いた攻撃力で攻撃し、素手の半減はありません。行商人は通過し、壁と最初の敵で止まります。`:definition?`${definition.description} 耐久 ${gear.durability}/${definition.maxDurability}。${definition.slot==='weapon'?'攻撃':'被攻撃'}1回につき耐久−1。装備中でも足元に置けます。`:material?material.description:'行商人での購入に使えます。置くときは1枚ずつです。';
+ $('bag-health').textContent=`HP ${p.hp} / ${p.maxHp} · 攻撃力 ${p.attack} · 防御力 ${p.defense} · 向き ${facingArrow(p)}`;
+ $('use-item').disabled=state.status!=='playing'||(gear?(equipped&&definition.slot!=='goggles')||gear.durability===0:pebble?p.pebbles===0:!herb||p.potions===0||p.hp===p.maxHp);
+ $('use-item').textContent=pebble?`投げる ${facingArrow(p)}`:gear?(gear.durability===0?'壊れています':equipped?(definition.slot==='goggles'?'外す':'装備中'):'装備する'):!herb?'使用できません':p.potions===0?'薬草を持っていません':p.hp===p.maxHp?'HPは満タンです':'薬草を使う';
+ $('drop-item').disabled=state.status!=='playing'||count<1;$('drop-item').textContent=gear?'足元に置く':selectedItem==='gold'?'1枚置く':'1個置く';
+}
+function openInventory(){moveRepeater.stop();finishMovement();render();selectedItem='potion';refreshInventory();$('inventory-dialog').showModal();}
+$('close-inventory').onclick=()=>$('inventory-dialog').close();
+$('select-pebble').onclick=()=>{selectedItem='pebble';refreshInventory();};
+$('drop-item').onclick=()=>{if($('drop-item').disabled)return;$('inventory-dialog').close();action({type:'drop',item:selectedItem});};
+$('select-herb').onclick=()=>{selectedItem='potion';refreshInventory();};
+$('select-branch').onclick=()=>{selectedItem='branch';refreshInventory();};$('select-leaf').onclick=()=>{selectedItem='leaf';refreshInventory();};
+$('select-gold').onclick=()=>{selectedItem='gold';refreshInventory();};
+$('use-item').onclick=()=>{if($('use-item').disabled)return;$('inventory-dialog').close();action(selectedItem==='pebble'?{type:'throw'}:selectedItem==='potion'?{type:'potion'}:selectedItem===state.player.gogglesId?{type:'unequip',slot:'goggles'}:{type:'equip',gearId:selectedItem});};
+function refreshShop(){
+ $('shop-gold').textContent=`所持金：${state.player.gold}枚`;
+ $('shop-products').replaceChildren(...Object.entries(E.SHOP).map(([key,product])=>{const button=document.createElement('button');button.textContent=`${product.name} — 金貨${product.price}枚${E.EQUIPMENT[key]?'（耐久満タン）':''}`;button.disabled=!E.canTrade(state)||state.player.gold<product.price;button.onclick=()=>{action({type:'buy',item:key});refreshShop();$('shop-message').textContent=state.log[0];};return button;}));
+}
+function openShop(){moveRepeater.stop();finishMovement();render();refreshShop();$('shop-message').textContent='いらっしゃい。旅の支度はいかがですか。';$('shop-dialog').showModal();}
+$('close-shop').onclick=()=>$('shop-dialog').close();
+render();
+
+// Keep taps as game input; allow one-finger page scrolling outside the controls.
+const gameShell=document.querySelector('.shell');
+for(const eventName of ['contextmenu','selectstart','dragstart','dblclick'])
+  gameShell.addEventListener(eventName,e=>e.preventDefault());
+for(const eventName of ['gesturestart','gesturechange'])
+  document.addEventListener(eventName,e=>e.preventDefault(),{passive:false});
+document.addEventListener('touchstart',e=>{if(e.touches.length>1)e.preventDefault();},{passive:false});
+
+window.addEventListener('pagehide',()=>{sound.setActive(false);saveAdventure();});
+window.addEventListener('pageshow',()=>sound.setActive(state.status==='playing'));
+document.addEventListener('visibilitychange',()=>{sound.setActive(document.visibilityState!=='hidden'&&state.status==='playing');if(document.visibilityState==='hidden'){moveRepeater.stop();saveAdventure();}});
+if(!restored&&saveMessage==='')saveAdventure();
+
+function renderSound(){ $('sound-toggle').textContent=sound.isMuted()?'音 OFF':'音 ON';$('sound-toggle').setAttribute('aria-pressed',String(!sound.isMuted()));}
+$('sound-toggle').onclick=()=>{sound.setMuted(!sound.isMuted());renderSound();};
+document.addEventListener('pointerdown',()=>sound.unlock(),{passive:true});
+document.addEventListener('keydown',()=>sound.unlock());
+renderSound();
+
+</script><script>
+// Relative scope works at both username.github.io/ and username.github.io/repository/.
+if ('serviceWorker' in navigator && ['https:', 'http:'].includes(location.protocol)) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js', {scope:'./', updateViaCache:'none'})
+      .catch(error => console.warn('オフライン保存を利用できません', error));
+  });
+}
+</script>
+</body></html>
