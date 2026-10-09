@@ -1,7 +1,7 @@
 'use strict';
 const BASE = new URL('./', self.location.href);
 const PREFIX = 'lantern-dungeon:' + BASE.pathname + ':';
-const CACHE = PREFIX + '6dc5562b2f9cd18c';
+const CACHE = PREFIX + 'eb3bdf6a42a8ce6f';
 const INDEX = new URL('index.html', BASE).href;
 const MANIFEST = new URL('manifest.webmanifest', BASE).href;
 self.addEventListener('install', event => {
