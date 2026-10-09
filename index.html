@@ -100,12 +100,18 @@ html body *{touch-action:manipulation}
 
 .gear-sort-bar{display:flex;justify-content:flex-end;margin:12px 0 8px}.gear-sort-bar button{min-height:44px;max-width:100%;padding:8px 12px;white-space:normal;text-align:left}
 
+.playfield-stack{width:100%;max-width:608px}.playfield-stack .game-viewport{width:100%}
+.playfield-health{display:flex;align-items:center;gap:12px;padding:8px 10px;background:#1b2822;line-height:1.2;font-size:12px;color:var(--text);border-bottom:1px solid var(--line)}.playfield-health>span:first-child{flex:0 0 auto}.playfield-health .quick-meter{max-width:none;height:10px;margin:0}.playfield-health b{margin-left:4px;font-variant-numeric:tabular-nums}
+#log p.log-break,#latest-log.log-break{color:#ff7770}#log p.log-break:first-child:before{color:#ff7770}
+@media(max-width:800px){.playfield-stack{width:min(100%,calc(100svh - 332px))}.playfield-health{font-size:11px}}
+@media(max-width:800px) and (orientation:landscape){.playfield-stack{width:min(100%,calc(100svh - 142px))}}
+
 </style><link rel="manifest" href="./manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAADD0lEQVR4nO3TsXFVQRREQcWAq2QwSAGywyYdkiAOkcKWqK35vNPG8bf2Tr99eX//kKq9rR8gLQNA6QBQOgCUDgClA0DpAFA6AJQOAKUDQOkAUDoAlA4ApQNA6QBQOgCUDgClA0DpAFA6AJQOAKUDQOkAUDoAlA4ApQNA6QBQOgCUDgClA0DpAFA6AJQOAKUDQOkAUDoAlA4ApQNA6QBQOgCUDgClA0DpAFA6AJQOgIN+//rx37b+u1cPgIPWIwbgXgActB4xAPcC4KD1iAG4FwAHrUcMwL0AOGg9YgDuBcBB6xEDcC8ADlqPGIB7AXDQesQA3AuAg9YjBuBeABy0HjEA9wLgoPWIAbgXAAetRwzAvR4PYD3AJ7S+IQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHwGwLfvXx8fAAAAAAAAAAAAAAAAPDkAAAAAAAAAAAAAACYAPv78/HQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwfgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADrBwAAAAAAAADAcwG8WgAAAAAAAAAAAAAAAPDkAAAAAAAAAAAAAAAAAAAABAAAAgAAAfACjwDgtVvfEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAmA+k3Pr2AAAAAAD7IVRb3x4AAAAAYD+EauvbAwAAAADsh1BtfXsAAAAAgP0Qqq1vDwAAAACwH0K19e0BkP4hAJQOAKUDQOkAUDoAlA4ApQNA6QBQOgCUDgClA0DpAFA6AJQOAKUDQOkAUDoAlA4ApQNA6QBQOgCUDgClA0DpAFA6AJQOAKUDQOkAUDoAlA4ApQNA6QBQOgCUDgClA0DpAFA6AJTuL/kG+VVkI/hmAAAAAElFTkSuQmCC"><link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAADD0lEQVR4nO3TsXFVQRREQcWAq2QwSAGywyYdkiAOkcKWqK35vNPG8bf2Tr99eX//kKq9rR8gLQNA6QBQOgCUDgClA0DpAFA6AJQOAKUDQOkAUDoAlA4ApQNA6QBQOgCUDgClA0DpAFA6AJQOAKUDQOkAUDoAlA4ApQNA6QBQOgCUDgClA0DpAFA6AJQOAKUDQOkAUDoAlA4ApQNA6QBQOgCUDgClA0DpAFA6AJQOgIN+//rx37b+u1cPgIPWIwbgXgActB4xAPcC4KD1iAG4FwAHrUcMwL0AOGg9YgDuBcBB6xEDcC8ADlqPGIB7AXDQesQA3AuAg9YjBuBeABy0HjEA9wLgoPWIAbgXAAetRwzAvR4PYD3AJ7S+IQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHwGwLfvXx8fAAAAAAAAAAAAAAAAPDkAAAAAAAAAAAAAACYAPv78/HQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwfgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADrBwAAAAAAAADAcwG8WgAAAAAAAAAAAAAAAPDkAAAAAAAAAAAAAAAAAAAABAAAAgAAAfACjwDgtVvfEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAmA+k3Pr2AAAAAAD7IVRb3x4AAAAAYD+EauvbAwAAAADsh1BtfXsAAAAAgP0Qqq1vDwAAAACwH0K19e0BkP4hAJQOAKUDQOkAUDoAlA4ApQNA6QBQOgCUDgClA0DpAFA6AJQOAKUDQOkAUDoAlA4ApQNA6QBQOgCUDgClA0DpAFA6AJQOAKUDQOkAUDoAlA4ApQNA6QBQOgCUDgClA0DpAFA6AJTuL/kG+VVkI/hmAAAAAElFTkSuQmCC"></head>
 <body><main class="shell">
 <header><a class="brand" href="./"><span class="brand-icon">◈</span><span>灯りの迷宮<small>LANTERN DUNGEON</small></span></a><div class="edition"><span></span> 70フロア体験版</div><button class="subtle" id="sound-toggle" aria-pressed="true">音 ON</button><button class="subtle" id="help">遊び方 <span>?</span></button></header>
 <section class="intro"><div><p class="eyebrow">A LITTLE LIGHT, A NEW ADVENTURE</p><h1>小さな灯りと、地下への一歩。</h1><p>部屋を巡り、道具を拾い、迷宮の奥の階段へ。</p></div><div class="floor-label"><small>苔むす遺跡</small><strong><span id="floor-number">B1</span><span>F</span></strong></div></section>
 <div class="layout"><section class="game-panel"><div class="game-toolbar"><div><span class="live-dot"></span> <b id="floor-label">地下1階</b></div><button id="map-toggle" class="subtle" aria-pressed="false">マップを拡大 <kbd>M</kbd></button></div>
-<div class="quick-status"><span>Lv.<b id="quick-level">1</b></span><span class="quick-health">HP <b id="quick-hp">30 / 30</b><span class="quick-meter"><i id="quick-hp-bar"></i></span></span><span>満腹度 <b id="fullness">100%</b></span><span>水分 <b id="hydration">100%</b></span><span>装備 <b id="equipment-name">石の斧</b></span><span>鎧 <b id="armor-name">なし</b></span><span>ゴーグル <b id="goggles-name">なし</b></span><span id="save-error" role="status" hidden></span></div><div class="canvas-wrap"><div class="game-viewport"><div id="compass" hidden aria-label="下り階段の方向"><span id="compass-arrow">↑</span><small id="compass-label">下り階段</small></div><canvas id="game" width="1152" height="1152" tabindex="0" aria-label="ダンジョン。矢印キーかWASDで移動、敵に向かって移動すると攻撃。"></canvas><p id="latest-log" aria-label="最新のログ"></p><section id="minimap-panel" class="minimap-panel" aria-label="ミニマップ"><canvas id="minimap" width="224" height="148" aria-label="探索済みの地図"></canvas></section><div id="result" class="overlay" hidden><div><p class="eyebrow" id="result-tag"></p><h2 id="result-title"></h2><p id="result-description"></p><button id="play-again" class="primary">もう一度探索する</button></div></div></div></div>
+<div class="quick-status"><span>Lv.<b id="quick-level">1</b></span><span>満腹度 <b id="fullness">100%</b></span><span>水分 <b id="hydration">100%</b></span><span>装備 <b id="equipment-name">石の斧</b></span><span>鎧 <b id="armor-name">なし</b></span><span>ゴーグル <b id="goggles-name">なし</b></span><span id="save-error" role="status" hidden></span></div><div class="canvas-wrap"><div class="playfield-stack"><div class="playfield-health"><span>HP <b id="quick-hp">30 / 30</b></span><span id="quick-hp-meter" class="quick-meter" role="progressbar" aria-label="残りHP" aria-valuemin="0" aria-valuemax="30" aria-valuenow="30"><i id="quick-hp-bar"></i></span></div><div class="game-viewport"><div id="compass" hidden aria-label="下り階段の方向"><span id="compass-arrow">↑</span><small id="compass-label">下り階段</small></div><canvas id="game" width="1152" height="1152" tabindex="0" aria-label="ダンジョン。矢印キーかWASDで移動、敵に向かって移動すると攻撃。"></canvas><p id="latest-log" aria-label="最新のログ"></p><section id="minimap-panel" class="minimap-panel" aria-label="ミニマップ"><canvas id="minimap" width="224" height="148" aria-label="探索済みの地図"></canvas></section><div id="result" class="overlay" hidden><div><p class="eyebrow" id="result-tag"></p><h2 id="result-title"></h2><p id="result-description"></p><button id="play-again" class="primary">もう一度探索する</button></div></div></div></div></div>
 <section class="controller-panel" aria-label="探索コントローラー"><div id="direction-pad" class="touch-controls" style="display:grid;grid-template-columns:repeat(3,var(--direction-size,48px));grid-template-rows:repeat(3,44px);gap:5px" aria-label="8方向の移動操作"><button data-move="-1,-1" aria-label="左上に移動">↖</button><button data-move="0,-1" aria-label="上に移動">↑</button><button data-move="1,-1" aria-label="右上に移動">↗</button><button data-move="-1,0" aria-label="左に移動">←</button><button id="wait" aria-label="方向モードをONにする" aria-pressed="false">方向</button><button data-move="1,0" aria-label="右に移動">→</button><button data-move="-1,1" aria-label="左下に移動">↙</button><button data-move="0,1" aria-label="下に移動">↓</button><button data-move="1,1" aria-label="右下に移動">↘</button></div><div class="quick-actions"><button id="quick-potion">▣ 持ち物<small>アイテムを選んで使う</small></button><button id="quick-stairs"><span id="action-label">足踏みする</span><small id="action-detail">アクション</small></button><button id="quick-throw"><span id="throw-label">石を投げる ↓</span><small id="throw-count">小石 0個</small></button></div></section><section class="card journal controller-journal"><div class="section-label">ADVENTURE LOG<span>冒険の記録</span></div><div id="log" role="log" aria-live="polite" aria-relevant="additions"></div></section><div class="map-footer"><span><i class="legend hero"></i>あなた</span><span><i class="legend monster"></i>敵</span><span><i class="legend herb"></i>薬草</span><span><i class="legend exit"></i>階段</span><span class="turn">TURN <b id="turn">0</b></span></div>
 <div class="under-map"><span>移動 <kbd>↑</kbd><kbd>←</kbd><kbd>↓</kbd><kbd>→</kbd> / <kbd>W A S D</kbd></span><span>敵に向かって移動で攻撃</span><span>足踏み <kbd>Space</kbd></span></div>
 </section>
@@ -197,48 +203,48 @@ html body *{touch-action:manipulation}
 </script><script>
 /* Shared, deterministic turn-based rules. No rendering or browser dependencies. */
 (function (root) {
-  const W = 112, H = 74, VISION = 8, MAX_FLOORS = 70;
+  const W = 112, H = 74, VISION = 8, MAX_FLOORS = 70, WATER_LIMIT = 3;
   const STAGE_THEMES=[['苔の回廊',110],['琥珀の洞穴',38],['青銅の遺跡',175],['薄紫の石室',270],['赤土の坑道',18],['蒼い水脈',205],['黄昏の古道',48],['翡翠の地下庭園',150],['紅晶の岩窟',345],['白銀の祭壇',220],['深層の石殿',245],['熾火の迷路',8],['深淵の回廊',285],['古代の聖域',190]].map(([name,hue],index)=>({name,hue,index,from:index*5+1,to:index*5+5}));
   function stageTheme(floor){return STAGE_THEMES[Math.max(0,Math.min(13,Math.floor((floor-1)/5)))];}
   const floorSeed=(seed,number)=>number===1?seed:number===2?(seed^0x85ebca6b)>>>0:(seed^Math.imul(0x85ebca6b,number-1))>>>0;
   const MONSTERS={
     slime:{kind:'slime',name:'こけスライム',hp:10,attack:3,defense:0,xp:1},
-    ant:{kind:'ant',name:'はたらきアリ',hp:14,attack:4,defense:0,xp:2},
-    bat:{kind:'bat',name:'洞窟コウモリ',hp:16,attack:5,defense:0,xp:3},
-    beetle:{kind:'beetle',name:'鉄甲コガネ',hp:30,attack:6,defense:2,xp:6},
-    wolf:{kind:'wolf',name:'洞窟オオカミ',hp:36,attack:9,defense:2,xp:8},
-    boar:{kind:'boar',name:'荒牙イノシシ',hp:42,attack:12,defense:4,xp:10},
-    spider:{kind:'spider',name:'大グモ',hp:48,attack:14,defense:2,xp:12},
-    rat:{kind:'rat',name:'大ネズミ',hp:54,attack:16,defense:4,xp:14},
-    snake:{kind:'snake',name:'岩ヘビ',hp:60,attack:19,defense:4,xp:17},
+    ant:{kind:'ant',name:'はたらきアリ',hp:14,attack:4,defense:0,xp:1},
+    bat:{kind:'bat',name:'洞窟コウモリ',hp:16,attack:5,defense:0,xp:2},
+    beetle:{kind:'beetle',name:'鉄甲コガネ',hp:30,attack:6,defense:2,xp:4},
+    wolf:{kind:'wolf',name:'洞窟オオカミ',hp:36,attack:9,defense:2,xp:5},
+    boar:{kind:'boar',name:'荒牙イノシシ',hp:42,attack:12,defense:4,xp:7},
+    spider:{kind:'spider',name:'大グモ',hp:48,attack:14,defense:2,xp:10},
+    rat:{kind:'rat',name:'大ネズミ',hp:54,attack:16,defense:4,xp:13},
+    snake:{kind:'snake',name:'岩ヘビ',hp:60,attack:19,defense:4,xp:16},
     crab:{kind:'crab',name:'石甲ガニ',hp:66,attack:22,defense:8,xp:20},
     lizard:{kind:'lizard',name:'洞窟トカゲ',hp:72,attack:26,defense:6,xp:24},
     mantis:{kind:'mantis',name:'大カマキリ',hp:75,attack:30,defense:6,xp:29},
     bear:{kind:'bear',name:'穴ぐらグマ',hp:87,attack:32,defense:8,xp:35},
-    scorpion:{kind:'scorpion',name:'鎧サソリ',hp:93,attack:34,defense:10,xp:42},
-    horn_rabbit:{kind:'horn_rabbit',name:'角ウサギ',hp:99,attack:36,defense:10,xp:50},
-    fungus:{kind:'fungus',name:'歩きキノコ',hp:105,attack:38,defense:10,xp:59},
-    mud_crab:{kind:'mud_crab',name:'泥甲ガニ',hp:114,attack:40,defense:14,xp:70},
-    cave_hound:{kind:'cave_hound',name:'岩穴ハウンド',hp:120,attack:44,defense:12,xp:82},
-    red_ant:{kind:'red_ant',name:'赤牙アリ',hp:126,attack:46,defense:12,xp:91},
-    stone_turtle:{kind:'stone_turtle',name:'岩背ガメ',hp:138,attack:46,defense:18,xp:100},
-    fang_lizard:{kind:'fang_lizard',name:'牙トカゲ',hp:144,attack:50,defense:14,xp:110},
-    cave_moth:{kind:'cave_moth',name:'洞窟オオガ',hp:150,attack:52,defense:14,xp:120},
-    iron_boar:{kind:'iron_boar',name:'鉄牙イノシシ',hp:162,attack:56,defense:16,xp:130},
-    crystal_spider:{kind:'crystal_spider',name:'水晶グモ',hp:168,attack:58,defense:16,xp:140},
+    scorpion:{kind:'scorpion',name:'鎧サソリ',hp:93,attack:34,defense:10,xp:41},
+    horn_rabbit:{kind:'horn_rabbit',name:'角ウサギ',hp:99,attack:36,defense:10,xp:47},
+    fungus:{kind:'fungus',name:'歩きキノコ',hp:105,attack:38,defense:10,xp:54},
+    mud_crab:{kind:'mud_crab',name:'泥甲ガニ',hp:114,attack:40,defense:14,xp:62},
+    cave_hound:{kind:'cave_hound',name:'岩穴ハウンド',hp:120,attack:44,defense:12,xp:70},
+    red_ant:{kind:'red_ant',name:'赤牙アリ',hp:126,attack:46,defense:12,xp:79},
+    stone_turtle:{kind:'stone_turtle',name:'岩背ガメ',hp:138,attack:46,defense:18,xp:89},
+    fang_lizard:{kind:'fang_lizard',name:'牙トカゲ',hp:144,attack:50,defense:14,xp:100},
+    cave_moth:{kind:'cave_moth',name:'洞窟オオガ',hp:150,attack:52,defense:14,xp:112},
+    iron_boar:{kind:'iron_boar',name:'鉄牙イノシシ',hp:162,attack:56,defense:16,xp:125},
+    crystal_spider:{kind:'crystal_spider',name:'水晶グモ',hp:168,attack:58,defense:16,xp:137},
     black_mantis:{kind:'black_mantis',name:'黒刃カマキリ',hp:174,attack:62,defense:16,xp:150},
-    rock_bear:{kind:'rock_bear',name:'岩窟グマ',hp:189,attack:64,defense:18,xp:160},
-    silver_wolf:{kind:'silver_wolf',name:'銀牙オオカミ',hp:195,attack:68,defense:18,xp:170},
-    golem:{kind:'golem',name:'深層ゴーレム',hp:213,attack:68,defense:24,xp:180},
-    night_serpent:{kind:'night_serpent',name:'夜色ヘビ',hp:216,attack:72,defense:20,xp:195},
-    obsidian_beetle:{kind:'obsidian_beetle',name:'黒曜コガネ',hp:228,attack:74,defense:26,xp:205},
-    ember_lizard:{kind:'ember_lizard',name:'熾火トカゲ',hp:234,attack:78,defense:22,xp:217},
-    wraith:{kind:'wraith',name:'深淵の亡霊',hp:240,attack:80,defense:20,xp:230},
-    abyss_crab:{kind:'abyss_crab',name:'深穴ガニ',hp:258,attack:82,defense:28,xp:245},
-    moon_mantis:{kind:'moon_mantis',name:'月影カマキリ',hp:264,attack:86,defense:24,xp:260},
-    dread_bear:{kind:'dread_bear',name:'巨躯グマ',hp:285,attack:88,defense:26,xp:275},
-    crystal_scorpion:{kind:'crystal_scorpion',name:'結晶サソリ',hp:291,attack:92,defense:28,xp:290},
-    ancient_beast:{kind:'ancient_beast',name:'古代の巨獣',hp:315,attack:96,defense:30,xp:320},
+    rock_bear:{kind:'rock_bear',name:'岩窟グマ',hp:189,attack:64,defense:18,xp:164},
+    silver_wolf:{kind:'silver_wolf',name:'銀牙オオカミ',hp:195,attack:68,defense:18,xp:179},
+    golem:{kind:'golem',name:'深層ゴーレム',hp:213,attack:68,defense:24,xp:195},
+    night_serpent:{kind:'night_serpent',name:'夜色ヘビ',hp:216,attack:72,defense:20,xp:212},
+    obsidian_beetle:{kind:'obsidian_beetle',name:'黒曜コガネ',hp:228,attack:74,defense:26,xp:230},
+    ember_lizard:{kind:'ember_lizard',name:'熾火トカゲ',hp:234,attack:78,defense:22,xp:249},
+    wraith:{kind:'wraith',name:'深淵の亡霊',hp:240,attack:80,defense:20,xp:269},
+    abyss_crab:{kind:'abyss_crab',name:'深穴ガニ',hp:258,attack:82,defense:28,xp:290},
+    moon_mantis:{kind:'moon_mantis',name:'月影カマキリ',hp:264,attack:86,defense:24,xp:312},
+    dread_bear:{kind:'dread_bear',name:'巨躯グマ',hp:285,attack:88,defense:26,xp:335},
+    crystal_scorpion:{kind:'crystal_scorpion',name:'結晶サソリ',hp:291,attack:92,defense:28,xp:360},
+    ancient_beast:{kind:'ancient_beast',name:'古代の巨獣',hp:315,attack:96,defense:30,xp:385},
     guard:{kind:'guard',name:'遺跡の番兵'}
   };
   const requiredEXP=level=>Math.max(1,Math.round(.2*level**2.3));
@@ -448,11 +454,11 @@ html body *{touch-action:manipulation}
   function unpackRow(row){if(!row.startsWith('~'))return row;let result='';for(const run of row.slice(1).split(',')){if(!/^[0-9a-z]+:[0123.]$/.test(run))throw Error('row encoding');const [count,char]=run.split(':'),n=parseInt(count,36);if(n<1||result.length+n>W)throw Error('row length');result+=char.repeat(n);}return result;}
   function serialize(s){
     const {visible,events,...data}=s;for(const key of FLOOR_KEYS)delete data[key];
-    return JSON.stringify({version:24,state:{...data,floors:{...s.floors,[s.floor]:snapshotFloor(s)}}},(key,value)=>key==='tiles'?value.map(row=>packRow(row.join(''))):key==='seen'?value.map(row=>row?packRow(Array.from(row,v=>v===true?'1':v===false?'0':'.').join('')):null):value);
+    return JSON.stringify({version:25,state:{...data,floors:{...s.floors,[s.floor]:snapshotFloor(s)}}},(key,value)=>key==='tiles'?value.map(row=>packRow(row.join(''))):key==='seen'?value.map(row=>row?packRow(Array.from(row,v=>v===true?'1':v===false?'0':'.').join('')):null):value);
   }
   function deserialize(raw){
     try{
-      const data=JSON.parse(raw);if(![1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24].includes(data.version))throw Error('version');const s=data.state;
+      const data=JSON.parse(raw);if(![1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25].includes(data.version))throw Error('version');const s=data.state;
       const integer=(n,min,max)=>Number.isInteger(n)&&n>=min&&n<=max;
       const point=p=>p&&integer(p.x,0,W-1)&&integer(p.y,0,H-1);
       if(!s||!integer(s.floor,1,MAX_FLOORS)||!integer(s.seed,0,4294967295)||!integer(s.turn,0,1e9)||!integer(s.kills,0,1e9)||!['playing','won','lost'].includes(s.status)||!Array.isArray(s.log)||!s.log.every(t=>typeof t==='string')||!s.floors)throw Error('state');
@@ -526,7 +532,8 @@ html body *{touch-action:manipulation}
           for(const e of f.enemies){const ratio=e.hp/e.maxHp,base=makeEnemy(e.kind,{x:e.x,y:e.y},e.spawnBonus||0,Number(number));Object.assign(e,base);e.hp=Math.max(1,Math.floor(e.maxHp*ratio));if(e.kind==='guard'){e.attack=Math.max(1,e.attack-(e.weapon?.durability>1?gearBonus(e.weapon):0));e.defense=Math.max(0,e.defense-(e.armor?.durability>1?gearBonus(e.armor):0));}}
           addSingleWater(f,Number(number),floorSeed(s.seed,Number(number)),Number(number)===s.floor?p:null);f.waterUses={};
         }
-        if(!f.waterUses||Array.isArray(f.waterUses)||!Object.entries(f.waterUses).every(([key,n])=>{const [x,y]=key.split(',').map(Number);return /^\d+,\d+$/.test(key)&&point({x,y})&&f.tiles[y][x]===3&&integer(n,0,5);}))throw Error('water uses');
+        if(data.version<25){for(const e of f.enemies)e.xp=e.kind==='guard'?guardBase(Number(number)).xp:MONSTERS[e.kind].xp;if(f.waterUses)for(const key of Object.keys(f.waterUses))if(integer(f.waterUses[key],0,5))f.waterUses[key]=Math.min(WATER_LIMIT,f.waterUses[key]);}
+        if(!f.waterUses||Array.isArray(f.waterUses)||!Object.entries(f.waterUses).every(([key,n])=>{const [x,y]=key.split(',').map(Number);return /^\d+,\d+$/.test(key)&&point({x,y})&&f.tiles[y][x]===3&&integer(n,0,WATER_LIMIT);}))throw Error('water uses');
         if(!Array.isArray(f.fish)||!f.fish.every(p=>point(p)&&f.tiles[p.y][p.x]===3))throw Error('fish');
       }
       if(s.status==='won'&&((data.version<6&&s.floor===2)||(data.version<9&&s.floor===10)||(data.version<11&&s.floor===25))){s.status='playing';say(s,'地下70階までの道が開いた。探索を続けよう。');}
@@ -542,7 +549,7 @@ html body *{touch-action:manipulation}
     if(target)return {type:'move',dx:target.x-p.x,dy:target.y-p.y,label:'攻撃する',detail:target.name};
     if(canTrade(s))return {type:'shop',label:'行商人と話す',detail:'薬草・石の装備・キット・コンパスを購入'};
     if(nearbyFish(s))return {type:'fish',label:'魚を調べる',detail:'水辺の魚を捕まえる'};
-    if(nearbyWater(s))return {type:'water',label:'水を調べる',detail:'水を汲む（1マス5回まで）'};
+    if(nearbyWater(s))return {type:'water',label:'水を調べる',detail:'水を汲む（1マス3回まで）'};
     const tree=nearbyTree(s);if(tree)return {type:'harvest',label:'木を調べる',detail:tree.fruit?FRUITS[tree.fruit].name+'が実っている':'実はついていない'};
     return {type:'wait',label:'足踏みする',detail:'周囲をうかがう・1ターン'};
   }
@@ -630,7 +637,7 @@ html body *{touch-action:manipulation}
     }
     if(spots.length){const p=spots[((seed^0x139bac34)>>>0)%spots.length];s.tiles[p.y][p.x]=3;}
   }
-  function nearbyWater(s){const p=s.player,spots=[];for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){const x=p.x+dx,y=p.y+dy;if(s.tiles[y]?.[x]===3&&(s.waterUses?.[`${x},${y}`]||0)<5&&(!(dx&&dy)||(openTerrain(s,x,p.y)&&openTerrain(s,p.x,y))))spots.push({x,y});}return spots.find(t=>t.x===p.x+p.facing.dx&&t.y===p.y+p.facing.dy)||spots[0];}
+  function nearbyWater(s){const p=s.player,spots=[];for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){const x=p.x+dx,y=p.y+dy;if(s.tiles[y]?.[x]===3&&(s.waterUses?.[`${x},${y}`]||0)<WATER_LIMIT&&(!(dx&&dy)||(openTerrain(s,x,p.y)&&openTerrain(s,p.x,y))))spots.push({x,y});}return spots.find(t=>t.x===p.x+p.facing.dx&&t.y===p.y+p.facing.dy)||spots[0];}
   function populateFish(s,seed){let n=(seed^0x915bd14f)>>>0;s.fish=[];for(let y=0;y<H;y++)for(let x=0;x<W;x++)if(s.tiles[y][x]===3){n=(Math.imul(n,1664525)+1013904223)>>>0;if(n/4294967296<1/25)s.fish.push({x,y});}}
   function nearbyFish(s){const p=s.player;return s.fish?.find(f=>Math.max(Math.abs(f.x-p.x),Math.abs(f.y-p.y))===1&&(!(f.x!==p.x&&f.y!==p.y)||(openTerrain(s,f.x,p.y)&&openTerrain(s,p.x,f.y))));}
   function nearFire(s){const p=s.player;return s.campfires.some(f=>f.expires>s.turn&&((f.x===p.x&&f.y===p.y)||canStep(s,p.x,p.y,f.x-p.x,f.y-p.y)));}
@@ -652,7 +659,7 @@ html body *{touch-action:manipulation}
       s.events=events;return true;
     }
     if(action.type==='cook'){if(!canCook(s,action.item))return false;for(const [k,n]of Object.entries(RECIPES[action.item].ingredients)){if(k==='potion')p.potions-=n;else p.materials[k]-=n;}p.materials[action.item]++;say(s,`${CRAFTED[action.item].name}を作った。`);action={type:'wait'};}
-    if(action.type==='water'){const at=nearbyWater(s);if(!at)return false;const key=`${at.x},${at.y}`;s.waterUses[key]=(s.waterUses[key]||0)+1;p.materials.water++;say(s,`水を1本汲んだ（残り${5-s.waterUses[key]}回）。`);action={type:'wait'};}
+    if(action.type==='water'){const at=nearbyWater(s);if(!at)return false;const key=`${at.x},${at.y}`;s.waterUses[key]=(s.waterUses[key]||0)+1;p.materials.water++;say(s,`水を1本汲んだ（残り${WATER_LIMIT-s.waterUses[key]}回）。`);action={type:'wait'};}
     if(action.type==='fish'){const fish=nearbyFish(s);if(!fish)return false;s.fish=s.fish.filter(f=>f!==fish);p.materials.fish++;say(s,'魚を1匹手に入れた。');action={type:'wait'};}
     if(action.type==='campfire'){
       if(!canCampfire(s))return false;const at={x:p.x+p.facing.dx,y:p.y+p.facing.dy};p.pebbles-=2;p.materials.branch-=5;p.materials.leaf-=5;
@@ -700,7 +707,7 @@ html body *{touch-action:manipulation}
     s.turn++;if(p.hp===0){recoverDefeat(s);return true;}if(enemiesTurn(s))return true;if(survivalTurn(s))return true;reveal(s);spawnEnemy(s);
     return true;
   }
-  root.DungeonEngine={W,H,VISION,MAX_FLOORS,requiredEXP,LOOT_MATERIALS,SPECIES_DROPS,nearbyWater,expertResult,shopProducts,FRUIT_ENEMIES,alreadyBought,CRAFTED,TOOLS,RECIPES,canConsume,gearBonus,canWork,canCook,nearbyFish,canCampfire,canBoil,MONSTERS,CONSUMABLES,consumable,FRUITS,nearbyTree,SHOP,canTrade,goldAmount,dropLoot,STAGE_THEMES,stageTheme,GOGGLES,guardBase,guardChance,equipmentWeights,rollEquipment,rollEnemy,hasMapSight,enemyPool,makeEnemy,wander,MATERIALS,WEAPONS,ARMORS,EQUIPMENT,makeGear,equippedGear,create,act,walk,reveal,canStep,contextAction,serialize,deserialize};
+  root.DungeonEngine={W,H,VISION,MAX_FLOORS,WATER_LIMIT,requiredEXP,LOOT_MATERIALS,SPECIES_DROPS,nearbyWater,expertResult,shopProducts,FRUIT_ENEMIES,alreadyBought,CRAFTED,TOOLS,RECIPES,canConsume,gearBonus,canWork,canCook,nearbyFish,canCampfire,canBoil,MONSTERS,CONSUMABLES,consumable,FRUITS,nearbyTree,SHOP,canTrade,goldAmount,dropLoot,STAGE_THEMES,stageTheme,GOGGLES,guardBase,guardChance,equipmentWeights,rollEquipment,rollEnemy,hasMapSight,enemyPool,makeEnemy,wander,MATERIALS,WEAPONS,ARMORS,EQUIPMENT,makeGear,equippedGear,create,act,walk,reveal,canStep,contextAction,serialize,deserialize};
 })(globalThis);
 
 </script><script>
@@ -897,8 +904,9 @@ function drawMinimap(){
  map.setAttribute('aria-label',`探索済みの地図。現在地 ${view.player.x}, ${view.player.y}。探索率 ${Math.floor(explored/total*100)}パーセント`);
 }
 function facingArrow(p){return {'-1,-1':'↖','0,-1':'↑','1,-1':'↗','-1,0':'←','1,0':'→','-1,1':'↙','0,1':'↓','1,1':'↘'}[`${p.facing.dx},${p.facing.dy}`];}
+function isBreakMessage(text){return typeof text==='string'&&text.includes('が壊れた');}
 function render(){const p=state.player;$('mode-label').textContent=state.mode==='expert'?'上級者モード':'通常モード';$('enter-expert').hidden=state.mode==='expert'||p.materials.expert_ticket<1;$('return-normal').hidden=state.mode!=='expert';$('rankings').hidden=state.mode!=='expert';sound.setFloor(state.floor);sound.setActive(state.status==='playing'&&document.visibilityState!=='hidden');
- $('fullness').textContent=`${p.fullness}%`;$('hydration').textContent=`${p.hydration}%`;$('survival-alert').hidden=state.status!=='playing'||(p.fullness>0&&p.hydration>0&&p.hp>p.maxHp*.1);$('latest-log').textContent=state.log[0]||'';$('latest-log').title=state.log[0]||'';const dx=state.stairs.x-p.x,dy=state.stairs.y-p.y;$('compass').hidden=!p.materials.compass;$('compass-arrow').style.transform=`rotate(${Math.atan2(dy,dx)*180/Math.PI+90}deg)`;$('compass-label').textContent=dx===0&&dy===0?'到着':state.floor===E.MAX_FLOORS?'宝珠':'下り階段';
+ $('fullness').textContent=`${p.fullness}%`;$('hydration').textContent=`${p.hydration}%`;$('survival-alert').hidden=state.status!=='playing'||(p.fullness>0&&p.hydration>0&&p.hp>p.maxHp*.1);$('latest-log').textContent=state.log[0]||'';$('latest-log').title=state.log[0]||'';$('latest-log').className=isBreakMessage(state.log[0])?'log-break':'';const dx=state.stairs.x-p.x,dy=state.stairs.y-p.y;$('compass').hidden=!p.materials.compass;$('compass-arrow').style.transform=`rotate(${Math.atan2(dy,dx)*180/Math.PI+90}deg)`;$('compass-label').textContent=dx===0&&dy===0?'到着':state.floor===E.MAX_FLOORS?'宝珠':'下り階段';
  $('wait').textContent=p.directionMode?'方向 ON':'方向';$('wait').setAttribute('aria-pressed',String(p.directionMode));$('wait').setAttribute('aria-label',p.directionMode?(p.directionPending?'方向モードON。次の入力は向きだけ変更':'方向モードON。次の入力でOFFになり移動'):'方向モードをONにする');
  $('equipment-name').textContent=gearLabel(E.equippedGear(p,'weapon'));$('armor-name').textContent=gearLabel(E.equippedGear(p,'armor'));$('goggles-name').textContent=gearLabel(E.equippedGear(p,'goggles'));
  $('floor-label').textContent=`地下${state.floor}階 · ${E.stageTheme(state.floor).name}`;$('floor-number').textContent=`B${state.floor}`;document.title=`灯りの迷宮 — 地下${state.floor}階`;$('save-error').textContent=saveMessage;$('save-error').hidden=!saveMessage;
@@ -908,13 +916,13 @@ function render(){const p=state.player;$('mode-label').textContent=state.mode===
  $('potion').disabled=state.status!=='playing';
  $('stairs').disabled=state.status!=='playing';
  $('quick-level').textContent=p.level;$('quick-hp').textContent=`${p.hp} / ${p.maxHp}`;
- $('quick-hp-bar').style.width=`${100*p.hp/p.maxHp}%`;$('quick-hp-bar').style.background=p.hp<p.maxHp*.3?'#cd826e':'#8aba90';
+ $('quick-hp-meter').setAttribute('aria-valuemax',String(p.maxHp));$('quick-hp-meter').setAttribute('aria-valuenow',String(p.hp));$('quick-hp-bar').style.width=`${100*p.hp/p.maxHp}%`;$('quick-hp-bar').style.background=p.hp<p.maxHp*.3?'#cd826e':'#8aba90';
  $('quick-throw').disabled=state.status!=='playing'||p.pebbles===0;$('throw-label').textContent=`石を投げる ${facingArrow(p)}`;$('throw-count').textContent=`小石 ${p.pebbles}個`;
  $('quick-potion').disabled=state.status!=='playing';const contextual=E.contextAction(state);$('quick-stairs').disabled=contextual.type==='none';$('action-label').textContent=contextual.label;$('action-detail').textContent=contextual.detail;
  for(const button of document.querySelectorAll('[data-move], #wait'))button.disabled=state.status!=='playing';
 
  // Append only changed messages for an intelligible live log.
- const signature=state.log.join('\n');if($('log').dataset.signature!==signature){$('log').replaceChildren(...state.log.slice(0,8).map(text=>{const el=document.createElement('p');el.textContent=text;return el;}));$('log').dataset.signature=signature;}
+ const signature=state.log.join('\n');if($('log').dataset.signature!==signature){$('log').replaceChildren(...state.log.slice(0,8).map(text=>{const el=document.createElement('p');el.textContent=text;if(isBreakMessage(text))el.className='log-break';return el;}));$('log').dataset.signature=signature;}
  $('map-toggle').setAttribute('aria-pressed',String(largeMap));$('map-toggle').innerHTML=(largeMap?'マップを縮小':'マップを拡大')+' <kbd>M</kbd>';$('minimap-panel').classList.toggle('expanded',largeMap);
  $('objective').textContent=E.contextAction(state).type==='stairs'?`${E.contextAction(state).label}：アクションで実行`:state.floor<E.MAX_FLOORS?`目標：階段を見つけて地下${state.floor+1}階へ`:`目標：最奥の宝珠を探す（階段で${E.MAX_FLOORS-1}階へ戻れます）`;
  $('result').hidden=state.status==='playing';if(state.status!=='playing'){
